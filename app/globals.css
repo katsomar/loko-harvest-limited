@@ -1,26 +1,128 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  --color-primary-yellow: #F5C518;
+  --color-primary-yellow-bright: #FFBF00;
+  --color-dark-green: #1B4332;
+  --color-light-green: #52B788;
+  --color-off-white: #FAFAF5;
+  --color-brand-dark: #0D1B0F;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "Inter", sans-serif;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --animate-scroll-marquee: scroll-marquee 40s linear infinite;
+  --animate-scroll-marquee-reverse: scroll-marquee-reverse 40s linear infinite;
+  --animate-pulse-slow: pulse-slow 4s ease-in-out infinite;
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes scroll-marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  @keyframes scroll-marquee-reverse {
+    from { transform: translateX(-50%); }
+    to { transform: translateX(0); }
+  }
+
+  @keyframes pulse-slow {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+:root {
+  --background: #FAFAF5;
+  --foreground: #0D1B0F;
+  --primary: #F5C518;
+  --secondary: #1B4332;
 }
+
+body {
+  @apply bg-off-white text-brand-dark font-sans selection:bg-primary-yellow selection:text-brand-dark;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-serif;
+}
+
+/* Glassmorphism */
+.glass {
+  @apply bg-white/10 backdrop-blur-md border border-white/20;
+}
+
+.glass-dark {
+  @apply bg-dark-green/80 backdrop-blur-lg border border-white/10;
+}
+
+/* Custom Cursor */
+.custom-cursor {
+  @apply fixed w-4 h-4 bg-primary-yellow rounded-full pointer-events-none z-[9999] mix-blend-difference transition-transform duration-200;
+  transform: translate(-50%, -50%);
+}
+
+.custom-cursor.hover {
+  @apply scale-[3] bg-primary-yellow/50;
+}
+
+/* Scroll Smoothing */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Leaflet Dark Mode Fix */
+.leaflet-container {
+  filter: grayscale(100%) invert(100%) contrast(90%);
+}
+
+/* Animated Grain Texture */
+.bg-grain {
+  position: relative;
+}
+
+.bg-grain::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.05;
+  pointer-events: none;
+  animation: noise 0.2s infinite;
+}
+
+@keyframes noise {
+  0% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -5%); }
+  20% { transform: translate(-10%, 5%); }
+  30% { transform: translate(5%, -10%); }
+  40% { transform: translate(-5%, 15%); }
+  50% { transform: translate(-10%, 5%); }
+  60% { transform: translate(15%, 0); }
+  70% { transform: translate(0, 10%); }
+  80% { transform: translate(-15%, 0); }
+  90% { transform: translate(10%, 5%); }
+  100% { transform: translate(5%, 0); }
+}
+
