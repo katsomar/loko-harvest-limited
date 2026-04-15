@@ -8,10 +8,10 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 
 const timeline = [
-  { year: "2014", title: "Humbling Roots", description: "Loko Harvest began with just 500 birds and a passion for ethical farming. We manually tended to each bird, learning the language of the land and the needs of our flock.", image: "/hero_farm_bg_1776283710075.png" },
-  { year: "2016", title: "Modernizing the Vision", description: "Automated systems were introduced to ensure precise feeding and temperature control, significantly improving the welfare of our poultry.", image: "/about_farm_detail_1776283784366.png" },
-  { year: "2019", title: "Regional Hub", description: "We opened three new state-of-the-art facilities, becoming a primary supplier for the central and western regions.", image: "/hero_farm_bg_1776283710075.png" },
-  { year: "2024", title: "Sustainable Leadership", description: "Integration of solar energy and circular waste management, setting a new benchmark for eco-luxury farming in Uganda.", image: "/about_farm_detail_1776283784366.png" },
+  { year: "2014", title: "Humbling Roots", description: "Loko Harvest began with just 500 birds and a passion for ethical farming. We manually tended to each bird, learning the language of the land and the needs of our flock.", image: "/hero.png" },
+  { year: "2016", title: "Modernizing the Vision", description: "Automated systems were introduced to ensure precise feeding and temperature control, significantly improving the welfare of our poultry.", image: "/gallery/farm1.JPG" },
+  { year: "2019", title: "Regional Hub", description: "We opened three new state-of-the-art facilities, becoming a primary supplier for the central and western regions.", image: "/hero.png" },
+  { year: "2024", title: "Sustainable Leadership", description: "Integration of solar energy and circular waste management, setting a new benchmark for eco-luxury farming in Uganda.", image: "/gallery/farm1.JPG" },
 ];
 
 const values = [
@@ -155,7 +155,13 @@ export default function AboutBiographyPage() {
                        transition={{ duration: 1.5, delay: 0.2 }}
                        className="w-full md:w-1/2 aspect-[4/3] rounded-[60px] overflow-hidden shadow-2xl relative group"
                     >
-                       <Image src={item.image} alt={item.title} fill className="object-cover transition-transform group-hover:scale-105 duration-[2000ms]" />
+                       <Image 
+                         src={item.image} 
+                         alt={item.title} 
+                         fill 
+                         sizes="(max-width: 768px) 100vw, 50vw"
+                         className="object-cover transition-transform group-hover:scale-105 duration-[2000ms]" 
+                       />
                        <div className="absolute inset-0 bg-brand-dark/20 group-hover:bg-transparent transition-colors duration-1000" />
                     </motion.div>
                   </div>

@@ -9,11 +9,11 @@ const categories = ["All", "Farm", "Products", "Facilities", "Events"];
 
 const items = [
   { id: 1, category: "Farm", title: "Sunrise over the fields", image: "/gallery/fields1.JPG", height: "h-[300px]" },
-  { id: 2, category: "Products", title: "Premium Eggs", image: "/gallery/eggs2.jpg", height: "h-[450px]" },
-  { id: 3, category: "Facilities", title: "Modern Hatchery", image: "/gallery/facilites.jpg", height: "h-[350px]" },
-  { id: 4, category: "Events", title: "Community Day", image: "/gallery/events.jpg", height: "h-[400px]" },
-  { id: 5, category: "Farm", title: "Healthy Flock", image: "/gallery/farm1.jpg", height: "h-[500px]" },
-  { id: 6, category: "Products", title: "Fresh Poultry", image: "/gallery/eggs.jpg", height: "h-[320px]" },
+  { id: 2, category: "Products", title: "Premium Eggs", image: "/gallery/eggs2.JPG", height: "h-[450px]" },
+  { id: 3, category: "Facilities", title: "Modern Hatchery", image: "/gallery/facilites.JPG", height: "h-[350px]" },
+  { id: 4, category: "Events", title: "Community Day", image: "/gallery/events.JPG", height: "h-[400px]" },
+  { id: 5, category: "Farm", title: "Healthy Flock", image: "/gallery/farm1.JPG", height: "h-[500px]" },
+  { id: 6, category: "Products", title: "Fresh Poultry", image: "/gallery/eggs.JPG", height: "h-[320px]" },
 ];
 
 export const GallerySection = () => {
@@ -84,6 +84,7 @@ export const GallerySection = () => {
                   src={item.image}
                   alt={item.title}
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-brand-dark/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-6 text-center">
@@ -127,6 +128,7 @@ export const GallerySection = () => {
                     src={selectedItem.image}
                     alt={selectedItem.title}
                     fill
+                    sizes="100vw"
                     className="object-contain"
                   />
                 </motion.div>

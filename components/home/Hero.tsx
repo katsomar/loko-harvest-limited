@@ -1,38 +1,81 @@
 "use client";
 
 import React from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
+
+const heroImages = [
+  "/hero/1.JPG",
+  "/hero/2.JPG",
+  "/hero/3.JPG",
+  "/hero/4.JPG",
+  "/hero/5.JPG",
+  "/hero/6.JPG",
+];
 
 export const Hero = () => {
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 500], [0, 200]);
+  const [mounted, setMounted] = React.useState(false);
+  const [bgIndex, setBgIndex] = React.useState(0);
+  const [particles, setParticles] = React.useState<{ x: string; delay: number; duration: number }[]>([]);
+
+  React.useEffect(() => {
+    setMounted(true);
+    const newParticles = [...Array(20)].map(() => ({
+      x: Math.random() * 100 + "%",
+      delay: Math.random() * 10,
+      duration: Math.random() * 10 + 10,
+    }));
+    setParticles(newParticles);
+
+    const interval = setInterval(() => {
+      setBgIndex((prev) => (prev + 1) % heroImages.length);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, []);
 
   const words = "From Our Farm. To Your Table.".split(" ");
 
   return (
     <section id="home" className="relative h-screen min-h-[700px] overflow-hidden flex items-center justify-center">
-      {/* Background with Parallax */}
+      {/* Background Slideshow with Parallax */}
       <motion.div 
         style={{ y: y1 }}
         className="absolute inset-0 z-0 bg-brand-dark"
       >
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40 scale-110"
-          style={{ backgroundImage: `url('/hero_farm_bg_1776283710075.png')` }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/80 via-transparent to-brand-dark/80" />
-        <div className="absolute inset-0 bg-grain" />
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={bgIndex}
+            initial={{ opacity: 0, scale: 1.1 }}
+            animate={{ opacity: 0.4, scale: 1.15 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 2, ease: "easeInOut" }}
+            className="absolute inset-0"
+          >
+            <Image
+              src={heroImages[bgIndex]}
+              alt="Loko Harvest Farm"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover"
+            />
+          </motion.div>
+        </AnimatePresence>
+        <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/80 via-transparent to-brand-dark/80 z-10" />
+        <div className="absolute inset-0 bg-grain z-10" />
       </motion.div>
 
       {/* Floating Particles */}
       <div className="absolute inset-0 pointer-events-none z-10">
-        {[...Array(20)].map((_, i) => (
+        {mounted && particles.map((p, i) => (
           <motion.div
             key={i}
             initial={{ 
-              x: Math.random() * 100 + "%", 
+              x: p.x, 
               y: "110%", 
               opacity: 0 
             }}
@@ -41,9 +84,9 @@ export const Hero = () => {
               opacity: [0, 0.5, 0] 
             }}
             transition={{ 
-              duration: Math.random() * 10 + 10, 
+              duration: p.duration, 
               repeat: Infinity, 
-              delay: Math.random() * 10 
+              delay: p.delay 
             }}
             className="absolute w-1 h-1 bg-primary-yellow rounded-full"
           />

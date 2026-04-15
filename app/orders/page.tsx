@@ -11,7 +11,7 @@ const products = [
     id: "p1",
     name: "Premium Whole Chicken",
     category: "Poultry",
-    image: "/product_collection_1776283806405.png",
+    image: "/chicken.png",
     options: ["1.2kg - 1.5kg", "1.6kg - 2.0kg"],
     basePrice: 25000,
   },
@@ -19,7 +19,7 @@ const products = [
     id: "p2",
     name: "Farm Fresh Eggs (Tray)",
     category: "Eggs",
-    image: "/product_collection_1776283806405.png",
+    image: "/eggs.png",
     options: ["Tray of 30"],
     basePrice: 15000,
   },
@@ -27,7 +27,7 @@ const products = [
     id: "p3",
     name: "Chicken Breasts (Boneless)",
     category: "Processed",
-    image: "/about_farm_detail_1776283784366.png",
+    image: "/gallery/farm1.JPG",
     options: ["500g Pack", "1kg Pack"],
     basePrice: 18000,
   },
@@ -35,7 +35,7 @@ const products = [
     id: "p4",
     name: "Chicken Drumsticks",
     category: "Processed",
-    image: "/about_farm_detail_1776283784366.png",
+    image: "/gallery/farm1.JPG",
     options: ["1kg Pack"],
     basePrice: 20000,
   },
@@ -121,6 +121,7 @@ export default function OrdersPage() {
                       src={product.image}
                       alt={product.name}
                       fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       className="object-cover transition-transform duration-1000 group-hover:scale-110"
                     />
                     <div className="absolute top-6 left-6">

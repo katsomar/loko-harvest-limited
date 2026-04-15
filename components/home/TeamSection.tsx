@@ -10,37 +10,37 @@ const team = [
     name: "Mbabazi Annette",
     role: "Director",
     bio: "With over 15 years in agriculture, Samuel leads with a vision for sustainable growth.",
-    image: "/teams/team.png",
+    image: "/teams/entireteam.JPG",
   },
   {
     name: "Mbabazi Jackson",
     role: "Founding Director",
     bio: "Sarah ensures our farm runs with precision and care, maintaining our high standards.",
-    image: "/team_2.png",
+    image: "/teams/entireteam1.jpeg",
   },
   {
     name: "Omar Muammar",
     role: "Monitoring and evaluation",
     bio: "Expert in avian health, Dr. James guarantees the welfare and quality of our flock.",
-    image: "/teams/Omar.JPg",
+    image: "/teams/Omar.JPG",
   },
   {
     name: "Desire Edrine",
     role: "Assistant M&E",
     bio: "Expert in avian health, Dr. James guarantees the welfare and quality of our flock.",
-    image: "/teams/desire.jpg",
+    image: "/teams/desire.JPG",
   },
   {
     name: "Emmanuel Lumbuye",
     role: "Head of marketing",
     bio: "Expert in avian health, Dr. James guarantees the welfare and quality of our flock.",
-    image: "/teams/emma.jpg",
+    image: "/teams/emma.JPG",
   },
   {
     name: "Masaba Daudi",
     role: "Finance and Admin",
     bio: "Expert in avian health, Dr. James guarantees the welfare and quality of our flock.",
-    image: "/teams/daudi.jpg",
+    image: "/teams/daudi.JPG",
   },
 ];
 
@@ -95,6 +95,7 @@ export const TeamSection = () => {
                     src={member.image}
                     alt={member.name}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                 </div>
