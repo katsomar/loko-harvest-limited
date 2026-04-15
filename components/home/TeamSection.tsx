@@ -7,22 +7,40 @@ import Image from "next/image";
 
 const team = [
   {
-    name: "Samuel Okello",
-    role: "Founding Director",
+    name: "Mbabazi Annette",
+    role: "Director",
     bio: "With over 15 years in agriculture, Samuel leads with a vision for sustainable growth.",
-    image: "/team_1.png",
+    image: "/teams/team.png",
   },
   {
-    name: "Sarah Namubiru",
-    role: "Operations Manager",
+    name: "Mbabazi Jackson",
+    role: "Founding Director",
     bio: "Sarah ensures our farm runs with precision and care, maintaining our high standards.",
     image: "/team_2.png",
   },
   {
-    name: "Dr. James Kato",
-    role: "Head Veterinarian",
+    name: "Omar Muammar",
+    role: "Monitoring and evaluation",
     bio: "Expert in avian health, Dr. James guarantees the welfare and quality of our flock.",
-    image: "/team_3.png",
+    image: "/teams/Omar.JPg",
+  },
+  {
+    name: "Desire Edrine",
+    role: "Assistant M&E",
+    bio: "Expert in avian health, Dr. James guarantees the welfare and quality of our flock.",
+    image: "/teams/desire.jpg",
+  },
+  {
+    name: "Emmanuel Lumbuye",
+    role: "Head of marketing",
+    bio: "Expert in avian health, Dr. James guarantees the welfare and quality of our flock.",
+    image: "/teams/emma.jpg",
+  },
+  {
+    name: "Masaba Daudi",
+    role: "Finance and Admin",
+    bio: "Expert in avian health, Dr. James guarantees the welfare and quality of our flock.",
+    image: "/teams/daudi.jpg",
   },
 ];
 

@@ -8,12 +8,12 @@ import Image from "next/image";
 const categories = ["All", "Farm", "Products", "Facilities", "Events"];
 
 const items = [
-  { id: 1, category: "Farm", title: "Sunrise over the fields", image: "/hero_farm_bg_1776283710075.png", height: "h-[300px]" },
-  { id: 2, category: "Products", title: "Premium Eggs", image: "/product_collection_1776283806405.png", height: "h-[450px]" },
-  { id: 3, category: "Facilities", title: "Modern Hatchery", image: "/about_farm_detail_1776283784366.png", height: "h-[350px]" },
-  { id: 4, category: "Events", title: "Community Day", image: "/hero_farm_bg_1776283710075.png", height: "h-[400px]" },
-  { id: 5, category: "Farm", title: "Healthy Flock", image: "/about_farm_detail_1776283784366.png", height: "h-[500px]" },
-  { id: 6, category: "Products", title: "Fresh Poultry", image: "/product_collection_1776283806405.png", height: "h-[320px]" },
+  { id: 1, category: "Farm", title: "Sunrise over the fields", image: "/gallery/fields1.JPG", height: "h-[300px]" },
+  { id: 2, category: "Products", title: "Premium Eggs", image: "/gallery/eggs2.jpg", height: "h-[450px]" },
+  { id: 3, category: "Facilities", title: "Modern Hatchery", image: "/gallery/facilites.jpg", height: "h-[350px]" },
+  { id: 4, category: "Events", title: "Community Day", image: "/gallery/events.jpg", height: "h-[400px]" },
+  { id: 5, category: "Farm", title: "Healthy Flock", image: "/gallery/farm1.jpg", height: "h-[500px]" },
+  { id: 6, category: "Products", title: "Fresh Poultry", image: "/gallery/eggs.jpg", height: "h-[320px]" },
 ];
 
 export const GallerySection = () => {

@@ -60,7 +60,7 @@ export const AboutSection = () => {
               className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl"
             >
               <Image
-                src="/about_farm_detail_1776283784366.png"
+                src="/teams/entireteam1.jpeg"
                 alt="Poultry farm operations"
                 fill
                 className="object-cover transition-transform duration-700 hover:scale-105"
