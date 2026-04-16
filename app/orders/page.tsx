@@ -13,18 +13,20 @@ import { LeafyCorner } from "@/components/ui/LeafyCorner";
 import { FallingLeaves } from "@/components/ui/FallingLeaves";
 
 const products = [
-  { id: "p1", name: "Premium Whole Chicken", category: "Poultry", image: "/chicken.png", options: ["1.2kg - 1.5kg", "1.6kg - 2.0kg"], basePrice: 25000 },
-  { id: "p2", name: "Farm Fresh Eggs (Tray)", category: "Eggs", image: "/eggs.png", options: ["Tray of 30"], basePrice: 15000 },
-  { id: "p3", name: "Boneless Breast (Pack)", category: "Processed", image: "/gallery/farm1.JPG", options: ["1kg Pack"], basePrice: 28000 },
-  { id: "p4", name: "Chicken Drumsticks", category: "Processed", image: "/gallery/farm1.JPG", options: ["1kg Pack"], basePrice: 22000 },
-  { id: "p5", name: "Buffalo Wings (Pack)", category: "Processed", image: "/gallery/eggs.JPG", options: ["1kg Pack"], basePrice: 18000 },
-  { id: "p6", name: "Organic Gizzards", category: "Poultry", image: "/gallery/farm1.JPG", options: ["500g Pack"], basePrice: 12000 },
-  { id: "p7", name: "Smoked Whole Chicken", category: "Specialty", image: "/hero.png", options: ["Lg 1.8kg"], basePrice: 35000 },
-  { id: "p8", name: "Pre-Seasoned Roast", category: "Specialty", image: "/gallery/eggs2.JPG", options: ["1.5kg"], basePrice: 32000 },
-  { id: "p9", name: "Fresh Chicken Thighs", category: "Poultry", image: "/gallery/farm1.JPG", options: ["1kg Pack"], basePrice: 24000 },
-  { id: "p10", name: "Premium Duck Breast", category: "Specialty", image: "/gallery/fields1.JPG", options: ["400g Pack"], basePrice: 45000 },
-  { id: "p11", name: "Quail Eggs (Pack)", category: "Eggs", image: "/gallery/eggs.JPG", options: ["24 Eggs"], basePrice: 10000 },
-  { id: "p12", name: "Chicken Hearts", category: "Poultry", image: "/gallery/farm1.JPG", options: ["500g Pack"], basePrice: 8000 },
+  { id: "p1", name: "Loko white yellow yolk eggs open tray", category: "Eggs", image: "/orders/white.JPG", options: ["Tray of 30"], basePrice: 15000 },
+  { id: "p2", name: "Loko white yellow yolk eggs (15 pack)", category: "Eggs", image: "/orders/15.JPG", options: ["1 Pack"], basePrice: 10500},
+  { id: "p3", name: "Loko white yellow yolk eggs (6 pack)", category: "Eggs", image: "/orders/6pack.JPG", options: ["1 Pack"], basePrice: 4000 },
+  { id: "p4", name: "Loko white yellow yolk eggs (Single)", category: "Eggs", image: "/orders/single1.JPG", options: ["1 Pack"], basePrice: 17000 },
+  { id: "p5", name: "Loko white yellow yolk eggs (double)", category: "Eggs", image: "/orders/double.JPG", options: ["1 Pack"], basePrice: 30000 },
+  { id: "p6", name: "Loko white yellow yolk eggs (family pack)", category: "Eggs", image: "/orders/family.JPG", options: ["1 Pack"], basePrice: 70000 },
+  { id: "p7", name: "Loko Cream yellow yolk eggs Open tray", category: "Eggs", image: "/orders/cream.JPG", options: ["Tray of 30"], basePrice: 20000 },
+  { id: "p8", name: "Loko Cream yellow yolk eggs (15 pack)", category: "Eggs", image: "/orders/15cream.JPG", options: ["1 Pack"], basePrice: 12500 },
+  { id: "p9", name: "Loko Cream yellow yolk eggs (6 pack)", category: "Eggs", image: "/orders/6cream.JPG", options: ["1 Pack"], basePrice: 5000 },
+  { id: "p10", name: "Brown eggs", category: "Eggs", image: "/orders/brown.JPG", options: ["Tray of 30"], basePrice: 13000 },
+  { id: "p11", name: "Loko live white chicken", category: "Specialty", image: "/orders/live1.JPG", options: ["1 Bird"], basePrice: 20000 },
+  { id: "p12", name: "Loko dressed chicken", category: "Specialty", image: "/orders/chicken.JPG", options: ["1kg-1.9kg"], basePrice: 20000 },
+  { id: "p13", name: "Dog food", category: "Dog food", image: "/orders/food.JPG", options: ["1 Mortality Bird"], basePrice: 6000 },
+  { id: "p14", name: "Manure", category: "Fertilizer", image: "/orders/manure.JPG", options: ["1 Bag"], basePrice: 12500 },
 ];
 
 const CONTACTS = {
