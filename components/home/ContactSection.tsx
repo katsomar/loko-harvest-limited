@@ -7,9 +7,9 @@ import { Map } from "@/components/ui/Map";
 import { cn } from "@/lib/utils";
 
 const contactInfo = [
-  { icon: MapPin, title: "Our Location", detail: "Plot 45, Industrial Area, Kampala, UG" },
-  { icon: Phone, title: "Phone Number", detail: "+256 761 974 265" },
-  { icon: Mail, title: "Email Address", detail: "info@lokoharvest.com" },
+  { icon: MapPin, title: "Our Location", detail: "Akright Bwebajja, Entebbe Road, Uganda" },
+  { icon: Phone, title: "Phone Numbers", detail: "+256 761 974 265 / +256 749 793 597" },
+  { icon: Mail, title: "Email Address", detail: "lokoharvestuganda@gmail.com" },
   { icon: Clock, title: "Working Hours", detail: "Mon - Sat: 8:00 AM - 6:00 PM" },
 ];
 
@@ -177,9 +177,9 @@ export const ContactSection = () => {
                   <div className="w-12 h-12 rounded-xl bg-primary-yellow/10 flex items-center justify-center shrink-0 group-hover:bg-primary-yellow transition-colors">
                     <item.icon className="w-6 h-6 text-primary-yellow group-hover:text-brand-dark transition-colors" />
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <h4 className="font-serif font-bold text-brand-dark mb-1">{item.title}</h4>
-                    <p className="text-brand-dark/60 text-sm">{item.detail}</p>
+                    <p className="text-brand-dark/60 text-sm break-all">{item.detail}</p>
                   </div>
                 </motion.div>
               ))}
