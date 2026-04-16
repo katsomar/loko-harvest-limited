@@ -4,7 +4,8 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Leaf } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
@@ -31,20 +32,27 @@ export const Navbar = () => {
   return (
     <nav
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-6 py-4",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-6 py-2",
         isScrolled
-          ? "bg-dark-green/90 backdrop-blur-md shadow-lg py-3"
+          ? "bg-dark-green/90 backdrop-blur-md shadow-lg py-1"
           : "bg-transparent"
       )}
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
+      <div className="max-w-7xl mx-auto flex items-center justify-between relative h-16">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 group">
-          <Leaf className="w-6 h-6 text-primary-yellow group-hover:rotate-12 transition-transform duration-300" />
-          <span className="font-serif text-xl font-bold tracking-wider text-white">
-            LOKO HARVEST
-          </span>
-        </Link>
+        <div className="flex-shrink-0 w-32 h-full relative">
+          <Link href="/" className="absolute top-1/2 -translate-y-1/2 left-0 group">
+            <div className="relative w-28 h-28 transition-transform duration-300 group-hover:scale-110">
+              <Image
+                src="/logos/loko.png"
+                alt="Loko Harvest"
+                fill
+                className="object-contain drop-shadow-2xl"
+                priority
+              />
+            </div>
+          </Link>
+        </div>
 
         {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-8">

@@ -2,7 +2,8 @@
 
 import React from "react";
 import Link from "next/link";
-import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin, Leaf } from "lucide-react";
+import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react";
+import Image from "next/image";
 
 export const Footer = () => {
   return (
@@ -11,7 +12,14 @@ export const Footer = () => {
         {/* Brand */}
         <div className="col-span-1 md:col-span-1">
           <Link href="/" className="flex items-center gap-2 mb-6">
-            <Leaf className="w-6 h-6 text-primary-yellow" />
+            <div className="relative w-10 h-10">
+              <Image
+                src="/logos/loko.png"
+                alt="Loko Harvest Logo"
+                fill
+                className="object-contain"
+              />
+            </div>
             <span className="font-serif text-2xl font-bold tracking-wider">
               LOKO HARVEST
             </span>
