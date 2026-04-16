@@ -126,3 +126,33 @@ html.lenis {
   100% { transform: translate(5%, 0); }
 }
 
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0D1B0F; /* brand-dark */
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    to bottom,
+    #F5C518, /* primary-yellow */
+    #1B4332  /* dark-green */
+  );
+  border-radius: 10px;
+  border: 3px solid #0D1B0F;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #FFBF00; /* primary-yellow-bright */
+  border-width: 2px;
+}
+
+/* Firefox Support */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #F5C518 #0D1B0F;
+}

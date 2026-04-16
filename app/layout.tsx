@@ -7,6 +7,7 @@ import { CustomCursor } from "@/components/ui/CustomCursor";
 import SmoothScroll from "@/components/layout/SmoothScroll";
 import { PageTransition } from "@/components/layout/PageTransition";
 import { WhatsAppWidget } from "@/components/ui/WhatsAppWidget";
+import { ScrollProgressBar } from "@/components/ui/ScrollProgressBar";
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -36,6 +37,7 @@ export default function RootLayout({
         className={`${playfair.variable} ${inter.variable} font-sans antialiased bg-off-white text-brand-dark selection:bg-primary-yellow selection:text-brand-dark overflow-x-hidden`}
       >
         <SmoothScroll>
+          <ScrollProgressBar />
           <CustomCursor />
           <Navbar />
           <WhatsAppWidget />
