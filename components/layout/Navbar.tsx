@@ -40,8 +40,33 @@ export const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between relative h-16">
         {/* Logo */}
-        <div className="flex-shrink-0 w-32 h-full relative">
-          <Link href="/" className="absolute top-1/2 -translate-y-1/2 left-0 group">
+        <div className="flex-shrink-0 w-48 h-full relative">
+          <Link href="/" className="absolute top-1/2 -translate-y-1/2 left-0 group flex items-center gap-2">
+            {/* Animated Egg */}
+            <motion.div
+              animate={{ 
+                y: [0, -20, 0],
+                rotate: [0, -15, 15, -10, 10, 0],
+                scale: [1, 1.1, 1],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                repeatDelay: 4, // 2s animation + 4s delay = 6s cycle
+                ease: "easeInOut"
+              }}
+              whileHover={{ 
+                y: [0, -15, 0],
+                rotate: [0, -5, 5, 0],
+                transition: { repeat: Infinity, duration: 1.5, ease: "easeInOut" }
+              }}
+              className="w-8 h-10 bg-gradient-to-br from-[#FFFDF5] to-primary-yellow/30 rounded-[50%_50%_50%_50%_/_60%_60%_40%_40%] shadow-xl border border-white/40 relative overflow-hidden flex-shrink-0"
+            >
+              {/* Egg Shine */}
+              <div className="absolute top-1 left-2 w-3 h-4 bg-white/40 rounded-full blur-[2px] -rotate-15" />
+            </motion.div>
+
+            {/* Logo */}
             <div className="relative w-28 h-28 transition-transform duration-300 group-hover:scale-110">
               <Image
                 src="/logos/loko.png"
