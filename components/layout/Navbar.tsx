@@ -4,16 +4,16 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Home, Info, Image as ImageIcon, MessageSquare, Phone } from "lucide-react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { name: "Home", href: "/#home" },
-  { name: "About", href: "/about" },
-  { name: "Gallery", href: "/#gallery" },
-  { name: "Reviews", href: "/#reviews" },
-  { name: "Contact", href: "/#contact" },
+  { name: "Home", href: "/#home", icon: Home },
+  { name: "About", href: "/about", icon: Info },
+  { name: "Gallery", href: "/#gallery", icon: ImageIcon },
+  { name: "Reviews", href: "/#reviews", icon: MessageSquare },
+  { name: "Contact", href: "/#contact", icon: Phone },
 ];
 
 export const Navbar = () => {
@@ -85,9 +85,10 @@ export const Navbar = () => {
             <Link
               key={link.name}
               href={link.href}
-              className="relative text-white/90 font-sans text-sm tracking-widest uppercase group overflow-hidden"
+              className="relative text-white/90 font-sans text-sm tracking-widest uppercase group flex items-center gap-2 overflow-hidden"
             >
-              {link.name}
+              <link.icon className="w-4 h-4 text-primary-yellow/80 transition-transform duration-300 group-hover:scale-110" />
+              <span>{link.name}</span>
               <span className="absolute bottom-0 left-0 w-full h-[1px] bg-primary-yellow transition-transform duration-300 -translate-x-full group-hover:translate-x-0" />
             </Link>
           ))}
@@ -134,8 +135,9 @@ export const Navbar = () => {
                 <Link
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="font-serif text-4xl text-white hover:text-primary-yellow transition-colors"
+                  className="font-serif text-4xl text-white hover:text-primary-yellow transition-colors flex items-center gap-4"
                 >
+                  <link.icon className="w-8 h-8 text-primary-yellow" />
                   {link.name}
                 </Link>
               </motion.div>
