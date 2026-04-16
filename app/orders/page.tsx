@@ -45,6 +45,18 @@ export default function OrdersPage() {
   });
   const [locationUrl, setLocationUrl] = useState("");
 
+  // Lock body scroll when modals/drawer are open
+  useEffect(() => {
+    if (isCartOpen || isCheckoutOpen || isCarrierOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isCartOpen, isCheckoutOpen, isCarrierOpen]);
+
   const updateCart = (productId: string, qtyDelta: number, option: string) => {
     setCart((prev) => {
       const existing = prev.find((item) => item.id === productId && item.option === option);
@@ -95,7 +107,7 @@ export default function OrdersPage() {
 
     const urgencyText = customerInfo.urgency === "Immediately" ? "🚀 Immediately" : `📅 Scheduled: ${customerInfo.customDate}`;
     const deliveryText = customerInfo.deliveryType === "Deliver" ? "🚚 Delivery" : "🏢 Pick-up";
-    const paymentText = customerInfo.paymentMode === "None" ? "N/A" : `💳 Paid via ${customerInfo.paymentMode}`;
+    const paymentText = customerInfo.paymentMode === "None" ? "N/A" : `💳 Paying via ${customerInfo.paymentMode}`;
 
     const message = encodeURIComponent(
 `🐔 *LOKO HARVEST - NEW ORDER* 🐔
@@ -112,7 +124,7 @@ export default function OrdersPage() {
 ${orderDetails}
 
 ------------------------------------
-💵 *TOTAL:* *UGX ${(cartTotal + (customerInfo.deliveryType === "Deliver" ? 5000 : 0)).toLocaleString()}*
+💵 *TOTAL:* *UGX ${cartTotal.toLocaleString()}*
 ------------------------------------
 _Sent via Loko Harvest Portal_`
     );
@@ -241,7 +253,7 @@ _Sent via Loko Harvest Portal_`
                 <button onClick={() => setIsCartOpen(false)} className="p-2 hover:bg-white/10 rounded-full transition-colors"><X size={24} /></button>
               </div>
               
-              <div className="flex-1 overflow-y-auto p-8 space-y-6">
+              <div className="flex-1 overflow-y-auto p-8 space-y-6" data-lenis-prevent>
                 {cart.map((item) => {
                   const p = products.find(prod => prod.id === item.id);
                   return (
@@ -296,6 +308,7 @@ _Sent via Loko Harvest Portal_`
               initial={{ scale: 0.9, y: 30 }}
               animate={{ scale: 1, y: 0 }}
               className="bg-white rounded-[50px] w-full max-w-4xl max-h-[90vh] overflow-y-auto p-10 md:p-16 shadow-2xl relative"
+              data-lenis-prevent
             >
               <button 
                 onClick={() => setIsCheckoutOpen(false)}
@@ -402,7 +415,7 @@ _Sent via Loko Harvest Portal_`
                       </div>
                       <div className="mt-6 pt-4 border-t border-brand-dark/10 flex justify-between items-end">
                          <p className="text-[9px] uppercase tracking-widest text-brand-dark/40 font-bold">Grand Total</p>
-                         <p className="text-2xl font-serif font-bold text-dark-green">UGX {(cartTotal + (customerInfo.deliveryType === "Deliver" ? 5000 : 0)).toLocaleString()}</p>
+                         <p className="text-2xl font-serif font-bold text-dark-green">UGX {cartTotal.toLocaleString()}</p>
                       </div>
                    </div>
                 </div>
