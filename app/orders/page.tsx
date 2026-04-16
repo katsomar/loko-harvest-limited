@@ -35,7 +35,14 @@ export default function OrdersPage() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [isCarrierOpen, setIsCarrierOpen] = useState(false);
-  const [customerInfo, setCustomerInfo] = useState({ name: "", altContact: "", location: "" });
+  const [customerInfo, setCustomerInfo] = useState({ 
+    name: "", 
+    altContact: "", 
+    urgency: "Immediately", 
+    customDate: "",
+    deliveryType: "Deliver",
+    paymentMode: "None"
+  });
   const [locationUrl, setLocationUrl] = useState("");
 
   const updateCart = (productId: string, qtyDelta: number, option: string) => {
@@ -64,7 +71,6 @@ export default function OrdersPage() {
       navigator.geolocation.getCurrentPosition((position) => {
         const url = `https://www.google.com/maps?q=${position.coords.latitude},${position.coords.longitude}`;
         setLocationUrl(url);
-        setCustomerInfo(prev => ({ ...prev, location: "Current Location Captured" }));
       });
     } else {
       alert("Geolocation is not supported by this browser.");
@@ -84,10 +90,32 @@ export default function OrdersPage() {
     const number = CONTACTS[carrier].replace("+", "");
     const orderDetails = cart.map(item => {
       const p = products.find(prod => prod.id === item.id);
-      return `- ${p?.name} (${item.option}) x ${item.qty} = UGX ${((p?.basePrice || 0) * item.qty).toLocaleString()}`;
+      return ` • *${p?.name}* (${item.option}) x${item.qty}\n   _UGX ${((p?.basePrice || 0) * item.qty).toLocaleString()}_`;
     }).join("\n");
 
-    const message = encodeURIComponent(`*LOKO HARVEST ORDER*\n\n*Customer Details:*\nName: ${customerInfo.name}\nContacts: ${customerInfo.altContact}\nLocation: ${locationUrl || "Not shared"}\n\n*Order Items:*\n${orderDetails}\n\n*Total:* UGX ${cartTotal.toLocaleString()}\n\n_Sent via Loko Harvest Portal_`);
+    const urgencyText = customerInfo.urgency === "Immediately" ? "🚀 Immediately" : `📅 Scheduled: ${customerInfo.customDate}`;
+    const deliveryText = customerInfo.deliveryType === "Deliver" ? "🚚 Delivery" : "🏢 Pick-up";
+    const paymentText = customerInfo.paymentMode === "None" ? "N/A" : `💳 Paid via ${customerInfo.paymentMode}`;
+
+    const message = encodeURIComponent(
+`🐔 *LOKO HARVEST - NEW ORDER* 🐔
+------------------------------------
+👤 *CUSTOMER DETAILS*
+*Name:* ${customerInfo.name}
+*Contact:* ${customerInfo.altContact}
+*Urgency:* ${urgencyText}
+*Type:* ${deliveryText}
+*Payment:* ${paymentText}
+*Location:* ${locationUrl || "_No location shared_" }
+
+📦 *ORDER SUMMARY*
+${orderDetails}
+
+------------------------------------
+💵 *TOTAL:* *UGX ${(cartTotal + (customerInfo.deliveryType === "Deliver" ? 5000 : 0)).toLocaleString()}*
+------------------------------------
+_Sent via Loko Harvest Portal_`
+    );
     
     window.open(`https://wa.me/${number}?text=${message}`, "_blank");
     setIsCarrierOpen(false);
@@ -277,51 +305,106 @@ export default function OrdersPage() {
               </button>
               
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-                <div>
-                   <span className="text-primary-yellow font-sans text-xs font-bold uppercase tracking-[4px] block mb-4">Secure Checkout</span>
-                   <h2 className="text-4xl font-serif text-brand-dark mb-8">Delivery Details</h2>
+                <div className="space-y-10">
+                   <div>
+                      <span className="text-primary-yellow font-sans text-xs font-bold uppercase tracking-[4px] block mb-4">Secure Checkout</span>
+                      <h2 className="text-4xl font-serif text-brand-dark">Order Details</h2>
+                   </div>
+
                    <div className="space-y-6">
-                      <div className="space-y-2">
-                        <label className="text-[10px] uppercase tracking-widest text-brand-dark/40 font-bold ml-1">Your Full Name</label>
-                        <input 
-                          type="text" 
-                          value={customerInfo.name}
-                          onChange={(e) => setCustomerInfo(prev => ({ ...prev, name: e.target.value }))}
-                          placeholder="Farmer John Doe" 
-                          className="w-full bg-off-white p-5 rounded-2xl outline-none focus:ring-2 ring-primary-yellow/20" 
-                        />
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="space-y-2">
+                          <label className="text-[10px] uppercase tracking-widest text-brand-dark/40 font-bold ml-1">Full Name</label>
+                          <input type="text" value={customerInfo.name} onChange={(e) => setCustomerInfo(prev => ({ ...prev, name: e.target.value }))} placeholder="Farmer John" className="w-full bg-off-white p-5 rounded-2xl outline-none focus:ring-2 ring-primary-yellow/20" />
+                        </div>
+                        <div className="space-y-2">
+                          <label className="text-[10px] uppercase tracking-widest text-brand-dark/40 font-bold ml-1">Alternative Contact</label>
+                          <input type="text" value={customerInfo.altContact} onChange={(e) => setCustomerInfo(prev => ({ ...prev, altContact: e.target.value }))} placeholder="+256..." className="w-full bg-off-white p-5 rounded-2xl outline-none focus:ring-2 ring-primary-yellow/20" />
+                        </div>
                       </div>
-                      <div className="space-y-2">
-                        <label className="text-[10px] uppercase tracking-widest text-brand-dark/40 font-bold ml-1">Alternative Contact (WhatsApp/Call)</label>
-                        <input 
-                          type="text" 
-                          value={customerInfo.altContact}
-                          onChange={(e) => setCustomerInfo(prev => ({ ...prev, altContact: e.target.value }))}
-                          placeholder="+256..." 
-                          className="w-full bg-off-white p-5 rounded-2xl outline-none focus:ring-2 ring-primary-yellow/20" 
-                        />
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="space-y-2">
+                          <label className="text-[10px] uppercase tracking-widest text-brand-dark/40 font-bold ml-1">Urgency</label>
+                          <select value={customerInfo.urgency} onChange={(e) => setCustomerInfo(prev => ({ ...prev, urgency: e.target.value }))} className="w-full bg-off-white p-5 rounded-2xl outline-none focus:ring-2 ring-primary-yellow/20 appearance-none">
+                             <option value="Immediately">🚀 Immediately</option>
+                             <option value="Custom Date">📅 Set Custom Date</option>
+                          </select>
+                        </div>
+                        {customerInfo.urgency === "Custom Date" && (
+                          <div className="space-y-2 animate-in fade-in slide-in-from-top-2">
+                            <label className="text-[10px] uppercase tracking-widest text-brand-dark/40 font-bold ml-1">Pick Date</label>
+                            <input type="date" value={customerInfo.customDate} onChange={(e) => setCustomerInfo(prev => ({ ...prev, customDate: e.target.value }))} className="w-full bg-off-white p-5 rounded-2xl outline-none focus:ring-2 ring-primary-yellow/20" />
+                          </div>
+                        )}
                       </div>
-                      <div className="pt-4">
-                        <button 
-                          onClick={shareLocation}
-                          className="w-full p-6 border-2 border-dashed border-primary-yellow text-brand-dark rounded-2xl font-bold flex items-center justify-center gap-4 hover:bg-primary-yellow/5 transition-all group"
-                        >
-                          <MapPin className={cn("transition-colors", locationUrl ? "text-green-600" : "text-primary-yellow")} /> 
-                          {locationUrl ? "Location Captured Successfully" : "Share Delivery Location"}
+
+                      <div className="space-y-2">
+                        <label className="text-[10px] uppercase tracking-widest text-brand-dark/40 font-bold ml-1">Delivery Choice</label>
+                        <div className="grid grid-cols-2 gap-4">
+                           <button onClick={() => setCustomerInfo(prev => ({ ...prev, deliveryType: "Pick up", paymentMode: "None" }))} className={cn("p-5 rounded-2xl border-2 transition-all font-bold", customerInfo.deliveryType === "Pick up" ? "border-primary-yellow bg-primary-yellow/5" : "border-transparent bg-off-white")}>Pick Up</button>
+                           <button onClick={() => setCustomerInfo(prev => ({ ...prev, deliveryType: "Deliver" }))} className={cn("p-5 rounded-2xl border-2 transition-all font-bold", customerInfo.deliveryType === "Deliver" ? "border-primary-yellow bg-primary-yellow/5" : "border-transparent bg-off-white")}>Delivery</button>
+                        </div>
+                      </div>
+
+                      {customerInfo.deliveryType === "Deliver" && (
+                        <div className="space-y-4 p-6 bg-dark-green rounded-3xl text-white animate-in zoom-in-95 duration-300">
+                           <h4 className="text-primary-yellow font-serif text-lg">Merchant Payment</h4>
+                           <p className="text-white/40 text-[10px] uppercase tracking-widest mb-4">Please pay via Merchant Code below and share screenshot later:</p>
+                           <div className="space-y-3">
+                              <button onClick={() => { navigator.clipboard.writeText("583456"); setCustomerInfo(prev => ({ ...prev, paymentMode: "Airtel Merchant" })) }} className={cn("w-full p-4 rounded-xl flex items-center justify-between border transition-all", customerInfo.paymentMode === "Airtel Merchant" ? "border-primary-yellow bg-primary-yellow/10" : "border-white/10 hover:bg-white/5")}>
+                                 <div className="text-left">
+                                    <p className="text-[8px] uppercase tracking-widest text-white/40">Airtel Merchant Code</p>
+                                    <p className="font-bold">583 456</p>
+                                 </div>
+                                 <span className="text-[9px] uppercase font-bold text-primary-yellow">Copy Code</span>
+                              </button>
+                              <button onClick={() => { navigator.clipboard.writeText("123987"); setCustomerInfo(prev => ({ ...prev, paymentMode: "MTN Merchant" })) }} className={cn("w-full p-4 rounded-xl flex items-center justify-between border transition-all", customerInfo.paymentMode === "MTN Merchant" ? "border-primary-yellow bg-primary-yellow/10" : "border-white/10 hover:bg-white/5")}>
+                                 <div className="text-left">
+                                    <p className="text-[8px] uppercase tracking-widest text-white/40">MTN Merchant Code</p>
+                                    <p className="font-bold">123 987</p>
+                                 </div>
+                                 <span className="text-[9px] uppercase font-bold text-primary-yellow">Copy Code</span>
+                              </button>
+                           </div>
+                        </div>
+                      )}
+
+                      <div className="pt-2">
+                        <button onClick={shareLocation} className="w-full p-5 border-2 border-dashed border-primary-yellow text-brand-dark rounded-2xl font-bold flex items-center justify-center gap-4 hover:bg-primary-yellow/5">
+                          <MapPin className={cn(locationUrl ? "text-green-600" : "text-primary-yellow")} /> 
+                          {locationUrl ? "Delivery Link Ready" : "Share Delivery Location"}
                         </button>
                       </div>
-                      <button 
-                        onClick={handleFinishOrder}
-                        className="w-full py-6 bg-primary-yellow text-brand-dark rounded-2xl font-bold uppercase tracking-widest text-lg mt-8 hover:bg-primary-yellow-bright shadow-xl shadow-primary-yellow/20 transition-all"
-                      >
+
+                      <button onClick={handleFinishOrder} className="w-full py-6 bg-primary-yellow text-brand-dark rounded-2xl font-bold uppercase tracking-widest text-lg hover:bg-primary-yellow-bright shadow-xl shadow-primary-yellow/20 transition-all">
                         Finish Order
                       </button>
                    </div>
                 </div>
                 
-                <div className="hidden lg:block relative h-full min-h-[400px]">
-                   <Map />
-                   <div className="absolute inset-0 pointer-events-none rounded-2xl ring-1 ring-inset ring-brand-dark/5" />
+                <div className="hidden lg:flex flex-col gap-8">
+                   <div className="h-2/3 relative rounded-3xl overflow-hidden shadow-inner">
+                      <Map />
+                   </div>
+                   <div className="p-8 bg-off-white rounded-3xl flex-1 border border-brand-dark/5">
+                      <h4 className="font-serif text-xl mb-4">Summary</h4>
+                      <div className="space-y-2 max-h-40 overflow-y-auto pr-2 custom-scrollbar">
+                         {cart.map(item => {
+                           const p = products.find(prod => prod.id === item.id);
+                           return (
+                             <div key={`${item.id}-${item.option}`} className="flex justify-between text-xs">
+                                <span className="text-brand-dark/60">{p?.name} x{item.qty}</span>
+                                <span className="font-bold">UGX {((p?.basePrice || 0) * item.qty).toLocaleString()}</span>
+                             </div>
+                           )
+                         })}
+                      </div>
+                      <div className="mt-6 pt-4 border-t border-brand-dark/10 flex justify-between items-end">
+                         <p className="text-[9px] uppercase tracking-widest text-brand-dark/40 font-bold">Grand Total</p>
+                         <p className="text-2xl font-serif font-bold text-dark-green">UGX {(cartTotal + (customerInfo.deliveryType === "Deliver" ? 5000 : 0)).toLocaleString()}</p>
+                      </div>
+                   </div>
                 </div>
               </div>
             </motion.div>
