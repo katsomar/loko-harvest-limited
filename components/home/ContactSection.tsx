@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 
 const contactInfo = [
   { icon: MapPin, title: "Our Location", detail: "Plot 45, Industrial Area, Kampala, UG" },
-  { icon: Phone, title: "Phone Number", detail: "+256 700 000 000" },
+  { icon: Phone, title: "Phone Number", detail: "+256 761 974 265" },
   { icon: Mail, title: "Email Address", detail: "info@lokoharvest.com" },
   { icon: Clock, title: "Working Hours", detail: "Mon - Sat: 8:00 AM - 6:00 PM" },
 ];

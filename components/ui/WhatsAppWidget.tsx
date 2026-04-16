@@ -7,13 +7,13 @@ import { cn } from "@/lib/utils";
 
 const WHATSAPP_CONFIG = {
   airtel: {
-    number: "256708000000", // Airtel Uganda Placeholder
+    number: "256749793597", // Airtel Uganda
     label: "Airtel Support",
     sub: "Concierge & Logistics",
     color: "bg-[#FF0000]"
   },
   mtn: {
-    number: "256772000000", // MTN Uganda Placeholder
+    number: "256761974265", // MTN Uganda
     label: "MTN Support",
     sub: "Sales & Inquiries",
     color: "bg-[#FFCC00]"
