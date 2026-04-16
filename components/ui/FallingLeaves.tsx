@@ -34,14 +34,14 @@ export const FallingLeaves = () => {
         <motion.div
           key={leaf.id}
           initial={{ 
-            y: -50, 
+            y: "-10%", 
             x: `${leaf.x}%`, 
             rotate: leaf.rotation, 
             opacity: 0,
             scale: 0.5 
           }}
           animate={{ 
-            y: "110vh",
+            y: "110%",
             x: [`${leaf.x}%`, `${leaf.x + (Math.random() * 20 - 10)}%`, `${leaf.x}%`],
             rotate: leaf.rotation + 720,
             opacity: [0, 0.4, 0.4, 0],

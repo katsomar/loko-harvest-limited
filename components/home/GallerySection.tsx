@@ -40,7 +40,7 @@ export const GallerySection = () => {
       <FallingLeaves />
       <LeafyCorner position="top-right" delay={0.3} />
       <LeafyCorner position="bottom-left" delay={0.6} />
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
           <div>
             <span className="text-primary-yellow font-sans text-sm font-bold uppercase tracking-[4px] block mb-4">

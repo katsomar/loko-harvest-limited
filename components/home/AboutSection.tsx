@@ -53,7 +53,7 @@ export const AboutSection = () => {
       <FallingLeaves />
       <LeafyCorner position="top-left" delay={0.2} />
       <LeafyCorner position="bottom-right" delay={0.5} />
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="flex flex-col lg:flex-row gap-20 items-center mb-32">
           {/* Left: Image & Stats */}
           <div className="relative w-full lg:w-1/2">

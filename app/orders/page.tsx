@@ -9,6 +9,8 @@ import {
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Map } from "@/components/ui/Map";
+import { LeafyCorner } from "@/components/ui/LeafyCorner";
+import { FallingLeaves } from "@/components/ui/FallingLeaves";
 
 const products = [
   { id: "p1", name: "Premium Whole Chicken", category: "Poultry", image: "/chicken.png", options: ["1.2kg - 1.5kg", "1.6kg - 2.0kg"], basePrice: 25000 },
@@ -137,8 +139,11 @@ export default function OrdersPage() {
   };
 
   return (
-    <div className="pt-32 pb-20 px-6 bg-off-white min-h-screen">
-      <div className="max-w-7xl mx-auto">
+    <div className="pt-32 pb-20 px-6 bg-off-white min-h-screen relative overflow-hidden">
+      <FallingLeaves />
+      <LeafyCorner position="top-left" delay={0.2} />
+      <LeafyCorner position="bottom-right" delay={0.5} />
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Header Banner */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}

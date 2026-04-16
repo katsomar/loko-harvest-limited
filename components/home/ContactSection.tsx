@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import { MapPin, Phone, Mail, Clock, Send, Loader2 } from "lucide-react";
 import { Map } from "@/components/ui/Map";
 import { cn } from "@/lib/utils";
+import { LeafyCorner } from "@/components/ui/LeafyCorner";
+import { FallingLeaves } from "@/components/ui/FallingLeaves";
 
 const contactInfo = [
   { icon: MapPin, title: "Our Location", detail: "Akright Bwebajja, Entebbe Road, Uganda" },
@@ -47,8 +49,11 @@ export const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-32 px-6 bg-off-white">
-      <div className="max-w-7xl mx-auto">
+    <section id="contact" className="py-32 px-6 bg-off-white relative overflow-hidden">
+      <FallingLeaves />
+      <LeafyCorner position="top-right" delay={0.2} />
+      <LeafyCorner position="bottom-left" delay={0.5} />
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-stretch">
           
           {/* Left: Contact Form */}
