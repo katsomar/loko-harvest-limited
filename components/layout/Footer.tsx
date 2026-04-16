@@ -11,18 +11,15 @@ export const Footer = () => {
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
         {/* Brand */}
         <div className="col-span-1 md:col-span-1">
-          <Link href="/" className="flex items-center gap-2 mb-6">
-            <div className="relative w-10 h-10">
+          <Link href="/" className="block mb-6">
+            <div className="relative w-24 h-24">
               <Image
                 src="/logos/loko.png"
                 alt="Loko Harvest Logo"
                 fill
-                className="object-contain"
+                className="object-contain object-left"
               />
             </div>
-            <span className="font-serif text-2xl font-bold tracking-wider">
-              LOKO HARVEST
-            </span>
           </Link>
           <p className="text-white/60 font-sans leading-relaxed mb-8">
             Experience the legacy of quality poultry farming in Uganda. Naturally raised, premium products from our farm to your table.
@@ -67,11 +64,11 @@ export const Footer = () => {
             </li>
             <li className="flex items-center gap-3">
               <Phone className="w-5 h-5 text-primary-yellow shrink-0" />
-              <span>+256 700 000 000</span>
+              <span>+256 761 974 265</span>
             </li>
             <li className="flex items-center gap-3">
               <Mail className="w-5 h-5 text-primary-yellow shrink-0" />
-              <span>info@lokoharvest.com</span>
+              <span>lokoharvestuganda@gmail.com</span>
             </li>
           </ul>
         </div>
