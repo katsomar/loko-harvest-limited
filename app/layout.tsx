@@ -24,6 +24,9 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "Loko Harvest Limited | Earthy Luxury Poultry",
   description: "Experience the finest organic, farm-to-table poultry with Loko Harvest Limited. A decade of ethical, sustainable, and premium poultry farming in East Africa.",
+  icons: {
+    icon: "/logos/loko.png",
+  },
 };
 
 export default function RootLayout({
