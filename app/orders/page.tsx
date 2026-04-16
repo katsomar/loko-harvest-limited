@@ -100,36 +100,38 @@ export default function OrdersPage() {
 
   const sendOrderToWhatsApp = (carrier: "MTN" | "Airtel") => {
     const number = CONTACTS[carrier].replace("+", "");
-    const orderDetails = cart.map(item => {
-      const p = products.find(prod => prod.id === item.id);
-      return ` • *${p?.name}* (${item.option}) x${item.qty}\n   _UGX ${((p?.basePrice || 0) * item.qty).toLocaleString()}_`;
-    }).join("\n");
-
-    const urgencyText = customerInfo.urgency === "Immediately" ? "🚀 Immediately" : `📅 Scheduled: ${customerInfo.customDate}`;
-    const deliveryText = customerInfo.deliveryType === "Deliver" ? "🚚 Delivery" : "🏢 Pick-up";
-    const paymentText = customerInfo.paymentMode === "None" ? "N/A" : `💳 Paying via ${customerInfo.paymentMode}`;
-
-    const message = encodeURIComponent(
-`🐔 *LOKO HARVEST - NEW ORDER* 🐔
-------------------------------------
-👤 *CUSTOMER DETAILS*
-*Name:* ${customerInfo.name}
-*Contact:* ${customerInfo.altContact}
-*Urgency:* ${urgencyText}
-*Type:* ${deliveryText}
-*Payment:* ${paymentText}
-*Location:* ${locationUrl || "_No location shared_" }
-
-📦 *ORDER SUMMARY*
-${orderDetails}
-
-------------------------------------
-💵 *TOTAL:* *UGX ${cartTotal.toLocaleString()}*
-------------------------------------
-_Sent via Loko Harvest Portal_`
-    );
     
-    window.open(`https://wa.me/${number}?text=${message}`, "_blank");
+    const urgencyText = customerInfo.urgency === "Immediately" ? "⚡ Immediately" : `📅 Scheduled: ${customerInfo.customDate}`;
+    const deliveryText = customerInfo.deliveryType === "Deliver" ? "🚚 Delivery" : "🏠 Pick-up";
+    const paymentText = customerInfo.paymentMode === "None" ? "N/A" : `✅ Paying via ${customerInfo.paymentMode}`;
+
+    const lines = [
+      "🍗 *LOKO HARVEST - NEW ORDER* 🍗",
+      "------------------------------------",
+      "👤 *CUSTOMER DETAILS*",
+      `*Name:* ${customerInfo.name}`,
+      `*Contact:* ${customerInfo.altContact}`,
+      `*Urgency:* ${urgencyText}`,
+      `*Type:* ${deliveryText}`,
+      `*Payment:* ${paymentText}`,
+      `*Location:* ${locationUrl || "_No location shared_"}`,
+      "",
+      "📦 *ORDER SUMMARY*",
+      ...cart.map(item => {
+        const p = products.find(prod => prod.id === item.id);
+        return `• *${p?.name}* (${item.option}) x${item.qty}\n   _UGX ${((p?.basePrice || 0) * item.qty).toLocaleString()}_`;
+      }),
+      "",
+      "------------------------------------",
+      `💵 *TOTAL: UGX ${cartTotal.toLocaleString()}*`,
+      "------------------------------------",
+      "_Sent via Loko Harvest Portal_"
+    ];
+
+    const message = lines.join("\n");
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=${number}&text=${encodeURIComponent(message)}`;
+    
+    window.open(whatsappUrl, "_blank");
     setIsCarrierOpen(false);
     setCart([]);
   };
