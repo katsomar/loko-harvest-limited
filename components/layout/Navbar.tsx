@@ -29,13 +29,17 @@ export const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const isTransparentAllowed = pathname === "/" || pathname === "/about";
+
   return (
     <nav
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-6 py-2",
         isScrolled
           ? "bg-dark-green/90 backdrop-blur-md shadow-lg py-1"
-          : "bg-transparent"
+          : isTransparentAllowed
+            ? "bg-transparent"
+            : "bg-dark-green shadow-lg"
       )}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between relative h-16">
@@ -72,7 +76,7 @@ export const Navbar = () => {
                 src="/logos/loko.png"
                 alt="Loko Harvest"
                 fill
-                className="object-contain drop-shadow-2xl"
+                className="object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
                 priority
               />
             </div>
@@ -85,7 +89,7 @@ export const Navbar = () => {
             <Link
               key={link.name}
               href={link.href}
-              className="relative text-white/90 font-sans text-sm tracking-widest uppercase group flex items-center gap-2 overflow-hidden"
+              className="relative text-white/90 font-sans text-sm tracking-widest uppercase group flex items-center gap-2 overflow-hidden transition-colors duration-300"
             >
               <link.icon className="w-4 h-4 text-primary-yellow/80 transition-transform duration-300 group-hover:scale-110" />
               <span>{link.name}</span>
