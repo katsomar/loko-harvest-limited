@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Maximize2, X, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
+import { LeafyCorner } from "@/components/ui/LeafyCorner";
+import { FallingLeaves } from "@/components/ui/FallingLeaves";
 
 const categories = ["All", "Farm", "Products", "Facilities", "Events"];
 
@@ -34,7 +36,10 @@ export const GallerySection = () => {
   const selectedItem = selectedImage !== null ? items[selectedImage] : null;
 
   return (
-    <section id="gallery" className="py-32 px-6 bg-white overflow-hidden">
+    <section id="gallery" className="py-32 px-6 bg-white overflow-hidden relative">
+      <FallingLeaves />
+      <LeafyCorner position="top-right" delay={0.3} />
+      <LeafyCorner position="bottom-left" delay={0.6} />
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
           <div>

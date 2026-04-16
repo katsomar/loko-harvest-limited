@@ -3,6 +3,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
+import { LeafyCorner } from "@/components/ui/LeafyCorner";
+import { FallingLeaves } from "@/components/ui/FallingLeaves";
 
 const stats = [
   { label: "Years of Excellence", value: 10, suffix: "+" },
@@ -47,7 +49,10 @@ const CountUp = ({ value, suffix }: { value: number; suffix: string }) => {
 
 export const AboutSection = () => {
   return (
-    <section id="about" className="py-32 px-6 bg-off-white overflow-hidden">
+    <section id="about" className="py-32 px-6 bg-off-white overflow-hidden relative">
+      <FallingLeaves />
+      <LeafyCorner position="top-left" delay={0.2} />
+      <LeafyCorner position="bottom-right" delay={0.5} />
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row gap-20 items-center mb-32">
           {/* Left: Image & Stats */}
