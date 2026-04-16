@@ -8,21 +8,16 @@ const newsItems = [
   {
     id: 1,
     title: "How This Poultry Farmer Produces Million-Dollar Eggs",
-    videoUrl: "https://youtu.be/AfokdcVncOY",
+    videoUrl: "https://www.youtube.com/embed/nk0Qq4QvEMA",
     description: "Loko Harvest featured on Call Me Firdaus, showcasing our organic yellow yolk secrets and sustainable farming practices."
   },
   {
     id: 2,
     title: "Uganda's Agricultural Innovation",
-    videoUrl: "https://youtu.be/RBN6CvdxVeA",
+    videoUrl: "https://www.youtube.com/embed/RBN6CvdxVeA",
     description: "Insights into how Loko Harvest is leading the way in modern organic poultry techniques in East Africa."
-  },
-  {
-    id: 3,
-    title: "Organic Feed Techniques",
-    videoUrl: "https://www.youtube.com/embed/68M_K9X8oW0",
-    description: "Learn about our unique herbal blend and pasture-based diet that gives our eggs their signature nutritional profile."
   }
+
 ];
 
 const GlowingOrb = ({ delay = 0 }) => {
