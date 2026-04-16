@@ -13,6 +13,8 @@ const heroImages = [
   "/hero/4.JPG",
   "/hero/5.JPG",
   "/hero/6.JPG",
+  "/hero/7.JPG",
+  "/hero/8.JPG",
 ];
 
 export const Hero = () => {
