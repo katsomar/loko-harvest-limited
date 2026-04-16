@@ -45,7 +45,7 @@ export default function RootLayout({
           <Navbar />
           <WhatsAppWidget />
           <PageTransition>
-            <main className="relative z-10">{children}</main>
+            <main>{children}</main>
           </PageTransition>
           <Footer />
         </SmoothScroll>

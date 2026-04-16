@@ -199,14 +199,14 @@ export default function OrdersPage() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsCartOpen(false)}
-              className="fixed inset-0 bg-brand-dark/40 backdrop-blur-sm z-[150]"
+              className="fixed inset-0 bg-brand-dark/40 backdrop-blur-sm z-[9998]"
             />
             <motion.div
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 bottom-0 w-full max-w-md bg-white shadow-2xl z-[160] flex flex-col"
+              className="fixed top-0 right-0 bottom-0 w-full max-w-md bg-white shadow-2xl z-[9999] flex flex-col"
             >
               <div className="p-8 border-b border-brand-dark/5 flex items-center justify-between bg-dark-green text-white">
                 <h3 className="text-2xl font-serif">Your Cart</h3>
@@ -262,7 +262,7 @@ export default function OrdersPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[200] bg-brand-dark/95 flex items-center justify-center p-4 backdrop-blur-md"
+            className="fixed inset-0 z-[10000] bg-brand-dark/95 flex items-center justify-center p-4 backdrop-blur-md"
           >
             <motion.div
               initial={{ scale: 0.9, y: 30 }}
@@ -336,7 +336,7 @@ export default function OrdersPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[300] bg-brand-dark/95 flex items-center justify-center p-4 backdrop-blur-xl"
+            className="fixed inset-0 z-[10001] bg-brand-dark/95 flex items-center justify-center p-4 backdrop-blur-xl"
           >
             <motion.div
               initial={{ scale: 0.8, rotate: -5 }}
