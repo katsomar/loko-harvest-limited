@@ -23,8 +23,8 @@ export const Navbar = () => {
   const [copied, setCopied] = useState(false);
   const pathname = usePathname();
 
-  const shareUrl = typeof window !== "undefined" ? window.location.origin : "https://lokoharvest.com";
-  const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(shareUrl)}`;
+  const shareUrl = "https://loko-harvest-limited.vercel.app/";
+  const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(shareUrl)}`;
 
   useEffect(() => {
     const handleScroll = () => {
