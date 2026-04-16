@@ -64,21 +64,27 @@ export default function AboutBiographyPage() {
             >
               Established 2014
             </motion.span>
-            <h1 className="text-7xl md:text-[12rem] font-serif text-white overflow-hidden flex flex-wrap justify-center items-center gap-x-8 leading-none">
-              {"Our Story".split("").map((char, i) => (
-                <motion.span
-                  key={i}
-                  initial={{ y: "150%", opacity: 0, rotate: 10 }}
-                  animate={{ y: 0, opacity: 1, rotate: 0 }}
-                  transition={{ 
-                    duration: 1.5, 
-                    delay: i * 0.08, 
-                    ease: [0.16, 1, 0.3, 1] 
-                  }}
-                  className="inline-block"
-                >
-                  {char === " " ? "\u00A0" : char}
-                </motion.span>
+            <h1 className="text-5xl sm:text-7xl md:text-[12rem] font-serif text-white overflow-hidden flex flex-wrap justify-center items-center gap-x-4 sm:gap-x-8 leading-none">
+              {"Our Story".split(" ").map((word, wordIndex) => (
+                <span key={wordIndex} className="flex whitespace-nowrap">
+                  {word.split("").map((char, charIndex) => (
+                    <motion.span
+                      key={charIndex}
+                      initial={{ y: "150%", opacity: 0, rotate: 10 }}
+                      animate={{ y: 0, opacity: 1, rotate: 0 }}
+                      transition={{ 
+                        duration: 1.5, 
+                        delay: (wordIndex * word.length + charIndex) * 0.08, 
+                        ease: [0.16, 1, 0.3, 1] 
+                      }}
+                      className="inline-block"
+                    >
+                      {char}
+                    </motion.span>
+                  ))}
+                  {/* Add a space after the first word */}
+                  {wordIndex === 0 && <span className="inline-block">&nbsp;</span>}
+                </span>
               ))}
             </h1>
             <motion.div
