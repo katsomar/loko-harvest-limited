@@ -14,13 +14,13 @@ export const PremiumSplashScreen = () => {
     if (index < words.length - 1) {
       const timer = setTimeout(() => {
         setIndex((prev) => prev + 1);
-      }, 1200);
+      }, 2000); // Slower word sequence
       return () => clearTimeout(timer);
     } else {
-      // Final logo part lasts longer now
+      // Final logo part lasts even longer now
       const timer = setTimeout(() => {
         setIsVisible(false);
-      }, 4000);
+      }, 6000); // 6 seconds for the final grand reveal
       return () => clearTimeout(timer);
     }
   }, [index]);
