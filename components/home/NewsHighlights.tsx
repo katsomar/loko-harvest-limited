@@ -7,17 +7,16 @@ import { ChevronLeft, ChevronRight, Play } from "lucide-react";
 const newsItems = [
   {
     id: 1,
-    title: "How This Poultry Farmer Produces Million-Dollar Eggs",
+    title: "Uganda's Agricultural Innovation",
     videoUrl: "https://www.youtube.com/embed/nk0Qq4QvEMA",
-    description: "Loko Harvest featured on Call Me Firdaus, showcasing our organic yellow yolk secrets and sustainable farming practices."
+    description: "Insights into how Loko Harvest is leading the way in modern organic poultry techniques in East Africa."
   },
   {
     id: 2,
-    title: "Uganda's Agricultural Innovation",
+    title: "How This Poultry Farmer Produces Million-Dollar Eggs",
     videoUrl: "https://www.youtube.com/embed/RBN6CvdxVeA",
-    description: "Insights into how Loko Harvest is leading the way in modern organic poultry techniques in East Africa."
+    description: "Loko Harvest featured on Call Me Firdaus, showcasing our organic yellow yolk secrets and sustainable farming practices."
   }
-
 ];
 
 const GlowingOrb = ({ delay = 0 }) => {
