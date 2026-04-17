@@ -95,11 +95,32 @@ export const Footer = () => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto pt-10 border-t border-white/10 flex flex-col md:row items-center justify-between gap-6 text-white/40 text-sm">
-        <p>&copy; {new Date().getFullYear()} Loko Harvest Limited. All rights reserved.</p>
+      <div className="max-w-7xl mx-auto pt-10 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6 text-white/40 text-sm text-center md:text-left">
+        <div className="space-y-2">
+          <p>&copy; {new Date().getFullYear()} Loko Harvest Limited. All rights reserved.</p>
+          <p className="flex items-center justify-center md:justify-start gap-2">
+            <span>Developed by</span>
+            <Link 
+              href="https://skyrix-techologies.vercel.app/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-primary-yellow hover:text-white transition-colors font-medium border-b border-transparent hover:border-white/20"
+            >
+              <div className="relative w-6 h-6">
+                <Image 
+                  src="/logos/logo.png" 
+                  alt="Skyrix Technologies Logo" 
+                  fill 
+                  className="object-contain"
+                />
+              </div>
+              Skyrix Technologies
+            </Link>
+          </p>
+        </div>
         <div className="flex gap-8">
-          <Link href="#">Privacy Policy</Link>
-          <Link href="#">Terms of Service</Link>
+          <Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link>
+          <Link href="#" className="hover:text-white transition-colors">Terms of Service</Link>
         </div>
       </div>
     </footer>
