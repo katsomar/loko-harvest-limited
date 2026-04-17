@@ -11,7 +11,7 @@ const logos = [
   { name: "Quality", src: "/logos/quality.jpg" },
   { name: "Fresh Choice", text: "KSL- Kawuku Stores Ltd" },
   { name: "Shopwise", src: "/logos/shopwise.jpg" },
-    { name: "Premium Market", text: "Akright supermarket" },
+  { name: "Premium Market", text: "Akright supermarket" },
   { name: "Standard", src: "/logos/standard.jpg" },
   { name: "Capital", src: "/logos/capital.png" },
   { name: "Mystica", text: "Mystica Supermarket Gayaza" },
@@ -21,6 +21,30 @@ const logos = [
   { name: "Master", src: "/logos/master.png" },
   { name: "Premium Market", text: "Deluxe Supermarket Gayaza" },
 ];
+
+const LogoCard = ({ logo }: { logo: any }) => (
+  <div className="group w-[140px] md:w-[260px] h-[80px] md:h-[100px] flex items-center justify-center bg-white border border-brand-dark/5 mx-3 md:mx-6 rounded-2xl shadow-sm transition-all duration-700 hover:scale-105 shrink-0">
+    <div className="relative w-full h-full flex items-center justify-center transition-all bg-white rounded-2xl overflow-hidden">
+      {logo.text ? (
+        <span 
+          className="text-center font-serif text-[5px] md:text-[6px] font-bold text-dark-green uppercase tracking-[1px] px-3 leading-tight"
+          style={{
+            textShadow: "0.5px 0.5px 0 #F5C518, -0.5px -0.5px 0 #F5C518, 0.5px -0.5px 0 #F5C518, -0.5px 0.5px 0 #F5C518"
+          }}
+        >
+          {logo.text}
+        </span>
+      ) : (
+        <Image
+          src={logo.src || ""}
+          alt={logo.name}
+          fill
+          className="object-contain p-2 md:p-1"
+        />
+      )}
+    </div>
+  </div>
+);
 
 export const LogoMarquee = () => {
   return (
@@ -34,62 +58,16 @@ export const LogoMarquee = () => {
 
       <div className="relative">
         {/* Row 1: Left to Right */}
-        <div className="flex w-[300%] animate-scroll-marquee mb-10">
+        <div className="flex flex-nowrap min-w-max animate-scroll-marquee mb-10">
           {[...logos, ...logos].map((logo, i) => (
-            <div
-              key={i}
-              className="group w-[400px] h-[100px] flex items-center justify-center bg-white border border-brand-dark/5 mx-6 rounded-2xl shadow-sm transition-all duration-700 hover:scale-105"
-            >
-              <div className="relative w-full h-full flex items-center justify-center transition-all bg-white rounded-2xl overflow-hidden">
-                {logo.text ? (
-                    <span 
-                        className="text-center font-serif text-[6px] font-bold text-dark-green uppercase tracking-[1px] px-3 leading-tight"
-                        style={{
-                            textShadow: "1px 1px 0 #F5C518, -1px -1px 0 #F5C518, 1px -1px 0 #F5C518, -1px 1px 0 #F5C518"
-                        }}
-                    >
-                        {logo.text}
-                    </span>
-                ) : (
-                    <Image
-                      src={logo.src || ""}
-                      alt={logo.name}
-                      fill
-                      className="object-contain p-1"
-                    />
-                )}
-              </div>
-            </div>
+            <LogoCard key={`r1-${i}`} logo={logo} />
           ))}
         </div>
 
         {/* Row 2: Right to Left */}
-        <div className="flex w-[300%] animate-scroll-marquee-reverse">
+        <div className="flex flex-nowrap min-w-max animate-scroll-marquee-reverse">
           {[...logos, ...logos].reverse().map((logo, i) => (
-            <div
-              key={i}
-              className="group w-[400px] h-[100px] flex items-center justify-center bg-white border border-brand-dark/5 mx-6 rounded-2xl shadow-sm transition-all duration-700 hover:scale-105"
-            >
-              <div className="relative w-full h-full flex items-center justify-center transition-all bg-white rounded-2xl overflow-hidden">
-                {logo.text ? (
-                    <span 
-                        className="text-center font-serif text-[6px] font-bold text-dark-green uppercase tracking-[1px] px-3 leading-tight"
-                        style={{
-                            textShadow: "1px 1px 0 #F5C518, -1px -1px 0 #F5C518, 1px -1px 0 #F5C518, -1px 1px 0 #F5C518"
-                        }}
-                    >
-                        {logo.text}
-                    </span>
-                ) : (
-                    <Image
-                      src={logo.src || ""}
-                      alt={logo.name}
-                      fill
-                      className="object-contain p-1"
-                    />
-                )}
-              </div>
-            </div>
+            <LogoCard key={`r2-${i}`} logo={logo} />
           ))}
         </div>
 

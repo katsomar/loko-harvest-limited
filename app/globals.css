@@ -11,8 +11,8 @@
   --font-serif: "Playfair Display", serif;
   --font-sans: "Inter", sans-serif;
 
-  --animate-scroll-marquee: scroll-marquee 90s linear infinite;
-  --animate-scroll-marquee-reverse: scroll-marquee-reverse 90s linear infinite;
+  --animate-scroll-marquee: scroll-marquee 300s linear infinite;
+  --animate-scroll-marquee-reverse: scroll-marquee-reverse 300s linear infinite;
   --animate-pulse-slow: pulse-slow 4s ease-in-out infinite;
   --animate-float: float 6s ease-in-out infinite;
 
@@ -90,8 +90,20 @@ html.lenis {
 }
 
 /* Leaflet Dark Mode Fix */
+/* Map Styling - Natural & Bright */
 .leaflet-container {
-  filter: grayscale(100%) invert(100%) contrast(90%);
+  /* Removed filters to ensure the map is bright and clear */
+}
+
+.custom-tooltip {
+  @apply bg-white/90 border-2 border-primary-yellow rounded-lg px-3 py-1 shadow-lg font-serif font-bold text-dark-green text-[10px] uppercase tracking-wider;
+  background: white !important;
+  border-color: #F5C518 !important;
+  color: #1B4332 !important;
+}
+
+.custom-tooltip::before {
+  border-top-color: #F5C518 !important;
 }
 
 /* Animated Grain Texture */
