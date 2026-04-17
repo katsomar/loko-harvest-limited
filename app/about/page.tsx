@@ -74,9 +74,36 @@ export default function AboutBiographyPage() {
   });
 
   const springScroll = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
+  
+  // Curved Path Mapping (Snaking behind cards)
   const eggY = useTransform(springScroll, [0, 1], ["0%", "95%"]);
-  const eggRotate = useTransform(springScroll, [0, 1], [0, 1080]);
-  const eggX = useTransform(springScroll, [0, 0.2, 0.4, 0.6, 0.8, 1], [0, 20, -20, 20, -20, 0]);
+  // We snake X precisely to pass behind the content areas
+  const eggX = useTransform(
+    springScroll, 
+    [0, 0.08, 0.2, 0.32, 0.44, 0.56, 0.68, 0.8, 0.92, 1], 
+    ["0%", "-100%", "100%", "-100%", "100%", "-100%", "100%", "-100%", "100%", "0%"]
+  );
+  
+  const eggRotate = useTransform(springScroll, [0, 1], [0, 2160]);
+  
+  // Color Cycle Mapping: Changes only when behind a card (centered at these intervals)
+  const eggColors = ["#FDFCF0", "#F5E6BE", "#C68642"]; // White, Cream, Natural Light Brown Shell
+  const eggBaseColor = useTransform(
+    springScroll,
+    [0, 0.08, 0.2, 0.32, 0.44, 0.56, 0.68, 0.8, 0.92, 1],
+    [
+      eggColors[0], // Start: White
+      eggColors[1], // Behind Step 1: Switch to Cream
+      eggColors[2], // Behind Step 2: Switch to Brown
+      eggColors[0], // Behind Step 3: Switch to White
+      eggColors[1], // Behind Step 4: Switch to Cream
+      eggColors[2], // Behind Step 5: Switch to Brown
+      eggColors[0], // Behind Step 6: Switch to White
+      eggColors[1], // Behind Step 7: Switch to Cream
+      eggColors[2], // Behind Step 8: Switch to Brown
+      eggColors[2]  // End: Brown
+    ]
+  );
 
   return (
     <div className="bg-white min-h-screen">
@@ -187,29 +214,36 @@ export default function AboutBiographyPage() {
           </div>
 
           <div className="relative">
-            {/* Animated Track */}
-            <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-[2px] bg-brand-dark/5 -translate-x-1/2 overflow-hidden">
+            {/* Animated Track - Base level */}
+            <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-[2px] bg-brand-dark/5 -translate-x-1/2 overflow-hidden z-0">
                <motion.div 
                  style={{ scaleY: springScroll }}
-                 className="absolute top-0 left-0 right-0 origin-top bg-primary-yellow w-full"
+                 className="absolute top-0 left-0 right-0 origin-top bg-primary-yellow/20 w-full"
                />
             </div>
 
-            {/* Moving Egg Element */}
+            {/* Moving Egg Element - Lower Z-Index to stay BEHIND cards */}
             <motion.div 
-              style={{ top: eggY, rotate: eggRotate, x: eggX }}
-              className="absolute left-8 md:left-1/2 w-16 h-20 md:w-24 md:h-28 -ml-8 md:-ml-12 z-40 pointer-events-none hidden md:block"
+              style={{ 
+                top: eggY, 
+                rotate: eggRotate, 
+                x: eggX
+              }}
+              className="absolute left-8 md:left-1/2 w-16 h-20 md:w-24 md:h-28 -ml-8 md:-ml-12 z-0 pointer-events-none hidden md:block"
             >
-               <div className="w-full h-full bg-[#FDFCF0] rounded-[50%_50%_50%_50%_/_65%_65%_35%_35%] shadow-[inset_-12px_-12px_25px_rgba(13,27,15,0.1),_inset_8px_8px_15px_rgba(255,255,255,0.8),_0_20px_40px_rgba(0,0,0,0.15)] border border-white/60 relative overflow-hidden">
-                  {/* Depth shading - matching Navbar look exactly */}
+               <motion.div 
+                 style={{ backgroundColor: eggBaseColor }}
+                 className="w-full h-full rounded-[50%_50%_50%_50%_/_65%_65%_35%_35%] shadow-[inset_-12px_-12px_25px_rgba(13,27,15,0.15),_inset_8px_8px_15px_rgba(255,255,255,0.8),_0_20px_40px_rgba(0,0,0,0.15)] border border-white/40 relative overflow-hidden"
+               >
+                  {/* Depth shading - volumetric effect */}
                   <div className="absolute inset-0 bg-gradient-to-tr from-[#9a8c73]/20 via-transparent to-white/40" />
                   
                   {/* Real Sharp Shine */}
                   <div className="absolute top-[8%] left-[20%] w-[25%] h-[35%] bg-white/70 rounded-full blur-[4px] -rotate-[25deg]" />
                   
-                  {/* Extra contrast at bottom for volume */}
-                  <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black/5 to-transparent" />
-               </div>
+                  {/* Bottom shadow gradient */}
+                  <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-brand-dark/10 to-transparent" />
+               </motion.div>
             </motion.div>
 
             {/* Mobile Indicator */}
@@ -217,7 +251,7 @@ export default function AboutBiographyPage() {
                 <Egg size={16} className="text-brand-dark" />
             </div>
             
-            <div className="space-y-40 md:space-y-80 relative z-10">
+            <div className="space-y-40 md:space-y-80 relative z-20">
               {processSteps.map((step, i) => (
                 <div key={i} className="relative">
                   <div className={cn(
@@ -229,10 +263,10 @@ export default function AboutBiographyPage() {
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true, margin: "-100px" }}
                       transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                      className="w-full md:w-[45%] pl-20 md:pl-0"
+                      className="w-full md:w-[45%] pl-20 md:pl-0 z-30" // High Z-Index to hide egg
                     >
                       <div className={cn(
-                        "p-10 md:p-16 rounded-[40px] shadow-[0_30px_100px_rgba(0,0,0,0.05)] border transition-all duration-700 hover:shadow-2xl hover:-translate-y-2",
+                        "p-10 md:p-16 rounded-[40px] shadow-[0_30px_100px_rgba(0,0,0,0.05)] border transition-all duration-700 hover:shadow-2xl hover:-translate-y-2 relative",
                         step.color,
                         step.textColor,
                         "border-white/10"
@@ -266,7 +300,7 @@ export default function AboutBiographyPage() {
                        whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
                        viewport={{ once: true, margin: "-100px" }}
                        transition={{ duration: 1.5, delay: 0.2 }}
-                       className="w-full md:w-1/2 aspect-video rounded-[60px] overflow-hidden shadow-2xl relative group"
+                       className="w-full md:w-1/2 aspect-video rounded-[60px] overflow-hidden shadow-2xl relative group z-30" // High Z-Index to hide egg
                     >
                        <Image 
                          src={i % 2 === 0 ? "/gallery/farm1.JPG" : "/hero.png"} 
