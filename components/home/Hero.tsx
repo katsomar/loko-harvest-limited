@@ -35,7 +35,7 @@ export const Hero = () => {
 
     const interval = setInterval(() => {
       setBgIndex((prev) => (prev + 1) % heroImages.length);
-    }, 6000);
+    }, 10000);
     return () => clearInterval(interval);
   }, []);
 
@@ -54,7 +54,7 @@ export const Hero = () => {
             initial={{ opacity: 0, scale: 1.1 }}
             animate={{ opacity: 0.4, scale: 1.15 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 2, ease: "easeInOut" }}
+            transition={{ duration: 3, ease: "easeInOut" }}
             className="absolute inset-0"
           >
             <Image
