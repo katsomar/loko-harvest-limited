@@ -1,27 +1,83 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
-import { Target, Eye, Shield, Users, Sprout, Heart, Leaf, ChevronRight, CheckCircle2 } from "lucide-react";
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { Target, Eye, Shield, Users, Sprout, Heart, Leaf, ChevronRight, Egg, Zap, Truck, Package, Factory, Scissors, Droplets, LeafyGreen } from "lucide-react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
-const timeline = [
-  { year: "2014", title: "Humbling Roots", description: "Loko Harvest began with just 500 birds and a passion for ethical farming. We manually tended to each bird, learning the language of the land and the needs of our flock.", image: "/hero.png" },
-  { year: "2016", title: "Modernizing the Vision", description: "Automated systems were introduced to ensure precise feeding and temperature control, significantly improving the welfare of our poultry.", image: "/gallery/farm1.JPG" },
-  { year: "2019", title: "Regional Hub", description: "We opened three new state-of-the-art facilities, becoming a primary supplier for the central and western regions.", image: "/hero.png" },
-  { year: "2024", title: "Sustainable Leadership", description: "Integration of solar energy and circular waste management, setting a new benchmark for eco-luxury farming in Uganda.", image: "/gallery/farm1.JPG" },
-];
-
-const values = [
-  { icon: Shield, title: "Uncompromising Quality", description: "We adhere to the strictest health standards, ensuring every product is safe, fresh, and nutrient-rich." },
-  { icon: Sprout, title: "Sustainability", description: "Our farming practices are designed to regenerate the earth, not deplete it. We use 70% less water than traditional farms." },
-  { icon: Users, title: "Community First", description: "Empowering local farmers through training and fair-trade partnerships since day one." },
-  { icon: Heart, title: "Animal Welfare", description: "A happy bird is a healthy bird. We provide stress-free environments and natural growth cycles." },
+const processSteps = [
+  {
+    icon: LeafyGreen,
+    title: "Picking the Pastures",
+    description: "Every morning, our workers carefully pick the best fresh pastures. We gather banana leaves, pawpaw, guava, blackjack, and aloe vera. These local pastures help our birds stay healthy and strong.",
+    color: "bg-dark-green",
+    textColor: "text-white",
+  },
+  {
+    icon: Droplets,
+    title: "Cleaning the Pastures",
+    description: "We make sure everything is clean. We wash and disinfect the pastures to remove any dirt or germs. This keeps the food safe and fresh for our birds.",
+    color: "bg-primary-yellow",
+    textColor: "text-brand-dark",
+  },
+  {
+    icon: Scissors,
+    title: "Chipping and Crushing",
+    description: "We use special machines to chop the pastures into small pieces. This makes it very easy for our chickens to eat and get all the good nutrients from the pastures.",
+    color: "bg-brand-dark",
+    textColor: "text-white",
+  },
+  {
+    icon: Zap,
+    title: "Preparing the Feed",
+    description: "Our team mixes healthy ingredients together to make high-protein feed. This feed is made to work perfectly when mixed with our fresh pastures.",
+    color: "bg-dark-green",
+    textColor: "text-white",
+  },
+  {
+    icon: Factory,
+    title: "Mixing Pastures and Feed",
+    description: "Now we mix the chopped pastures together with the chicken feed. This special mix is what gives our eggs their beautiful and natural yellow yolks.",
+    color: "bg-primary-yellow",
+    textColor: "text-brand-dark",
+  },
+  {
+    icon: Package,
+    title: "Making the Pellets",
+    description: "We press the mixture into small pellets. This makes the food easy to carry and ensures the chickens get a bit of everything in every bite.",
+    color: "bg-brand-dark",
+    textColor: "text-white",
+  },
+  {
+    icon: Truck,
+    title: "Packing and Moving",
+    description: "We put the fresh food into bags and quickly transport them to the chicken houses. We want the food to be as fresh as possible for our birds.",
+    color: "bg-dark-green",
+    textColor: "text-white",
+  },
+  {
+    icon: Egg,
+    title: "Feeding Our Chickens",
+    description: "Finally, we feed this healthy mix to our chickens. They love it! Because they eat such good food, they lay the best and most natural eggs for you.",
+    color: "bg-primary-yellow",
+    textColor: "text-brand-dark",
+  },
 ];
 
 export default function AboutBiographyPage() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start center", "end center"],
+  });
+
+  const springScroll = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
+  const eggY = useTransform(springScroll, [0, 1], ["0%", "95%"]);
+  const eggRotate = useTransform(springScroll, [0, 1], [0, 1080]);
+  const eggX = useTransform(springScroll, [0, 0.2, 0.4, 0.6, 0.8, 1], [0, 20, -20, 20, -20, 0]);
+
   return (
     <div className="bg-white min-h-screen">
       {/* Cinematic Intro */}
@@ -62,10 +118,10 @@ export default function AboutBiographyPage() {
               transition={{ duration: 1 }}
               className="text-primary-yellow font-sans text-xs font-bold uppercase tracking-[15px] block mb-12"
             >
-              Established 2014
+              The Loko Method
             </motion.span>
             <h1 className="text-5xl sm:text-7xl md:text-[12rem] font-serif text-white overflow-hidden flex flex-wrap justify-center items-center gap-x-4 sm:gap-x-8 leading-none">
-              {"Our Story".split(" ").map((word, wordIndex) => (
+              {"Our Process".split(" ").map((word, wordIndex) => (
                 <span key={wordIndex} className="flex whitespace-nowrap">
                   {word.split("").map((char, charIndex) => (
                     <motion.span
@@ -93,14 +149,16 @@ export default function AboutBiographyPage() {
                 transition={{ duration: 2, delay: 1.5, ease: "circOut" }}
                 className="w-48 h-[2px] bg-primary-yellow/40 mx-auto mt-20"
             />
-            <motion.p
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 2, duration: 1 }}
-              className="mt-12 text-white/40 font-sans tracking-[4px] uppercase text-[10px]"
+              className="mt-12 max-w-2xl mx-auto"
             >
-              A Decade of Earthy Luxury
-            </motion.p>
+              <p className="text-white/60 font-sans text-lg leading-relaxed italic">
+                At Loko Harvest, we do things differently. We pick fresh green pastures like banana leaves and pawpaw and mix them with healthy feed. This special diet helps our birds grow strong and produce eggs with beautiful, natural yellow yolks that are good for you.
+              </p>
+            </motion.div>
          </div>
 
          {/* Scroll Indicator */}
@@ -113,24 +171,55 @@ export default function AboutBiographyPage() {
          </motion.div>
       </section>
 
-      {/* Vertical Timeline - Rich Storytelling */}
-      <section className="py-60 px-6 bg-white overflow-hidden">
+      {/* Process Walkthrough Section */}
+      <section className="relative py-60 px-6 bg-white overflow-hidden" ref={containerRef}>
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-40">
-            <span className="text-primary-yellow font-sans text-sm font-bold uppercase tracking-[6px] block mb-6">The Journey</span>
-            <h2 className="text-5xl md:text-8xl font-serif text-brand-dark leading-none">Forged in Nature</h2>
+          <div className="text-center mb-60 relative z-20">
+            <motion.span 
+              initial={{ opacity: 0, letterSpacing: "0px" }}
+              whileInView={{ opacity: 1, letterSpacing: "8px" }}
+              viewport={{ once: true }}
+              className="text-primary-yellow font-sans text-sm font-bold uppercase block mb-6"
+            >
+              The Journey
+            </motion.span>
+            <h2 className="text-5xl md:text-9xl font-serif text-brand-dark leading-none">Forged in Nature</h2>
           </div>
 
-          <div className="relative ml-0 md:ml-0 overflow-visible">
-            {/* Center Line */}
-            <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-[1px] bg-brand-dark/5" />
-            
-            <div className="space-y-40">
-              {timeline.map((item, i) => (
-                <div key={i} className="relative">
-                  {/* Dot */}
-                  <div className="absolute left-8 md:left-1/2 top-0 w-3 h-3 rounded-full bg-primary-yellow -translate-x-1/2 z-10 shadow-xl shadow-primary-yellow/20" />
+          <div className="relative">
+            {/* Animated Track */}
+            <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-[2px] bg-brand-dark/5 -translate-x-1/2 overflow-hidden">
+               <motion.div 
+                 style={{ scaleY: springScroll }}
+                 className="absolute top-0 left-0 right-0 origin-top bg-primary-yellow w-full"
+               />
+            </div>
+
+            {/* Moving Egg Element */}
+            <motion.div 
+              style={{ top: eggY, rotate: eggRotate, x: eggX }}
+              className="absolute left-8 md:left-1/2 w-16 h-20 md:w-24 md:h-28 -ml-8 md:-ml-12 z-40 pointer-events-none hidden md:block"
+            >
+               <div className="w-full h-full bg-[#FDFCF0] rounded-[50%_50%_50%_50%_/_65%_65%_35%_35%] shadow-[inset_-12px_-12px_25px_rgba(13,27,15,0.1),_inset_8px_8px_15px_rgba(255,255,255,0.8),_0_20px_40px_rgba(0,0,0,0.15)] border border-white/60 relative overflow-hidden">
+                  {/* Depth shading - matching Navbar look exactly */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-[#9a8c73]/20 via-transparent to-white/40" />
                   
+                  {/* Real Sharp Shine */}
+                  <div className="absolute top-[8%] left-[20%] w-[25%] h-[35%] bg-white/70 rounded-full blur-[4px] -rotate-[25deg]" />
+                  
+                  {/* Extra contrast at bottom for volume */}
+                  <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black/5 to-transparent" />
+               </div>
+            </motion.div>
+
+            {/* Mobile Indicator */}
+            <div className="absolute left-8 top-0 w-8 h-8 rounded-full bg-primary-yellow -translate-x-1/2 z-30 md:hidden flex items-center justify-center shadow-lg">
+                <Egg size={16} className="text-brand-dark" />
+            </div>
+            
+            <div className="space-y-40 md:space-y-80 relative z-10">
+              {processSteps.map((step, i) => (
+                <div key={i} className="relative">
                   <div className={cn(
                     "flex flex-col md:flex-row gap-20 items-center justify-between",
                     i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
@@ -140,18 +229,36 @@ export default function AboutBiographyPage() {
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true, margin: "-100px" }}
                       transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                      className="w-full md:w-[45%] pl-16 md:pl-0"
+                      className="w-full md:w-[45%] pl-20 md:pl-0"
                     >
-                      <span className="text-primary-yellow font-serif text-7xl font-bold italic mb-6 block opacity-20">
-                        {item.year}
-                      </span>
-                      <h3 className="text-4xl md:text-5xl font-serif text-brand-dark mb-8 leading-tight">
-                        {item.title}
-                      </h3>
-                      <div className="w-16 h-1 bg-primary-yellow/20 mb-8" />
-                      <p className="text-brand-dark/60 font-sans text-xl leading-relaxed italic">
-                        {item.description}
-                      </p>
+                      <div className={cn(
+                        "p-10 md:p-16 rounded-[40px] shadow-[0_30px_100px_rgba(0,0,0,0.05)] border transition-all duration-700 hover:shadow-2xl hover:-translate-y-2",
+                        step.color,
+                        step.textColor,
+                        "border-white/10"
+                      )}>
+                        <div className="flex items-center gap-6 mb-8">
+                           <div className="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center backdrop-blur-md">
+                              <step.icon size={32} />
+                           </div>
+                           <span className="text-6xl md:text-8xl font-serif opacity-20 font-bold italic">
+                            {String(i + 1).padStart(2, '0')}
+                          </span>
+                        </div>
+                        
+                        <h3 className="text-4xl md:text-5xl font-serif mb-8 leading-tight">
+                          {step.title}
+                        </h3>
+                        <div className={cn("w-20 h-1 mb-8 opacity-40", i % 2 !== 1 ? "bg-white" : "bg-brand-dark")} />
+                        <p className="font-sans text-xl leading-relaxed opacity-80">
+                          {step.description}
+                        </p>
+
+                        <div className="mt-12 flex items-center gap-4 text-sm font-bold tracking-widest uppercase opacity-60">
+                           <div className="w-8 h-[1px] bg-current" />
+                           Loko Standards
+                        </div>
+                      </div>
                     </motion.div>
 
                     <motion.div 
@@ -159,22 +266,33 @@ export default function AboutBiographyPage() {
                        whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
                        viewport={{ once: true, margin: "-100px" }}
                        transition={{ duration: 1.5, delay: 0.2 }}
-                       className="w-full md:w-1/2 aspect-[4/3] rounded-[60px] overflow-hidden shadow-2xl relative group"
+                       className="w-full md:w-1/2 aspect-video rounded-[60px] overflow-hidden shadow-2xl relative group"
                     >
                        <Image 
-                         src={item.image} 
-                         alt={item.title} 
+                         src={i % 2 === 0 ? "/gallery/farm1.JPG" : "/hero.png"} 
+                         alt={step.title} 
                          fill 
                          sizes="(max-width: 768px) 100vw, 50vw"
-                         className="object-cover transition-transform group-hover:scale-105 duration-[2000ms]" 
+                         className="object-cover transition-transform group-hover:scale-110 duration-[3000ms]" 
                        />
-                       <div className="absolute inset-0 bg-brand-dark/20 group-hover:bg-transparent transition-colors duration-1000" />
+                       <div className="absolute inset-0 bg-brand-dark/30 group-hover:bg-transparent transition-colors duration-[2000ms]" />
+                       
+                       {/* Floating Step Number over Image */}
+                       <div className="absolute bottom-10 right-10 text-white flex flex-col items-end">
+                          <span className="text-xs font-bold tracking-[4px] uppercase opacity-60 mb-2">Step</span>
+                          <span className="text-6xl font-serif font-bold italic opacity-90">{i + 1}</span>
+                       </div>
                     </motion.div>
                   </div>
                 </div>
               ))}
             </div>
           </div>
+        </div>
+
+        {/* Decorative Background Icon */}
+        <div className="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 opacity-[0.02] pointer-events-none rotate-12">
+            <Egg size={800} />
         </div>
       </section>
 
@@ -254,7 +372,7 @@ export default function AboutBiographyPage() {
                     <div className="space-y-12">
                          <p className="text-white/40 text-lg leading-relaxed">
                             Spanning over 500 acres of revitalized terrain, our facilities represent the pinnacle of ethical engineering. We've replaced mass production with precise, individual care, ensuring that every Loko Harvest product is a testament to quality.
-                        </p>
+                         </p>
                         <div className="space-y-6">
                             {["Real-time Health Monitoring", "Regional Logistics Hub", "Direct-to-Table Chain"].map(item => (
                                 <div key={item} className="flex items-center gap-6 text-white/80 font-sans tracking-widest text-sm font-bold">
