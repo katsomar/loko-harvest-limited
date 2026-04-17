@@ -12,10 +12,10 @@ const categories = ["All", "Farm", "Products", "Facilities", "Events"];
 const items = [
   { id: 1, category: "Farm", title: "Sunrise over the fields", image: "/gallery/fields1.JPG", height: "h-[300px]" },
   { id: 2, category: "Products", title: "Premium Eggs", image: "/gallery/eggs2.JPG", height: "h-[450px]" },
-  { id: 3, category: "Facilities", title: "Modern Hatchery", image: "/gallery/facilites.JPG", height: "h-[350px]" },
+  { id: 3, category: "Facilities", title: "Modern Hatchery", image: "/gallery/facility.JPG", height: "h-[350px]" },
   { id: 4, category: "Events", title: "Community Day", image: "/gallery/events.JPG", height: "h-[400px]" },
-  { id: 5, category: "Farm", title: "Healthy Flock", image: "/gallery/farm1.JPG", height: "h-[500px]" },
-  { id: 6, category: "Products", title: "Fresh Poultry", image: "/gallery/eggs.JPG", height: "h-[320px]" },
+  { id: 5, category: "Farm", title: "Healthy Flock", image: "/gallery/flock.JPG", height: "h-[500px]" },
+  { id: 6, category: "Products", title: "Fresh Poultry", image: "/orders/chicken.JPG", height: "h-[320px]" },
 ];
 
 export const GallerySection = () => {
