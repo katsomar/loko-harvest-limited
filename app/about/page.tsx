@@ -393,15 +393,15 @@ export default function AboutBiographyPage() {
                 viewport={{ once: true }}
             >
                 <h2 className="text-5xl md:text-9xl font-serif text-white mb-20 leading-none">
-                   Legacy in <br/> <span className="text-primary-yellow">Motion</span>
+                   Loko <br/> <span className="text-primary-yellow">Standards</span>
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-24 text-left">
                     <div className="space-y-12">
                         <p className="text-white/50 text-2xl leading-relaxed font-serif italic">
-                            "Transparency is not a feature; it is our foundation. From the first hatch to the final delivery, we honor the life cycle."
+                            "We believe the best eggs come from the happiest chickens eating the best food from mother nature."
                         </p>
                         <div className="space-y-6">
-                            {["ISO 22000 World-Standard", "Bio-Metric Climate Guard", "Zero-Waste Ecosystem"].map(item => (
+                            {["Pasture-First Policy", "Organic Herb Blend", "Natural Golden Yolks"].map(item => (
                                 <div key={item} className="flex items-center gap-6 text-white/80 font-sans tracking-widest text-sm font-bold">
                                     <div className="w-2 h-2 rounded-full bg-primary-yellow" /> {item}
                                 </div>
@@ -410,10 +410,10 @@ export default function AboutBiographyPage() {
                     </div>
                     <div className="space-y-12">
                          <p className="text-white/40 text-lg leading-relaxed">
-                            Spanning over 500 acres of revitalized terrain, our facilities represent the pinnacle of ethical engineering. We've replaced mass production with precise, individual care, ensuring that every Loko Harvest product is a testament to quality.
+                            Every egg we produce is a promise of quality. Our birds spend their days enjoying fresh pastures and a special mix of healthy herbs. This natural way of farming is why Loko Harvest eggs are so special, tasty, and good for your family.
                          </p>
                         <div className="space-y-6">
-                            {["Real-time Health Monitoring", "Regional Logistics Hub", "Direct-to-Table Chain"].map(item => (
+                            {["Happy Bird Housing", "Farm-to-Table Freshness", "Safe & Clean Standards"].map(item => (
                                 <div key={item} className="flex items-center gap-6 text-white/80 font-sans tracking-widest text-sm font-bold">
                                     <div className="w-2 h-2 rounded-full bg-primary-yellow" /> {item}
                                 </div>
