@@ -11,36 +11,42 @@ const team = [
     role: "Director",
     bio: "The director of loko harvest limited with over 15 years of expeirence in this field. She is a visionary leader who has built a successful business from the ground up.",
     image: "/teams/ann.JPG",
+    quote: "Success is not just about reaching the finish line, it's about the seeds you plant along the way."
   },
   {
     name: "Mbabazi Jackson",
     role: "Founding Director",
     bio: "He is the pillar of loko harvest limited with a vision to see the company grow and expand its reach to other parts of the country.",
     image: "/teams/entireteam1.jpeg",
+    quote: "Vision is the art of seeing things invisible to others, and making them a reality for everyone."
   },
   {
     name: "Babra Mehangye",
     role: "Head of marketing",
     bio: "She heads the marketing team and is responsible for the promotion and sale of our products.",
     image: "/teams/babra1.JPG",
+    quote: "Our story is in every yolk. Marketing is simply sharing the natural melody of the farm."
   },
   {
     name: "Desire Edrine",
     role: "Monitoring and Evaluation",
     bio: "She monitors the farm and ensures that the products are of high quality.",
     image: "/teams/desire1.JPG",
+    quote: "Precision in the pastures leads to perfection in the nest. We measure what matters: Quality."
   },
   {
     name: "Emmanuel Lumbuye",
     role: "Head of sales",
     bio: "He is in charge of sales and marketing and ensures that our products are sold at the best possible prices.",
     image: "/teams/emma.JPG",
+    quote: "Relationships are our best harvest. We deliver trust, one fresh egg at a time."
   },
   {
     name: "Masaba Daudi",
     role: "Finance and accounts",
     bio: "He is in charge of finance and accounts and ensures that our products are sold at the best possible prices.",
     image: "/teams/daudi1.JPG",
+    quote: "Integrity is the currency of Loko Harvest. Every number tells a story of sustainability."
   },
 ];
 
@@ -71,9 +77,9 @@ export const TeamSection = () => {
               viewport={{ once: true }}
               className="group relative bg-white/5 rounded-3xl p-10 flex flex-col items-center text-center border border-white/10 hover:shadow-2xl hover:shadow-primary-yellow/10 transition-all duration-500 overflow-hidden"
             >
-              {/* Green Overlay that slides up - revealing social links */}
+              {/* Green Overlay that slides up - revealing the unique quote */}
               <div className="absolute inset-0 bg-dark-green translate-y-full group-hover:translate-y-0 transition-transform duration-700 z-20 flex flex-col items-center justify-center p-8">
-                <p className="text-white/60 mb-8 italic text-sm">"Lead with vision, grow with care."</p>
+                <p className="text-white/80 mb-8 italic text-base font-serif px-4">"{member.quote}"</p>
                 <div className="flex justify-center gap-4">
                   {[Linkedin, Twitter, Mail].map((Icon, idx) => (
                     <a
