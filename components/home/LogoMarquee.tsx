@@ -4,21 +4,22 @@ import Image from "next/image";
 
 const logos = [
   { name: "Ecomart", src: "/logos/ecomart.jpg" },
+  { name: "Premium Market", text: "Noh Supermarket rubaga" },
   { name: "Fraine", src: "/logos/fraine.png" },
   { name: "Joma", src: "/logos/Joma.png" },
+  { name: "Abuja", text: "Abuja fruits and vegetables kitende"},
   { name: "Quality", src: "/logos/quality.jpg" },
+  { name: "Fresh Choice", text: "KSL- Kawuku Stores Ltd" },
   { name: "Shopwise", src: "/logos/shopwise.jpg" },
+    { name: "Premium Market", text: "Akright supermarket" },
   { name: "Standard", src: "/logos/standard.jpg" },
-  // Placeholders to reach 15 total
-  { name: "Premium Partner 1", src: "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=200&h=100&fit=crop&q=80" },
-  { name: "Premium Partner 2", src: "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=200&h=100&fit=crop&q=80" },
-  { name: "Premium Partner 3", src: "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=200&h=100&fit=crop&q=80" },
-  { name: "Premium Partner 4", src: "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=200&h=100&fit=crop&q=80" },
-  { name: "Premium Partner 5", src: "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=200&h=100&fit=crop&q=80" },
-  { name: "Premium Partner 6", src: "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=200&h=100&fit=crop&q=80" },
-  { name: "Premium Partner 7", src: "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=200&h=100&fit=crop&q=80" },
-  { name: "Premium Partner 8", src: "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=200&h=100&fit=crop&q=80" },
-  { name: "Premium Partner 9", src: "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=200&h=100&fit=crop&q=80" },
+  { name: "Capital", src: "/logos/capital.png" },
+  { name: "Mystica", text: "Mystica Supermarket Gayaza" },
+  { name: "Coin", src: "/logos/coin.png" },
+  { name: "Pearl", text: "Pearl Supermarket" },
+  { name: "SS", src: "/logos/ss.png" },
+  { name: "Master", src: "/logos/master.png" },
+  { name: "Premium Market", text: "Deluxe Supermarket Gayaza" },
 ];
 
 export const LogoMarquee = () => {
@@ -37,15 +38,26 @@ export const LogoMarquee = () => {
           {[...logos, ...logos].map((logo, i) => (
             <div
               key={i}
-              className="group w-[200px] h-[100px] flex items-center justify-center bg-off-white/50 border border-brand-dark/5 mx-6 rounded-2xl shadow-sm grayscale hover:grayscale-0 transition-all duration-700 hover:scale-105"
+              className="group w-[400px] h-[100px] flex items-center justify-center bg-white border border-brand-dark/5 mx-6 rounded-2xl shadow-sm transition-all duration-700 hover:scale-105"
             >
-              <div className="relative w-32 h-16 opacity-40 group-hover:opacity-100 transition-all">
-                <Image
-                  src={logo.src}
-                  alt={logo.name}
-                  fill
-                  className="object-contain p-2"
-                />
+              <div className="relative w-full h-full flex items-center justify-center transition-all bg-white rounded-2xl overflow-hidden">
+                {logo.text ? (
+                    <span 
+                        className="text-center font-serif text-[6px] font-bold text-dark-green uppercase tracking-[1px] px-3 leading-tight"
+                        style={{
+                            textShadow: "1px 1px 0 #F5C518, -1px -1px 0 #F5C518, 1px -1px 0 #F5C518, -1px 1px 0 #F5C518"
+                        }}
+                    >
+                        {logo.text}
+                    </span>
+                ) : (
+                    <Image
+                      src={logo.src || ""}
+                      alt={logo.name}
+                      fill
+                      className="object-contain p-1"
+                    />
+                )}
               </div>
             </div>
           ))}
@@ -56,15 +68,26 @@ export const LogoMarquee = () => {
           {[...logos, ...logos].reverse().map((logo, i) => (
             <div
               key={i}
-              className="group w-[200px] h-[100px] flex items-center justify-center bg-off-white/50 border border-brand-dark/5 mx-6 rounded-2xl shadow-sm grayscale hover:grayscale-0 transition-all duration-700 hover:scale-105"
+              className="group w-[400px] h-[100px] flex items-center justify-center bg-white border border-brand-dark/5 mx-6 rounded-2xl shadow-sm transition-all duration-700 hover:scale-105"
             >
-              <div className="relative w-32 h-16 opacity-40 group-hover:opacity-100 transition-all">
-                <Image
-                  src={logo.src}
-                  alt={logo.name}
-                  fill
-                  className="object-contain p-2"
-                />
+              <div className="relative w-full h-full flex items-center justify-center transition-all bg-white rounded-2xl overflow-hidden">
+                {logo.text ? (
+                    <span 
+                        className="text-center font-serif text-[6px] font-bold text-dark-green uppercase tracking-[1px] px-3 leading-tight"
+                        style={{
+                            textShadow: "1px 1px 0 #F5C518, -1px -1px 0 #F5C518, 1px -1px 0 #F5C518, -1px 1px 0 #F5C518"
+                        }}
+                    >
+                        {logo.text}
+                    </span>
+                ) : (
+                    <Image
+                      src={logo.src || ""}
+                      alt={logo.name}
+                      fill
+                      className="object-contain p-1"
+                    />
+                )}
               </div>
             </div>
           ))}

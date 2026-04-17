@@ -11,8 +11,8 @@
   --font-serif: "Playfair Display", serif;
   --font-sans: "Inter", sans-serif;
 
-  --animate-scroll-marquee: scroll-marquee 40s linear infinite;
-  --animate-scroll-marquee-reverse: scroll-marquee-reverse 40s linear infinite;
+  --animate-scroll-marquee: scroll-marquee 90s linear infinite;
+  --animate-scroll-marquee-reverse: scroll-marquee-reverse 90s linear infinite;
   --animate-pulse-slow: pulse-slow 4s ease-in-out infinite;
   --animate-float: float 6s ease-in-out infinite;
 
