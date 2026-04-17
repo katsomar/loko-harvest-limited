@@ -35,12 +35,13 @@ const LogoCard = ({ logo }: { logo: any }) => (
           {logo.text}
         </span>
       ) : (
-        <Image
-          src={logo.src || ""}
-          alt={logo.name}
-          fill
-          className="object-contain p-2 md:p-1"
-        />
+          <Image
+            src={logo.src || ""}
+            alt={logo.name}
+            fill
+            className="object-contain p-2 md:p-1"
+            sizes="(max-width: 768px) 150px, 260px"
+          />
       )}
     </div>
   </div>

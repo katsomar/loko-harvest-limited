@@ -100,6 +100,7 @@ export const Navbar = () => {
                   alt="Loko Harvest"
                   fill
                   className="object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
+                  sizes="(max-width: 768px) 112px, 112px"
                   priority
                 />
               </div>
