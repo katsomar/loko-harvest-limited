@@ -27,7 +27,7 @@ const LogoCard = ({ logo }: { logo: any }) => (
     <div className="relative w-full h-full flex items-center justify-center transition-all bg-white rounded-2xl overflow-hidden">
       {logo.text ? (
         <span 
-          className="text-center font-serif text-[5px] md:text-[6px] font-bold text-dark-green uppercase tracking-[1px] px-3 leading-tight"
+          className="text-center font-serif text-[7px] md:text-[9px] font-bold text-dark-green uppercase tracking-[1px] px-3 leading-tight"
           style={{
             textShadow: "0.5px 0.5px 0 #F5C518, -0.5px -0.5px 0 #F5C518, 0.5px -0.5px 0 #F5C518, -0.5px 0.5px 0 #F5C518"
           }}
