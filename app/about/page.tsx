@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { Target, Eye, Shield, Users, Sprout, Heart, Leaf, ChevronRight, Egg, Zap, Truck, Package, Factory, Scissors, Droplets, LeafyGreen } from "lucide-react";
 import Image from "next/image";
@@ -68,6 +68,15 @@ const processSteps = [
 
 export default function AboutBiographyPage() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [windowWidth, setWindowWidth] = useState(0);
+
+  useEffect(() => {
+    setWindowWidth(window.innerWidth);
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start center", "end center"],
@@ -75,33 +84,40 @@ export default function AboutBiographyPage() {
 
   const springScroll = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
   
-  // Curved Path Mapping (Snaking behind cards)
+  // Base transforms
   const eggY = useTransform(springScroll, [0, 1], ["0%", "95%"]);
-  // We snake X precisely to pass behind the content areas
-  const eggX = useTransform(
+  
+  // Normalized snaking value (-1 to 1)
+  const snakeValue = useTransform(
     springScroll, 
-    [0, 0.08, 0.2, 0.32, 0.44, 0.56, 0.68, 0.8, 0.92, 1], 
-    ["0%", "-100%", "100%", "-100%", "100%", "-100%", "100%", "-100%", "100%", "0%"]
+    [0, 0.1, 0.22, 0.34, 0.46, 0.58, 0.7, 0.82, 0.94, 1], 
+    [0, -1, 1, -1, 1, -1, 1, -1, 1, 0]
   );
+
+  // Apply responsive multiplier
+  const eggX = useTransform(snakeValue, (v) => {
+    const isMobile = windowWidth < 768;
+    const multiplier = isMobile ? 30 : 250; // 30px on mobile, 250px on desktop
+    return v * multiplier;
+  });
   
   const eggRotate = useTransform(springScroll, [0, 1], [0, 2160]);
   
-  // Color Cycle Mapping: Changes only when behind a card (centered at these intervals)
-  const eggColors = ["#FDFCF0", "#F5E6BE", "#C68642"]; // White, Cream, Natural Light Brown Shell
+  const eggColors = ["#FDFCF0", "#F5E6BE", "#C68642"]; 
   const eggBaseColor = useTransform(
     springScroll,
-    [0, 0.08, 0.2, 0.32, 0.44, 0.56, 0.68, 0.8, 0.92, 1],
+    [0, 0.1, 0.22, 0.34, 0.46, 0.58, 0.7, 0.82, 0.94, 1],
     [
-      eggColors[0], // Start: White
-      eggColors[1], // Behind Step 1: Switch to Cream
-      eggColors[2], // Behind Step 2: Switch to Brown
-      eggColors[0], // Behind Step 3: Switch to White
-      eggColors[1], // Behind Step 4: Switch to Cream
-      eggColors[2], // Behind Step 5: Switch to Brown
-      eggColors[0], // Behind Step 6: Switch to White
-      eggColors[1], // Behind Step 7: Switch to Cream
-      eggColors[2], // Behind Step 8: Switch to Brown
-      eggColors[2]  // End: Brown
+      eggColors[0], // Start
+      eggColors[1], // Behind Step 1
+      eggColors[2], // Behind Step 2
+      eggColors[0], // Behind Step 3
+      eggColors[1], // Behind Step 4
+      eggColors[2], // Behind Step 5
+      eggColors[0], // Behind Step 6
+      eggColors[1], // Behind Step 7
+      eggColors[2], // Behind Step 8
+      eggColors[2]  // End
     ]
   );
 
@@ -214,7 +230,7 @@ export default function AboutBiographyPage() {
           </div>
 
           <div className="relative">
-            {/* Animated Track - Base level */}
+            {/* Animated Track */}
             <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-[2px] bg-brand-dark/5 -translate-x-1/2 overflow-hidden z-0">
                <motion.div 
                  style={{ scaleY: springScroll }}
@@ -222,34 +238,25 @@ export default function AboutBiographyPage() {
                />
             </div>
 
-            {/* Moving Egg Element - Lower Z-Index to stay BEHIND cards */}
+            {/* Moving Egg Element - Visible on all devices, higher Z index than background but lower than cards */}
             <motion.div 
               style={{ 
                 top: eggY, 
                 rotate: eggRotate, 
                 x: eggX
               }}
-              className="absolute left-8 md:left-1/2 w-16 h-20 md:w-24 md:h-28 -ml-8 md:-ml-12 z-0 pointer-events-none hidden md:block"
+              className="absolute left-8 md:left-1/2 w-16 h-20 md:w-24 md:h-28 -ml-8 md:-ml-12 z-10 pointer-events-none"
             >
                <motion.div 
                  style={{ backgroundColor: eggBaseColor }}
                  className="w-full h-full rounded-[50%_50%_50%_50%_/_65%_65%_35%_35%] shadow-[inset_-12px_-12px_25px_rgba(13,27,15,0.15),_inset_8px_8px_15px_rgba(255,255,255,0.8),_0_20px_40px_rgba(0,0,0,0.15)] border border-white/40 relative overflow-hidden"
                >
-                  {/* Depth shading - volumetric effect */}
+                  {/* Depth shading */}
                   <div className="absolute inset-0 bg-gradient-to-tr from-[#9a8c73]/20 via-transparent to-white/40" />
-                  
-                  {/* Real Sharp Shine */}
                   <div className="absolute top-[8%] left-[20%] w-[25%] h-[35%] bg-white/70 rounded-full blur-[4px] -rotate-[25deg]" />
-                  
-                  {/* Bottom shadow gradient */}
                   <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-brand-dark/10 to-transparent" />
                </motion.div>
             </motion.div>
-
-            {/* Mobile Indicator */}
-            <div className="absolute left-8 top-0 w-8 h-8 rounded-full bg-primary-yellow -translate-x-1/2 z-30 md:hidden flex items-center justify-center shadow-lg">
-                <Egg size={16} className="text-brand-dark" />
-            </div>
             
             <div className="space-y-40 md:space-y-80 relative z-20">
               {processSteps.map((step, i) => (
@@ -263,13 +270,13 @@ export default function AboutBiographyPage() {
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true, margin: "-100px" }}
                       transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                      className="w-full md:w-[45%] pl-20 md:pl-0 z-30" // High Z-Index to hide egg
+                      className="w-full md:w-[45%] pl-20 md:pl-0 z-30"
                     >
                       <div className={cn(
                         "p-10 md:p-16 rounded-[40px] shadow-[0_30px_100px_rgba(0,0,0,0.05)] border transition-all duration-700 hover:shadow-2xl hover:-translate-y-2 relative",
                         step.color,
                         step.textColor,
-                        "border-white/10"
+                        "border-white/10 font-sans"
                       )}>
                         <div className="flex items-center gap-6 mb-8">
                            <div className="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center backdrop-blur-md">
@@ -300,7 +307,7 @@ export default function AboutBiographyPage() {
                        whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
                        viewport={{ once: true, margin: "-100px" }}
                        transition={{ duration: 1.5, delay: 0.2 }}
-                       className="w-full md:w-1/2 aspect-video rounded-[60px] overflow-hidden shadow-2xl relative group z-30" // High Z-Index to hide egg
+                       className="w-full md:w-1/2 aspect-video rounded-[60px] overflow-hidden shadow-2xl relative group z-30"
                     >
                        <Image 
                          src={i % 2 === 0 ? "/gallery/farm1.JPG" : "/hero.png"} 
@@ -311,7 +318,6 @@ export default function AboutBiographyPage() {
                        />
                        <div className="absolute inset-0 bg-brand-dark/30 group-hover:bg-transparent transition-colors duration-[2000ms]" />
                        
-                       {/* Floating Step Number over Image */}
                        <div className="absolute bottom-10 right-10 text-white flex flex-col items-end">
                           <span className="text-xs font-bold tracking-[4px] uppercase opacity-60 mb-2">Step</span>
                           <span className="text-6xl font-serif font-bold italic opacity-90">{i + 1}</span>
@@ -324,7 +330,6 @@ export default function AboutBiographyPage() {
           </div>
         </div>
 
-        {/* Decorative Background Icon */}
         <div className="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 opacity-[0.02] pointer-events-none rotate-12">
             <Egg size={800} />
         </div>
