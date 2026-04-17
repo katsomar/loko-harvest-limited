@@ -122,6 +122,7 @@ export const PremiumSplashScreen = () => {
                       alt="Loko Harvest"
                       fill
                       className="object-contain"
+                      sizes="(max-width: 768px) 128px, 192px"
                     />
                     <motion.div 
                       animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }}
