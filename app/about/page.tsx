@@ -199,7 +199,7 @@ export default function AboutBiographyPage() {
               className="mt-12 max-w-2xl mx-auto"
             >
               <p className="text-white/60 font-sans text-lg leading-relaxed italic">
-                At Loko Harvest, we do things differently. We pick fresh green pastures like banana leaves and pawpaw and mix them with healthy feed. This special diet helps our birds grow strong and produce eggs with beautiful, natural yellow yolks that are good for you.
+                At Loko Harvest, we do things differently. We pick a variety of fresh pastures and mix them with healthy feed. This special diet helps our birds grow strong and produce eggs with beautiful, natural yellow yolks that are good for you.
               </p>
             </motion.div>
          </div>
@@ -403,14 +403,9 @@ export default function AboutBiographyPage() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              className="relative aspect-[3/4] max-w-sm mx-auto"
+              className="relative aspect-square max-w-sm mx-auto flex flex-col items-center justify-center text-center"
             >
-              {/* Outer white egg shape */}
-              <div 
-                className="absolute inset-0 bg-white shadow-[0_0_100px_rgba(255,255,255,0.1)]"
-                style={{ borderRadius: "50% 50% 50% 50% / 60% 60% 40% 40%" }}
-              />
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8">
+              <div className="relative z-10 flex flex-col items-center justify-center text-center p-8">
                 {/* Bouncing 3D-Styled Egg */}
                 <motion.div
                   animate={{ y: [0, -40, 0] }}
@@ -420,9 +415,8 @@ export default function AboutBiographyPage() {
                   <div className="absolute top-2 left-4 w-6 h-10 bg-white/60 rounded-full blur-[4px] -rotate-15" />
                 </motion.div>
 
-                <span className="text-primary-yellow font-serif text-6xl md:text-8xl font-bold leading-none mb-2">LOKO</span>
-                <span className="text-white italic font-serif text-lg md:text-xl block mb-1">Organic Yellow Yolk</span>
-                <div className="w-12 h-[1px] bg-white/20 my-4" />
+                <span className="text-primary-yellow font-serif text-6xl md:text-8xl font-bold leading-none mb-4">LOKO</span>
+                <span className="text-white italic font-serif text-lg md:text-xl block mb-6 whitespace-nowrap">Organic Yellow Yolk</span>
                 <span className="text-primary-yellow font-sans text-[10px] uppercase tracking-[3px] font-bold whitespace-nowrap">Simply Egg-ceptional!!!</span>
               </div>
             </motion.div>
@@ -430,16 +424,17 @@ export default function AboutBiographyPage() {
             {/* Right: Benefits Content */}
             <div className="space-y-12">
               <div className="relative">
-                <div className="absolute -left-10 top-0 bottom-0 w-1 bg-primary-yellow/30" />
+                {/* Visual Line - hidden on mobile */}
+                <div className="absolute -left-10 top-0 bottom-0 w-1 bg-primary-yellow/30 hidden lg:block" />
                 <motion.h2 
                   initial={{ opacity: 0, x: 20 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  className="text-3xl md:text-5xl font-serif text-primary-yellow leading-tight mb-12 uppercase tracking-wide"
+                  className="text-4xl md:text-5xl font-serif text-primary-yellow leading-tight mb-12 uppercase tracking-wide text-center lg:text-left"
                 >
                   Benefits of eating herbal <br className="hidden md:block" /> & pasture fed eggs
                 </motion.h2>
 
-                <div className="space-y-8">
+                <div className="space-y-8 px-4 lg:px-0">
                   {[
                     "Extremely nutritious & richer in vitamins",
                     "Boosts body immunity",
@@ -452,10 +447,10 @@ export default function AboutBiographyPage() {
                       initial={{ opacity: 0, x: 20 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ delay: i * 0.1 }}
-                      className="flex items-start gap-6 group"
+                      className="flex items-start lg:items-center gap-6 group justify-start lg:justify-start"
                     >
-                      <div className="w-2 h-2 rounded-full bg-primary-yellow mt-3 shrink-0 group-hover:scale-150 transition-transform" />
-                      <p className="text-white/80 text-lg md:text-2xl font-serif leading-relaxed">
+                      <div className="w-2 h-2 rounded-full bg-primary-yellow mt-3 lg:mt-0 shrink-0 group-hover:scale-150 transition-transform" />
+                      <p className="text-white/80 text-lg md:text-2xl font-serif leading-relaxed text-left">
                         {benefit}
                       </p>
                     </motion.div>
