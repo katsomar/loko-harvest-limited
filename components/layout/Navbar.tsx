@@ -189,7 +189,7 @@ export const Navbar = () => {
                   <div className="relative mx-auto w-48 h-48 bg-white p-4 rounded-3xl shadow-inner group">
                     <div className="absolute inset-0 bg-primary-yellow/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-3xl" />
                     <img 
-                      src={qrCodeUrl} 
+                      src={`https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${encodeURIComponent("https://lokoharvest.my.canva.site/loko-harvest")}`} 
                       alt="Loko Harvest QR Code" 
                       className="w-full h-full object-contain"
                     />
