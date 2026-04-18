@@ -507,7 +507,12 @@ export default function AboutBiographyPage() {
               {
                 q: "Can we get Day old chicks from you?",
                 a: "Unfortunately not. We do not have parent stock of these layers and therefore are unable to supply day old chicks."
+              },
+              {
+                q: "How long do the eggs last before they can go bad?",
+                a: "Our eggs can last for about 2 months on shelf if kept in well airated places, and proper storage facilities."
               }
+
             ].map((item, i) => (
               <motion.div
                 key={i}
