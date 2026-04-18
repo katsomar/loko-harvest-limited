@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 const logos = [
+  { name: "Premium Market", text: "Ndagire/Kamuli road agency" },
   { name: "Ecomart", src: "/logos/ecomart.jpg" },
   { name: "Premium Market", text: "Noh Supermarket rubaga" },
   { name: "Fraine", src: "/logos/fraine.png" },
