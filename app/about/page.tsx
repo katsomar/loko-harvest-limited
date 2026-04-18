@@ -2,7 +2,7 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { Target, Eye, Shield, Users, Sprout, Heart, Leaf, ChevronRight, Egg, Zap, Truck, Package, Factory, Scissors, Droplets, LeafyGreen } from "lucide-react";
+import { Shield, Users, Sprout, Heart, Leaf, ChevronRight, Egg, Zap, Truck, Package, Factory, Scissors, Droplets, LeafyGreen } from "lucide-react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
@@ -335,53 +335,7 @@ export default function AboutBiographyPage() {
         </div>
       </section>
 
-      {/* Mission & Vision - Bold Cards */}
-      <section className="py-60 bg-off-white px-6">
-        <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <motion.div
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="p-20 md:p-32 rounded-[80px] bg-dark-green text-white relative overflow-hidden group min-h-[600px] flex flex-col justify-end"
-                >
-                    <div className="absolute -top-20 -right-20 opacity-5 group-hover:rotate-12 transition-transform duration-[3000ms]">
-                        <Target className="w-96 h-96" />
-                    </div>
-                    <div className="relative z-10">
-                        <div className="w-20 h-20 rounded-3xl bg-white/5 flex items-center justify-center mb-10 border border-white/10 group-hover:bg-primary-yellow group-hover:text-brand-dark transition-all duration-700">
-                           <Target className="w-10 h-10" />
-                        </div>
-                        <h2 className="text-5xl font-serif mb-8">Our Mission</h2>
-                        <p className="text-white/60 text-xl leading-relaxed max-w-md">
-                            Revolutionizing the poultry landscape by merging ancestral wisdom with cutting-edge tech.
-                        </p>
-                    </div>
-                </motion.div>
 
-                <motion.div
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.2 }}
-                    className="p-20 md:p-32 rounded-[80px] bg-primary-yellow text-brand-dark relative overflow-hidden group min-h-[600px] flex flex-col justify-end"
-                >
-                    <div className="absolute -top-20 -right-20 opacity-5 group-hover:-rotate-12 transition-transform duration-[3000ms]">
-                        <Eye className="w-96 h-96" />
-                    </div>
-                    <div className="relative z-10">
-                        <div className="w-20 h-20 rounded-3xl bg-brand-dark/5 flex items-center justify-center mb-10 border border-brand-dark/10 group-hover:bg-brand-dark group-hover:text-white transition-all duration-700">
-                           <Eye className="w-10 h-10" />
-                        </div>
-                        <h2 className="text-5xl font-serif mb-8">Our Vision</h2>
-                        <p className="text-brand-dark/60 text-xl leading-relaxed max-w-md">
-                            Defining the global standard for earthy luxury and sustainable, natural poultry excellence.
-                        </p>
-                    </div>
-                </motion.div>
-            </div>
-        </div>
-      </section>
 
       {/* Detailed Operations section */}
       <section className="py-60 px-6 bg-brand-dark relative overflow-hidden">

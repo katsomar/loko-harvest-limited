@@ -2,6 +2,7 @@
 
 import { Hero } from "@/components/home/Hero";
 import { AboutSection } from "@/components/home/AboutSection";
+import { MissionVision } from "@/components/home/MissionVision";
 import { TeamSection } from "@/components/home/TeamSection";
 import { GallerySection } from "@/components/home/GallerySection";
 import { NewsHighlights } from "@/components/home/NewsHighlights";
@@ -20,6 +21,7 @@ export default function Home() {
     >
       <Hero />
       <AboutSection />
+      <MissionVision />
       <TeamSection />
       <GallerySection />
       <NewsHighlights />
