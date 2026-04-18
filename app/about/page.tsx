@@ -11,7 +11,7 @@ const processSteps = [
   {
     icon: LeafyGreen,
     title: "Picking the Pastures",
-    description: "Every morning, our workers carefully pick the best fresh pastures. We gather banana leaves, pawpaw, guava, blackjack, and aloe vera. These local pastures help our birds stay healthy and strong.",
+    description: "Every morning, our workers carefully pick the best fresh pastures such as  banana leaves, pawpaw, guava, blackjack, and aloe vera. These local pastures help our birds stay healthy and strong.",
     color: "bg-dark-green",
     textColor: "text-white",
   },
