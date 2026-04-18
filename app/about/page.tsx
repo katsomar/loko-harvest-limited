@@ -379,6 +379,147 @@ export default function AboutBiographyPage() {
         </div>
       </section>
 
+      {/* Benefits Section */}
+      <section className="py-60 px-6 bg-dark-green relative overflow-hidden">
+        <div className="absolute inset-0 bg-grain opacity-10" />
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            {/* Left: Huge Egg Graphic */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+              className="relative aspect-[3/4] max-w-sm mx-auto"
+            >
+              {/* Outer white egg shape */}
+              <div 
+                className="absolute inset-0 bg-white shadow-[0_0_100px_rgba(255,255,255,0.1)]"
+                style={{ borderRadius: "50% 50% 50% 50% / 60% 60% 40% 40%" }}
+              />
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8">
+                <span className="text-primary-yellow font-serif text-6xl md:text-8xl font-bold leading-none mb-2">LOKO</span>
+                <span className="text-brand-dark italic font-serif text-lg md:text-xl block mb-1">Organic Yellow Yolk</span>
+                <div className="w-12 h-[1px] bg-brand-dark/20 my-4" />
+                <span className="text-brand-dark/40 font-sans text-[10px] uppercase tracking-[3px] font-bold">Simply Egg-ceptional!!!</span>
+              </div>
+            </motion.div>
+
+            {/* Right: Benefits Content */}
+            <div className="space-y-12">
+              <div className="relative">
+                <div className="absolute -left-10 top-0 bottom-0 w-1 bg-primary-yellow/30" />
+                <motion.h2 
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  className="text-3xl md:text-5xl font-serif text-primary-yellow leading-tight mb-12 uppercase tracking-wide"
+                >
+                  Benefits of eating herbal <br className="hidden md:block" /> & pasture fed eggs
+                </motion.h2>
+
+                <div className="space-y-8">
+                  {[
+                    "Extremely nutritious & richer in vitamins",
+                    "Boosts body immunity",
+                    "Better in weight loss diets and aids prevention of many chronic diseases",
+                    "High in protein",
+                    "Increases levels of good body needed cholesterol and hypertension control."
+                  ].map((benefit, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, x: 20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.1 }}
+                      className="flex items-start gap-6 group"
+                    >
+                      <div className="w-2 h-2 rounded-full bg-primary-yellow mt-3 shrink-0 group-hover:scale-150 transition-transform" />
+                      <p className="text-white/80 text-lg md:text-2xl font-serif leading-relaxed">
+                        {benefit}
+                      </p>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-60 px-6 bg-white relative overflow-hidden text-brand-dark">
+        <div className="max-w-7xl mx-auto relative z-10 text-brand-dark">
+          <div className="text-center mb-24">
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="text-primary-yellow font-sans text-xs font-bold uppercase tracking-[8px] block mb-4"
+            >
+              Get Informed
+            </motion.span>
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="text-6xl md:text-9xl font-serif text-brand-dark"
+            >
+              FAQs
+            </motion.h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+            {[
+              {
+                q: "What kind of eggs are these?",
+                a: "These are white shelled yellow yolk eggs. They are laid by white layer hens."
+              },
+              {
+                q: "Why are the shells so white?",
+                a: "The shells are white because they are laid by a breed of hens that are white in colour (Dekalb white)."
+              },
+              {
+                q: "Where are these layers from?",
+                a: "These layers are imported from Europe."
+              },
+              {
+                q: "Can the eggs hatch?",
+                a: "No, they cannot hatch because at our farm, we do not keep the cocks with the layers and therefore these eggs are not fertilized."
+              },
+              {
+                q: "Why are eggs delicious and the yolks deep yellow?",
+                a: "Our hens are fed on organic herbs and pastures which makes the yolks deep yellow and the egg extremely nutritious and delicious!!"
+              },
+              {
+                q: "Can we get Day old chicks from you?",
+                a: "Unfortunately not. We do not have parent stock of these layers and therefore are unable to supply day old chicks."
+              }
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-off-white/50 p-10 rounded-[40px] border border-brand-dark/5 hover:bg-white hover:shadow-2xl transition-all duration-500 group"
+              >
+                <div className="w-12 h-12 rounded-2xl bg-primary-yellow/10 flex items-center justify-center text-primary-yellow mb-8 group-hover:bg-primary-yellow group-hover:text-brand-dark transition-all">
+                  <Zap size={24} />
+                </div>
+                <h3 className="text-xl font-serif font-bold text-brand-dark mb-4 leading-tight">
+                  {item.q}
+                </h3>
+                <p className="text-brand-dark/60 text-sm leading-relaxed">
+                  {item.a}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Decorative elements for FAQ */}
+        <div className="absolute -bottom-20 -left-20 text-brand-dark/5 pointer-events-none rotate-12">
+            <Egg size={500} />
+        </div>
+      </section>
+
       {/* CTA Banner */}
       <section className="py-40 px-6 bg-primary-yellow relative overflow-hidden">
         <motion.div 
