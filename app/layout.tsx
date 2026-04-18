@@ -24,13 +24,13 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://loko-harvest-limited.vercel.app"),
-  title: "Loko Harvest Limited | Earthy Luxury Poultry",
-  description: "Experience the finest organic, farm-to-table poultry with Loko Harvest Limited. A decade of ethical, sustainable, and premium poultry farming in East Africa.",
+  title: "Loko Harvest Limited | Farming with pastures and herbs",
+  description: "Experience the finest organic, farm-to-table poultry with Loko Harvest Limited. A decade of ethical, sustainable, and organic poultry farming in Uganda.",
   keywords: ["poultry", "organic chicken", "farm-to-table", "Uganda", "Loko Harvest", "Luxury Poultry"],
   authors: [{ name: "Loko Harvest Limited" }],
   openGraph: {
-    title: "Loko Harvest Limited | Earthy Luxury Poultry",
-    description: "Experience the finest organic, farm-to-table poultry. Ethical, sustainable, and premium poultry farming in East Africa.",
+    title: "Loko Harvest Limited | Farming with pastures and herbs",
+    description: "Experience the finest organic, farm-to-table poultry. Ethical, sustainable, and organic poultry farming in Uganda.",
     url: "https://loko-harvest-limited.vercel.app",
     siteName: "Loko Harvest Limited",
     images: [
@@ -46,8 +46,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Loko Harvest Limited | Earthy Luxury Poultry",
-    description: "Premium organic poultry farming in East Africa.",
+    title: "Loko Harvest Limited | Farming with pastures and herbs",
+    description: "Premium organic poultry farming in Uganda.",
     images: ["/logos/loko.png"],
   },
   icons: {
