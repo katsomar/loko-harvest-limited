@@ -9,7 +9,7 @@ const team = [
   {
     name: "Annette Mehangye Mbabazi",
     role: "Director",
-    bio: "The director of loko harvest limited with over 15 years of expeirence in this field. She is a visionary leader who has built a successful business from the ground up.",
+    bio: "The director of loko harvest limited with over 15 years of experience in this field. She is a visionary leader who has built a successful business from the ground up.",
     image: "/teams/ann.JPG",
     quote: "Success is not just about reaching the finish line, it's about the seeds you plant along the way."
   },
