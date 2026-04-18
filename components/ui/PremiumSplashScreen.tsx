@@ -154,6 +154,14 @@ export const PremiumSplashScreen = () => {
                     transition={{ delay: 0.8, duration: 1.5 }}
                     className="h-[1px] bg-gradient-to-r from-transparent via-primary-yellow/50 to-transparent"
                   />
+                  <motion.p
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 2.2, duration: 1 }}
+                    className="text-primary-yellow/80 font-serif text-xs md:text-sm tracking-[0.4em] uppercase italic"
+                  >
+                    Simply egg-ceptional
+                  </motion.p>
                 </motion.div>
               )}
             </AnimatePresence>

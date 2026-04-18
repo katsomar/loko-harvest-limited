@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 
 const reviews = [
   {
-    name: "Babirye",
+    name: "Babirye Hanifa",
     role: "Proprietor, Global Foods",
     text: "Loko Harvest provides consistent quality that my customers love. Their poultry is always fresh and handled with care.",
     rating: 5,
