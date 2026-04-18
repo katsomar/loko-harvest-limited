@@ -66,6 +66,32 @@ export const ValuesSection = () => {
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-dark-green/5 rounded-full blur-[150px] -translate-y-1/2 translate-x-1/3" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-white/40 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/4" />
+        
+        {/* Giant Abstract Leaf Shapes */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
+          whileInView={{ opacity: 0.07, scale: 1, rotate: 0 }}
+          transition={{ duration: 2, ease: "easeOut" }}
+          className="absolute -top-20 -left-20 text-brand-dark pointer-events-none"
+        >
+          <svg width="800" height="800" viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M400 100C400 100 450 300 650 350C650 350 450 400 400 700C400 700 350 450 150 400C150 400 350 350 400 100Z" stroke="currentColor" strokeWidth="40" strokeLinecap="round" />
+            <path d="M400 200V600" stroke="currentColor" strokeWidth="40" strokeLinecap="round" />
+            <path d="M250 350C250 350 350 400 400 400" stroke="currentColor" strokeWidth="40" strokeLinecap="round" />
+            <path d="M550 450C550 450 450 400 400 400" stroke="currentColor" strokeWidth="40" strokeLinecap="round" />
+          </svg>
+        </motion.div>
+
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.8, rotate: 20 }}
+          whileInView={{ opacity: 0.05, scale: 1.2, rotate: 45 }}
+          transition={{ duration: 2.5, ease: "easeOut" }}
+          className="absolute -bottom-40 -right-40 text-brand-dark pointer-events-none"
+        >
+          <svg width="1000" height="1000" viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M400 100C400 100 450 300 650 350C650 350 450 400 400 700C400 700 350 450 150 400C150 400 350 350 400 100Z" stroke="currentColor" strokeWidth="20" strokeLinecap="round" />
+          </svg>
+        </motion.div>
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
