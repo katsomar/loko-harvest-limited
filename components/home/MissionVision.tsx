@@ -60,7 +60,7 @@ export const MissionVision = () => {
               </div>
               <h3 className="text-4xl font-serif text-white mb-6">Our Mission</h3>
               <p className="text-white/60 text-lg leading-relaxed max-w-sm group-hover:text-white transition-colors duration-500">
-                Revolutionizing the poultry landscape by merging ancestral wisdom with cutting-edge technology to deliver purity in every product.
+                Leading egg production, distribution, and export with purpose by delivering the highest quality nutritious and herbal eggs.
               </p>
               
               <div className="mt-8 flex items-center gap-4 opacity-0 group-hover:opacity-100 transition-all duration-700 translate-y-4 group-hover:translate-y-0">
@@ -95,7 +95,7 @@ export const MissionVision = () => {
               </div>
               <h3 className="text-4xl font-serif text-brand-dark mb-6">Our Vision</h3>
               <p className="text-brand-dark/60 text-lg leading-relaxed max-w-sm group-hover:text-brand-dark transition-colors duration-500">
-                Defining the global standard for earthy luxury and sustainable, natural poultry excellence that inspires a healthier future.
+                To be the trusted global leader in delivering egg products that improve consumer well-being.
               </p>
 
               <div className="mt-8 flex items-center gap-4 opacity-0 group-hover:opacity-100 transition-all duration-700 translate-y-4 group-hover:translate-y-0">
