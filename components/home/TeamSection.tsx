@@ -7,7 +7,7 @@ import Image from "next/image";
 
 const team = [
   {
-    name: "Mbabazi Annette",
+    name: "Annette Mehangye Mbabazi",
     role: "Director",
     bio: "The director of loko harvest limited with over 15 years of expeirence in this field. She is a visionary leader who has built a successful business from the ground up.",
     image: "/teams/ann.JPG",
@@ -21,14 +21,14 @@ const team = [
     quote: "Vision is the art of seeing things invisible to others, and making them a reality for everyone."
   },
   {
-    name: "Babra Mehangye",
+    name: "Babra Mehangye Kahima",
     role: "Head of marketing",
     bio: "She heads the marketing team and is responsible for the promotion and sale of our products.",
     image: "/teams/babra1.JPG",
     quote: "Our story is in every yolk. Marketing is simply sharing the natural melody of the farm."
   },
   {
-    name: "Desire Edrine",
+    name: "Uwamahoro Desire Edrine",
     role: "Monitoring and Evaluation",
     bio: "She monitors the farm and ensures that the products are of high quality.",
     image: "/teams/desire1.JPG",
