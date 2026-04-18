@@ -98,7 +98,7 @@ export const Footer = () => {
       <div className="max-w-7xl mx-auto pt-10 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6 text-white/40 text-sm text-center md:text-left">
         <div className="space-y-2">
           <p>&copy; {new Date().getFullYear()} Loko Harvest Limited. All rights reserved.</p>
-          <p className="flex items-center justify-center md:justify-start gap-2">
+          <div className="flex items-center justify-center md:justify-start gap-2">
             <span>Developed by</span>
             <Link 
               href="https://skyrix-techologies.vercel.app/" 
@@ -116,7 +116,7 @@ export const Footer = () => {
               </div>
               Skyrix Technologies
             </Link>
-          </p>
+          </div>
         </div>
         <div className="flex gap-8">
           <Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link>

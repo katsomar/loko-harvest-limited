@@ -6,6 +6,44 @@ import Image from "next/image";
 
 const words = ["Pasture Fed", "Nutritional", "Healthier", "Loko Harvest"];
 
+const Particles = () => {
+  const [particles, setParticles] = useState<any[]>([]);
+
+  useEffect(() => {
+    const newParticles = Array.from({ length: 20 }).map((_, i) => ({
+      id: i,
+      x: Math.random() * 1000 - 500,
+      y: Math.random() * 1000 - 500,
+      targetY: Math.random() * -200 - 100,
+      duration: Math.random() * 3 + 2,
+      delay: Math.random() * 2,
+    }));
+    setParticles(newParticles);
+  }, []);
+
+  return (
+    <>
+      {particles.map((p) => (
+        <motion.div
+          key={p.id}
+          initial={{ x: p.x, y: p.y, opacity: 0 }}
+          animate={{ 
+            y: [null, p.targetY],
+            opacity: [0, 0.3, 0],
+            scale: [0, 1, 0]
+          }}
+          transition={{ 
+            duration: p.duration, 
+            repeat: Infinity, 
+            delay: p.delay 
+          }}
+          className="absolute w-1 h-1 bg-primary-yellow rounded-full blur-[1px]"
+        />
+      ))}
+    </>
+  );
+};
+
 export const PremiumSplashScreen = () => {
   const [index, setIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
@@ -60,27 +98,7 @@ export const PremiumSplashScreen = () => {
                 ))}
                 
                 {/* Floating Particles */}
-                {Array.from({ length: 20 }).map((_, i) => (
-                  <motion.div
-                    key={`particle-${i}`}
-                    initial={{ 
-                      x: Math.random() * 1000 - 500, 
-                      y: Math.random() * 1000 - 500,
-                      opacity: 0 
-                    }}
-                    animate={{ 
-                      y: [null, Math.random() * -200 - 100],
-                      opacity: [0, 0.3, 0],
-                      scale: [0, 1, 0]
-                    }}
-                    transition={{ 
-                      duration: Math.random() * 3 + 2, 
-                      repeat: Infinity, 
-                      delay: Math.random() * 2 
-                    }}
-                    className="absolute w-1 h-1 bg-primary-yellow rounded-full blur-[1px]"
-                  />
-                ))}
+                <Particles />
               </>
             )}
           </AnimatePresence>
