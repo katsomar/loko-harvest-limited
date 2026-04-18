@@ -24,13 +24,20 @@ const team = [
     name: "Babra Mehangye Kahima",
     role: "Head of marketing",
     bio: "She heads the marketing team and is responsible for the promotion and sale of our products.",
-    image: "/teams/babra1.JPG",
+    image: "/teams/babra2.jpeg",
     quote: "Our story is in every yolk. Marketing is simply sharing the natural melody of the farm."
+  },
+  {
+    name: "Omar Muammar",
+    role: "M&E/Systems developer ",
+    bio: "He developes, implements and maintains the farm systems and ensures that the performance of the farm is optimal",
+    image: "/teams/Omar.JPG",
+    quote: "The best way to predict the future is to create it."
   },
   {
     name: "Uwamahoro Desire Edrine",
     role: "Monitoring and Evaluation",
-    bio: "She monitors the farm and ensures that the products are of high quality.",
+    bio: "She monitors the farm, coordinates dispatch and ensures that the products are of high quality.",
     image: "/teams/desire1.JPG",
     quote: "Precision in the pastures leads to perfection in the nest. We measure what matters: Quality."
   },
@@ -47,6 +54,13 @@ const team = [
     bio: "He is in charge of finance and accounts and ensures that our products are sold at the best possible prices.",
     image: "/teams/daudi1.JPG",
     quote: "Integrity is the currency of Loko Harvest. Every number tells a story of sustainability."
+  },
+  {
+    name: "Namanya Johnson",
+    role: "Manager and Coordinator",
+    bio: "He is the manager and coordinator of Loko Harvest Limited. He is responsible for the day-to-day operations of the farm.",
+    image: "/teams/daudi1.JPG",
+    quote: "Leadership is the art of getting things done through people."
   },
 ];
 
