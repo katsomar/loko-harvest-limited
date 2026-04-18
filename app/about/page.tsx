@@ -382,6 +382,19 @@ export default function AboutBiographyPage() {
       {/* Benefits Section */}
       <section className="py-60 px-6 bg-dark-green relative overflow-hidden">
         <div className="absolute inset-0 bg-grain opacity-10" />
+        
+        {/* Background Decorative Leaves */}
+        <motion.div 
+          animate={{ rotate: 360 }}
+          transition={{ duration: 100, repeat: Infinity, ease: "linear" }}
+          className="absolute -top-40 -right-40 text-white/5 pointer-events-none"
+        >
+          <Leaf className="w-[800px] h-[800px]" />
+        </motion.div>
+        <div className="absolute -bottom-20 -left-20 text-white/5 pointer-events-none rotate-45">
+          <Leaf className="w-[600px] h-[600px]" />
+        </div>
+
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             {/* Left: Huge Egg Graphic */}
@@ -398,10 +411,19 @@ export default function AboutBiographyPage() {
                 style={{ borderRadius: "50% 50% 50% 50% / 60% 60% 40% 40%" }}
               />
               <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8">
+                {/* Bouncing 3D-Styled Egg */}
+                <motion.div
+                  animate={{ y: [0, -40, 0] }}
+                  transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                  className="w-20 h-28 bg-gradient-to-br from-[#FFFDF5] to-primary-yellow/30 rounded-[50%_50%_50%_50%_/_60%_60%_40%_40%] shadow-[0_20px_50px_rgba(0,0,0,0.2)] border border-white/40 relative overflow-hidden mb-12 flex-shrink-0"
+                >
+                  <div className="absolute top-2 left-4 w-6 h-10 bg-white/60 rounded-full blur-[4px] -rotate-15" />
+                </motion.div>
+
                 <span className="text-primary-yellow font-serif text-6xl md:text-8xl font-bold leading-none mb-2">LOKO</span>
-                <span className="text-brand-dark italic font-serif text-lg md:text-xl block mb-1">Organic Yellow Yolk</span>
-                <div className="w-12 h-[1px] bg-brand-dark/20 my-4" />
-                <span className="text-brand-dark/40 font-sans text-[10px] uppercase tracking-[3px] font-bold">Simply Egg-ceptional!!!</span>
+                <span className="text-white italic font-serif text-lg md:text-xl block mb-1">Organic Yellow Yolk</span>
+                <div className="w-12 h-[1px] bg-white/20 my-4" />
+                <span className="text-primary-yellow font-sans text-[10px] uppercase tracking-[3px] font-bold whitespace-nowrap">Simply Egg-ceptional!!!</span>
               </div>
             </motion.div>
 
