@@ -17,6 +17,7 @@ export const Footer = () => {
                 src="/logos/loko.png"
                 alt="Loko Harvest Logo"
                 fill
+                sizes="(max-width: 768px) 96px, 96px"
                 className="object-contain object-left"
               />
             </div>
@@ -111,6 +112,7 @@ export const Footer = () => {
                   src="/logos/logo.png" 
                   alt="Skyrix Technologies Logo" 
                   fill 
+                  sizes="24px"
                   className="object-contain"
                 />
               </div>
