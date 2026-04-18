@@ -8,8 +8,8 @@ import { FallingLeaves } from "@/components/ui/FallingLeaves";
 
 const stats = [
   { label: "Years of Excellence", value: 10, suffix: "+" },
-  { label: "Healthy Birds", value: 50000, suffix: "+" },
-  { label: "Active Regions", value: 3, suffix: "" },
+  { label: "Healthy Birds", value: 35000, suffix: "+" },
+  { label: "Active Farms", value: 2, suffix: "" },
 ];
 
 const milestones = [
