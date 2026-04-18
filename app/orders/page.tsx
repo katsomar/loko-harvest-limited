@@ -182,6 +182,7 @@ export default function OrdersPage() {
                   fill
                   sizes="(max-width: 768px) 100vw, 25vw"
                   className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                  priority={idx < 4}
                 />
                 <div className="absolute top-4 left-4">
                   <span className="px-3 py-1 bg-brand-dark/80 backdrop-blur-md text-white text-[9px] font-bold uppercase tracking-[2px] rounded-full border border-white/10">
