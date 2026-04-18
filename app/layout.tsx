@@ -68,9 +68,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" data-scroll-behavior="smooth">
+    <html lang="en" data-scroll-behavior="smooth" className="relative">
       <body
-        className={`${playfair.variable} ${inter.variable} font-sans antialiased bg-off-white text-brand-dark selection:bg-primary-yellow selection:text-brand-dark overflow-x-hidden`}
+        className={`${playfair.variable} ${inter.variable} font-sans antialiased bg-off-white text-brand-dark selection:bg-primary-yellow selection:text-brand-dark overflow-x-hidden relative`}
       >
         <SmoothScroll>
           <script
@@ -91,7 +91,7 @@ export default function RootLayout({
           <Navbar />
           <WhatsAppWidget />
           <PageTransition>
-            <main>{children}</main>
+            <main className="relative">{children}</main>
           </PageTransition>
           <Footer />
         </SmoothScroll>

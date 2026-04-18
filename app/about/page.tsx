@@ -122,7 +122,7 @@ export default function AboutBiographyPage() {
   );
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="bg-white min-h-screen relative">
       {/* Cinematic Intro */}
       <section className="relative h-[120vh] flex items-center justify-center bg-brand-dark overflow-hidden">
          <div className="absolute inset-0 bg-grain opacity-20" />

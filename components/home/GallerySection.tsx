@@ -71,7 +71,7 @@ export const GallerySection = () => {
         {/* Masonry Grid */}
         <motion.div 
           layout
-          className="columns-1 md:columns-2 lg:columns-3 gap-8"
+          className="columns-1 md:columns-2 lg:columns-3 gap-8 relative"
         >
           <AnimatePresence mode="popLayout">
             {filteredItems.map((item) => (
