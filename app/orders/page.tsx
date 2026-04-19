@@ -25,7 +25,6 @@ const products = [
   { id: "p10", name: "Brown eggs", category: "Eggs", image: "/orders/brown.JPG", options: ["Tray of 30"], basePrice: 13000 },
   { id: "p11", name: "Loko live white chicken", category: "Specialty", image: "/orders/live1.JPG", options: ["1 Bird"], basePrice: 20000 },
   { id: "p12", name: "Loko dressed chicken", category: "Specialty", image: "/orders/chicken.JPG", options: ["1kg-1.9kg"], basePrice: 20000 },
-  { id: "p13", name: "Dog food", category: "Dog food", image: "/orders/food.JPG", options: ["1 Mortality Bird"], basePrice: 6000 },
   { id: "p14", name: "Manure", category: "Fertilizer", image: "/orders/manure.JPG", options: ["1 Bag"], basePrice: 12500 },
 ];
 
