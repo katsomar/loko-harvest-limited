@@ -59,7 +59,7 @@ const team = [
     name: "Namanya Johnson",
     role: "Manager and Coordinator",
     bio: "He is the manager and coordinator of Loko Harvest Limited. He is responsible for the day-to-day operations of the farm.",
-    image: "/teams/daudi1.JPG",
+    image: "/teams/john.JPG",
     quote: "Leadership is the art of getting things done through people."
   },
 ];
