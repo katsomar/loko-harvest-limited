@@ -14,6 +14,7 @@ const processSteps = [
     description: "Every morning, our workers carefully pick the best fresh pastures such as  banana leaves, pawpaw, guava, blackjack, and aloe vera. These local pastures help our birds stay healthy and strong.",
     color: "bg-dark-green",
     textColor: "text-white",
+    image: "/process/harvest.JPG"
   },
   {
     icon: Droplets,
@@ -21,6 +22,7 @@ const processSteps = [
     description: "We make sure everything is clean. We wash and disinfect the pastures to remove any dirt or germs. This keeps the food safe and fresh for our birds.",
     color: "bg-primary-yellow",
     textColor: "text-brand-dark",
+    image: "/process/dis.JPG"
   },
   {
     icon: Scissors,
@@ -28,6 +30,7 @@ const processSteps = [
     description: "We use special machines to chop the pastures into small pieces. This makes it very easy for our chickens to eat and get all the good nutrients from the pastures.",
     color: "bg-brand-dark",
     textColor: "text-white",
+    image: "/process/crush.JPG"
   },
   {
     icon: Zap,
@@ -35,6 +38,7 @@ const processSteps = [
     description: "Our team mixes healthy ingredients together to make high-protein feed. This feed is made to work perfectly when mixed with our fresh pastures.",
     color: "bg-dark-green",
     textColor: "text-white",
+    image: "/process/feed.JPG"
   },
   {
     icon: Factory,
@@ -42,6 +46,7 @@ const processSteps = [
     description: "Now we mix the chopped pastures together with the chicken feed. This special mix is what gives our eggs their beautiful and natural yellow yolks.",
     color: "bg-primary-yellow",
     textColor: "text-brand-dark",
+    image: "/process/mix.JPG"
   },
   {
     icon: Package,
@@ -49,6 +54,7 @@ const processSteps = [
     description: "We press the mixture into small pellets. This makes the food easy to carry and ensures the chickens get a bit of everything in every bite.",
     color: "bg-brand-dark",
     textColor: "text-white",
+    image: "/process/pellet.JPG"
   },
   {
     icon: Truck,
@@ -56,6 +62,7 @@ const processSteps = [
     description: "We put the fresh food into bags and quickly transport them to the chicken houses. We want the food to be as fresh as possible for our birds.",
     color: "bg-dark-green",
     textColor: "text-white",
+    image: "/process/pack.JPG"
   },
   {
     icon: Egg,
@@ -63,6 +70,7 @@ const processSteps = [
     description: "Finally, we feed this healthy mix to our chickens. They love it! Because they eat such good food, they lay the best and most natural eggs for you.",
     color: "bg-primary-yellow",
     textColor: "text-brand-dark",
+    image: "/process/serve.JPG"
   },
 ];
 
@@ -310,7 +318,7 @@ export default function AboutBiographyPage() {
                        className="w-full md:w-1/2 aspect-video rounded-[60px] overflow-hidden shadow-2xl relative group z-30"
                     >
                        <Image 
-                         src={i % 2 === 0 ? "/gallery/farm1.JPG" : "/hero.png"} 
+                         src={step.image} 
                          alt={step.title} 
                          fill 
                          sizes="(max-width: 768px) 100vw, 50vw"
