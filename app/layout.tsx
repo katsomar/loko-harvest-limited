@@ -76,13 +76,33 @@ export default function RootLayout({
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{
-              __html: JSON.stringify({
-                "@context": "https://schema.org",
-                "@type": "WebSite",
-                "name": "Loko Harvest Limited",
-                "alternateName": ["Loko Harvest"],
-                "url": "https://loko-harvest-limited.vercel.app",
-              }),
+              __html: JSON.stringify([
+                {
+                  "@context": "https://schema.org",
+                  "@type": "WebSite",
+                  "name": "Loko Harvest Limited",
+                  "alternateName": ["Loko Harvest", "Loko Harvest Ltd"],
+                  "url": "https://loko-harvest-limited.vercel.app",
+                  "description": "Experience the finest organic, farm-to-table poultry with Loko Harvest Limited. Ethical, sustainable, and organic poultry farming in Uganda.",
+                },
+                {
+                  "@context": "https://schema.org",
+                  "@type": "Organization",
+                  "name": "Loko Harvest Limited",
+                  "url": "https://loko-harvest-limited.vercel.app",
+                  "logo": "https://loko-harvest-limited.vercel.app/logos/loko.png",
+                  "contactPoint": {
+                    "@type": "ContactPoint",
+                    "telephone": "",
+                    "contactType": "customer service",
+                    "areaServed": "UG",
+                    "availableLanguage": "en"
+                  },
+                  "sameAs": [
+                    // Add social media links here if any
+                  ]
+                }
+              ]),
             }}
           />
           <PremiumSplashScreen />

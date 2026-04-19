@@ -97,13 +97,14 @@ export const Navbar = () => {
               <div className="relative w-28 h-28 transition-transform duration-300 group-hover:scale-110">
                 <Image
                   src="/logos/loko.png"
-                  alt="Loko Harvest"
+                  alt="Loko Harvest Limited"
                   fill
                   className="object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
                   sizes="(max-width: 768px) 112px, 112px"
                   priority
                 />
               </div>
+              <span className="sr-only">Loko Harvest Limited</span>
             </Link>
           </div>
 

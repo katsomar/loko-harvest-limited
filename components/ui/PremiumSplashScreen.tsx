@@ -74,6 +74,9 @@ export const PremiumSplashScreen = () => {
           }}
           className="fixed inset-0 z-[100000] bg-dark-green flex flex-col items-center justify-center overflow-hidden"
         >
+          {/* Hidden element to satisfy font preload requirements and avoid console warnings */}
+          <span className="sr-only font-sans">Loko Harvest Loading...</span>
+
           {/* Subtle Grainy Background */}
           <div className="absolute inset-0 bg-grain opacity-5" />
 

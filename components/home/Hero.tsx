@@ -98,6 +98,7 @@ export const Hero = () => {
       {/* Content */}
       <div className="relative z-20 text-center px-6 max-w-5xl">
         <h1 className="text-5xl md:text-8xl font-serif text-white mb-8 overflow-hidden flex flex-wrap justify-center gap-x-4">
+          <span className="sr-only">Loko Harvest Limited</span>
           {words.map((word, i) => (
             <motion.span
               key={i}
