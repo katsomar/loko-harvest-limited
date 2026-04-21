@@ -26,6 +26,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://loko-harvest-limited.vercel.app"),
   title: "Loko Harvest Limited | Farming with pastures and herbs",
   description: "Experience the finest organic, farm-to-table poultry with Loko Harvest Limited. A decade of ethical, sustainable, and organic poultry farming in Uganda.",
+  applicationName: "Loko Harvest Limited",
   keywords: ["poultry", "organic chicken", "farm-to-table", "Uganda", "Loko Harvest", "Luxury Poultry"],
   authors: [{ name: "Loko Harvest Limited" }],
   openGraph: {
@@ -60,6 +61,14 @@ export const metadata: Metadata = {
       { url: "/logos/loko.png", sizes: "180x180", type: "image/png" },
     ],
   },
+  appleWebApp: {
+    title: "Loko Harvest Limited",
+    statusBarStyle: "default",
+    capable: true,
+  },
+  other: {
+    "apple-mobile-web-app-title": "Loko Harvest Limited",
+  },
 };
 
 export default function RootLayout({
@@ -84,11 +93,20 @@ export default function RootLayout({
                   "alternateName": ["Loko Harvest", "Loko Harvest Ltd"],
                   "url": "https://loko-harvest-limited.vercel.app",
                   "description": "Experience the finest organic, farm-to-table poultry with Loko Harvest Limited. Ethical, sustainable, and organic poultry farming in Uganda.",
+                  "publisher": {
+                    "@type": "Organization",
+                    "name": "Loko Harvest Limited",
+                    "logo": {
+                      "@type": "ImageObject",
+                      "url": "https://loko-harvest-limited.vercel.app/logos/loko.png"
+                    }
+                  }
                 },
                 {
                   "@context": "https://schema.org",
                   "@type": "Organization",
                   "name": "Loko Harvest Limited",
+                  "legalName": "Loko Harvest Limited",
                   "url": "https://loko-harvest-limited.vercel.app",
                   "logo": "https://loko-harvest-limited.vercel.app/logos/loko.png",
                   "contactPoint": {
@@ -97,10 +115,7 @@ export default function RootLayout({
                     "contactType": "customer service",
                     "areaServed": "UG",
                     "availableLanguage": "en"
-                  },
-                  "sameAs": [
-                    // Add social media links here if any
-                  ]
+                  }
                 }
               ]),
             }}
