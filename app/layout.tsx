@@ -9,6 +9,13 @@ import { PageTransition } from "@/components/layout/PageTransition";
 import { WhatsAppWidget } from "@/components/ui/WhatsAppWidget";
 import { ScrollProgressBar } from "@/components/ui/ScrollProgressBar";
 import { PremiumSplashScreen } from "@/components/ui/PremiumSplashScreen";
+import PaywallPage from "./paywall/page";
+
+// ==========================================
+// SITE STATUS: Set to true to enable Paywall
+// Set to false to restore normal site access
+// ==========================================
+const IS_SITE_LOCKED = true; 
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -81,55 +88,59 @@ export default function RootLayout({
       <body
         className={`${playfair.variable} ${inter.variable} font-sans antialiased bg-off-white text-brand-dark selection:bg-primary-yellow selection:text-brand-dark overflow-x-hidden relative`}
       >
-        <SmoothScroll>
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{
-              __html: JSON.stringify([
-                {
-                  "@context": "https://schema.org",
-                  "@type": "WebSite",
-                  "name": "Loko Harvest Limited",
-                  "alternateName": ["Loko Harvest", "Loko Harvest Ltd"],
-                  "url": "https://loko-harvest-limited.vercel.app",
-                  "description": "Experience the finest organic, farm-to-table poultry with Loko Harvest Limited. Ethical, sustainable, and organic poultry farming in Uganda.",
-                  "publisher": {
+        {IS_SITE_LOCKED ? (
+          <PaywallPage />
+        ) : (
+          <SmoothScroll>
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify([
+                  {
+                    "@context": "https://schema.org",
+                    "@type": "WebSite",
+                    "name": "Loko Harvest Limited",
+                    "alternateName": ["Loko Harvest", "Loko Harvest Ltd"],
+                    "url": "https://loko-harvest-limited.vercel.app",
+                    "description": "Experience the finest organic, farm-to-table poultry with Loko Harvest Limited. Ethical, sustainable, and organic poultry farming in Uganda.",
+                    "publisher": {
+                      "@type": "Organization",
+                      "name": "Loko Harvest Limited",
+                      "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://loko-harvest-limited.vercel.app/logos/loko.png"
+                      }
+                    }
+                  },
+                  {
+                    "@context": "https://schema.org",
                     "@type": "Organization",
                     "name": "Loko Harvest Limited",
-                    "logo": {
-                      "@type": "ImageObject",
-                      "url": "https://loko-harvest-limited.vercel.app/logos/loko.png"
+                    "legalName": "Loko Harvest Limited",
+                    "url": "https://loko-harvest-limited.vercel.app",
+                    "logo": "https://loko-harvest-limited.vercel.app/logos/loko.png",
+                    "contactPoint": {
+                      "@type": "ContactPoint",
+                      "telephone": "",
+                      "contactType": "customer service",
+                      "areaServed": "UG",
+                      "availableLanguage": "en"
                     }
                   }
-                },
-                {
-                  "@context": "https://schema.org",
-                  "@type": "Organization",
-                  "name": "Loko Harvest Limited",
-                  "legalName": "Loko Harvest Limited",
-                  "url": "https://loko-harvest-limited.vercel.app",
-                  "logo": "https://loko-harvest-limited.vercel.app/logos/loko.png",
-                  "contactPoint": {
-                    "@type": "ContactPoint",
-                    "telephone": "",
-                    "contactType": "customer service",
-                    "areaServed": "UG",
-                    "availableLanguage": "en"
-                  }
-                }
-              ]),
-            }}
-          />
-          <PremiumSplashScreen />
-          <ScrollProgressBar />
-          <CustomCursor />
-          <Navbar />
-          <WhatsAppWidget />
-          <PageTransition>
-            <main className="relative">{children}</main>
-          </PageTransition>
-          <Footer />
-        </SmoothScroll>
+                ]),
+              }}
+            />
+            <PremiumSplashScreen />
+            <ScrollProgressBar />
+            <CustomCursor />
+            <Navbar />
+            <WhatsAppWidget />
+            <PageTransition>
+              <main className="relative">{children}</main>
+            </PageTransition>
+            <Footer />
+          </SmoothScroll>
+        )}
       </body>
     </html>
   );
