@@ -62,7 +62,7 @@ export default function PaywallPage() {
               <div className="flex justify-between items-center text-sm">
                 <span className="text-white/60 italic">Monthly Renewal</span>
                 <div className="text-right">
-                  <span className="font-bold block text-white/40">$25.00</span>
+                  <span className="font-bold block text-white/40">$27.00</span>
                   <span className="text-[10px] text-white/20 uppercase font-bold tracking-tighter">Later</span>
                 </div>
               </div>
