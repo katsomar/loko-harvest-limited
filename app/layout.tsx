@@ -15,7 +15,7 @@ import PaywallPage from "./paywall/page";
 // SITE STATUS: Set to true to enable Paywall
 // Set to false to restore normal site access
 // ==========================================
-const IS_SITE_LOCKED = true; // Set to true to re-enable the paywall
+const IS_SITE_LOCKED = false; // Set to true to re-enable the paywall
 
 const inter = Inter({ 
   subsets: ["latin"],
