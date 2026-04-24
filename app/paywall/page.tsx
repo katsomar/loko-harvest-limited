@@ -8,15 +8,16 @@ import { ShieldAlert, Server, HardDrive, Receipt, Loader2, Smartphone, CheckCirc
 type PayStatus = 'idle' | 'processing' | 'redirecting' | 'error';
 
 export default function PaywallPage() {
-  const [showPayForm, setShowPayForm] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [firstName, setFirstName] = useState('');
-  const [email, setEmail]     = useState('');
+  const [email, setEmail]         = useState('');
+  const [phone, setPhone]         = useState('');
   const [payStatus, setPayStatus] = useState<PayStatus>('idle');
   const [errorMsg, setErrorMsg]   = useState('');
 
   const handlePay = async () => {
-    if (!email || !firstName) {
-      setErrorMsg('Please enter your name and email address.');
+    if (!email || !firstName || !phone) {
+      setErrorMsg('Please enter your name, email, and phone number.');
       return;
     }
     if (!/\S+@\S+\.\S+/.test(email)) {
@@ -31,7 +32,11 @@ export default function PaywallPage() {
       const res = await fetch('/api/pay', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, first_name: firstName }),
+        body: JSON.stringify({ 
+          email, 
+          first_name: firstName,
+          phone_number: phone 
+        }),
       });
 
       const data = await res.json();
@@ -51,6 +56,12 @@ export default function PaywallPage() {
       setPayStatus('error');
       setErrorMsg('Network error. Check your connection and try again.');
     }
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setPayStatus('idle');
+    setErrorMsg('');
   };
 
   return (
@@ -119,7 +130,7 @@ export default function PaywallPage() {
           <div className="mt-8 pt-8 border-t border-white/5">
             <div className="flex items-baseline gap-1 mb-2">
               <span className="text-3xl font-bold font-serif">$30.00</span>
-              <span className="text-white/40 text-xs uppercase tracking-wider">Outstanding</span>
+              <span className="text-white/40 text-xs uppercase tracking-wider">Equivalent to UGX 111,600</span>
             </div>
             <div className="w-full py-3 bg-red-500/20 border border-red-500/30 rounded-xl text-center text-red-400 text-xs font-bold uppercase tracking-widest">
               Action Required
@@ -180,117 +191,136 @@ export default function PaywallPage() {
             <div className="bg-black/5 rounded-2xl p-6 border border-black/5 mb-6">
               <p className="text-brand-dark/60 text-xs uppercase font-bold tracking-widest mb-1">Total Due Now</p>
               <p className="text-4xl font-bold font-serif">$30.00</p>
+              <p className="text-[10px] text-brand-dark/40 font-bold mt-1 uppercase">Equivalent to UGX 111,600</p>
             </div>
 
-            <AnimatePresence mode="wait">
-              {!showPayForm ? (
-                <motion.button
-                  key="pay-trigger"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  onClick={() => setShowPayForm(true)}
-                  className="w-full py-4 bg-brand-dark text-white rounded-xl font-bold uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-black transition-colors shadow-lg"
-                >
-                  <Smartphone className="w-5 h-5 text-primary-yellow" />
-                  Pay with Mobile Money
-                </motion.button>
-              ) : (
-                <motion.div
-                  key="pay-form"
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="space-y-3"
-                >
-                  <p className="text-brand-dark/60 text-[11px] font-bold uppercase tracking-wider">
-                    You will be redirected to a secure Pesapal checkout page where you can pay with MTN or Airtel MoMo.
-                  </p>
-
-                  {/* Name Input */}
-                  <div className="relative">
-                    <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-dark/30" />
-                    <input
-                      type="text"
-                      placeholder="Your first name"
-                      className="w-full bg-white border-2 border-brand-dark/10 rounded-xl pl-10 pr-4 py-3 text-brand-dark font-bold placeholder:text-brand-dark/30 outline-none focus:border-brand-dark text-sm transition-all"
-                      value={firstName}
-                      onChange={(e) => setFirstName(e.target.value)}
-                    />
-                  </div>
-
-                  {/* Email Input */}
-                  <div className="relative">
-                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-dark/30" />
-                    <input
-                      type="email"
-                      placeholder="Your email address"
-                      className="w-full bg-white border-2 border-brand-dark/10 rounded-xl pl-10 pr-4 py-3 text-brand-dark font-bold placeholder:text-brand-dark/30 outline-none focus:border-brand-dark text-sm transition-all"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                    />
-                  </div>
-
-                  {/* Error */}
-                  {errorMsg && (
-                    <div className="flex items-center gap-2 text-red-700 bg-red-100 rounded-lg px-3 py-2 text-xs font-bold">
-                      <AlertCircle className="w-4 h-4 shrink-0" /> {errorMsg}
-                    </div>
-                  )}
-
-                  {/* Submit */}
-                  <button
-                    onClick={handlePay}
-                    disabled={payStatus === 'processing' || payStatus === 'redirecting'}
-                    className="w-full py-4 bg-brand-dark text-white rounded-xl font-bold uppercase tracking-widest flex items-center justify-center gap-3 disabled:opacity-70 transition-colors hover:bg-black"
-                  >
-                    {payStatus === 'idle'       && <>Proceed to Pay — $30.00</>}
-                    {payStatus === 'processing'  && <><Loader2 className="animate-spin w-5 h-5" /> Preparing…</>}
-                    {payStatus === 'redirecting' && <><Loader2 className="animate-spin w-5 h-5" /> Redirecting…</>}
-                    {payStatus === 'error'       && <>Try Again</>}
-                  </button>
-
-                  <button
-                    onClick={() => { setShowPayForm(false); setPayStatus('idle'); setErrorMsg(''); }}
-                    className="w-full text-center text-[10px] uppercase font-bold text-brand-dark/40 hover:text-brand-dark transition-colors"
-                  >
-                    Back
-                  </button>
-                </motion.div>
-              )}
-            </AnimatePresence>
-
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="w-full py-4 bg-brand-dark text-white rounded-xl font-bold uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-black transition-colors shadow-lg group"
+            >
+              <div className="flex items-center gap-1">
+                <div className="w-5 h-5 bg-yellow-400 rounded-md text-[8px] flex items-center justify-center font-black text-black">MTN</div>
+                <div className="w-5 h-5 bg-red-600 text-white rounded-md text-[7px] flex items-center justify-center font-black">AIRTEL</div>
+              </div>
+              Pay via Mobile Money
+            </button>
           </div>
           
-          {/* Divider */}
           <div className="mt-4 pt-4 border-t border-black/10">
-            <p className="text-brand-dark/40 text-[10px] uppercase font-bold tracking-widest text-center mb-3">
-              — Or pay directly via MoMo —
-            </p>
-            <div className="space-y-2">
-              {/* MTN Number */}
-              <div className="flex items-center justify-between bg-black/5 rounded-xl px-4 py-3 border border-black/5">
-                <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 bg-yellow-400 rounded-lg text-[9px] flex items-center justify-center font-black text-black shrink-0">MTN</div>
-                  <span className="text-brand-dark font-bold text-sm">0771 827 046</span>
-                </div>
-                <span className="text-brand-dark/40 text-[10px] font-bold uppercase">Mobile Money</span>
-              </div>
-              {/* Airtel Number */}
-              <div className="flex items-center justify-between bg-black/5 rounded-xl px-4 py-3 border border-black/5">
-                <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 bg-red-600 text-white rounded-lg text-[8px] flex items-center justify-center font-black shrink-0">AIRTEL</div>
-                  <span className="text-brand-dark font-bold text-sm">0746 856 359</span>
-                </div>
-                <span className="text-brand-dark/40 text-[10px] font-bold uppercase">Mobile Money</span>
-              </div>
-            </div>
-            <p className="text-brand-dark/40 text-[10px] text-center mt-3 leading-relaxed">
-              After sending, email <span className="font-bold">lokoharvestuganda@gmail.com</span> with your receipt.
+            <p className="text-brand-dark/30 text-[9px] uppercase font-bold tracking-[0.2em] text-center">
+              Secure Checkout via Pesapal
             </p>
           </div>
-
         </motion.div>
       </div>
+
+      {/* Payment Modal */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={closeModal}
+              className="absolute inset-0 bg-brand-dark/80 backdrop-blur-sm"
+            />
+            
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="bg-white rounded-[2rem] w-full max-w-md p-8 relative z-10 shadow-2xl overflow-hidden"
+            >
+              <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-yellow-400 via-red-500 to-yellow-400" />
+              
+              <div className="flex justify-between items-start mb-8">
+                <div>
+                  <h2 className="text-2xl font-serif font-bold text-brand-dark">Complete Payment</h2>
+                  <p className="text-brand-dark/50 text-sm">Secure Hosting Setup Fee</p>
+                </div>
+                <button 
+                  onClick={closeModal}
+                  className="p-2 hover:bg-black/5 rounded-full transition-colors text-brand-dark/30 hover:text-brand-dark"
+                >
+                  <AlertCircle className="w-6 h-6 rotate-45" />
+                </button>
+              </div>
+
+              <div className="bg-primary-yellow/10 rounded-2xl p-4 mb-6 border border-primary-yellow/20 flex items-center justify-between">
+                <div>
+                  <p className="text-[10px] uppercase font-bold text-primary-yellow tracking-widest">Total Amount</p>
+                  <p className="text-2xl font-serif font-bold text-brand-dark">UGX 111,600</p>
+                </div>
+                <div className="flex gap-2">
+                  <div className="px-2 py-1 bg-yellow-400 rounded text-[9px] font-black text-black">MTN</div>
+                  <div className="px-2 py-1 bg-red-600 rounded text-[9px] font-black text-white">AIRTEL</div>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                <div className="relative">
+                  <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-brand-dark/30" />
+                  <input
+                    type="text"
+                    placeholder="First Name"
+                    className="w-full bg-black/5 border-2 border-transparent rounded-2xl pl-12 pr-4 py-4 text-brand-dark font-bold placeholder:text-brand-dark/20 outline-none focus:border-primary-yellow focus:bg-white transition-all"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                  />
+                </div>
+
+                <div className="relative">
+                  <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-brand-dark/30" />
+                  <input
+                    type="email"
+                    placeholder="Email Address"
+                    className="w-full bg-black/5 border-2 border-transparent rounded-2xl pl-12 pr-4 py-4 text-brand-dark font-bold placeholder:text-brand-dark/20 outline-none focus:border-primary-yellow focus:bg-white transition-all"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </div>
+
+                <div className="relative">
+                  <Smartphone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-brand-dark/30" />
+                  <input
+                    type="tel"
+                    placeholder="Phone Number (e.g. 0771...)"
+                    className="w-full bg-black/5 border-2 border-transparent rounded-2xl pl-12 pr-4 py-4 text-brand-dark font-bold placeholder:text-brand-dark/20 outline-none focus:border-primary-yellow focus:bg-white transition-all"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                  />
+                </div>
+
+                {errorMsg && (
+                  <motion.div 
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    className="flex items-center gap-2 text-red-600 bg-red-50 rounded-xl px-4 py-3 text-xs font-bold"
+                  >
+                    <AlertCircle className="w-4 h-4 shrink-0" /> {errorMsg}
+                  </motion.div>
+                )}
+
+                <button
+                  onClick={handlePay}
+                  disabled={payStatus === 'processing' || payStatus === 'redirecting'}
+                  className="w-full py-5 bg-brand-dark text-white rounded-2xl font-bold uppercase tracking-[0.2em] flex items-center justify-center gap-3 disabled:opacity-70 transition-all hover:bg-black hover:shadow-xl active:scale-[0.98]"
+                >
+                  {payStatus === 'idle'       && <>Proceed to Pay — UGX 111,600</>}
+                  {payStatus === 'processing'  && <><Loader2 className="animate-spin w-5 h-5 text-primary-yellow" /> Preparing Checkout…</>}
+                  {payStatus === 'redirecting' && <><Loader2 className="animate-spin w-5 h-5 text-primary-yellow" /> Redirecting…</>}
+                  {payStatus === 'error'       && <>Try Again</>}
+                </button>
+
+                <p className="text-[10px] text-center text-brand-dark/40 font-medium px-4">
+                  By clicking proceed, you will be redirected to Pesapal's secure gateway to complete your payment with MTN or Airtel Money.
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
 
       {/* Footer Info */}
       <motion.div 

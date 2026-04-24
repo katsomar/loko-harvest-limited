@@ -70,8 +70,8 @@ export async function POST(req: NextRequest) {
       },
       body: JSON.stringify({
         id: order_id,
-        currency: 'USD',
-        amount: 30,
+        currency: 'UGX',
+        amount: 111600,
         description: 'Loko Harvest - Web Hosting Setup Fee',
         callback_url: `${process.env.NEXT_PUBLIC_BASE_URL}/payment/status`,
         notification_id: ipn_id,
