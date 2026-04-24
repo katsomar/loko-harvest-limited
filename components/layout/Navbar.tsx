@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Home, Info, Image as ImageIcon, MessageSquare, Phone, Share2, Copy, Check } from "lucide-react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { PremiumQRCode } from "@/components/ui/PremiumQRCode";
 
 const navLinks = [
   { name: "Home", href: "/#home", icon: Home },
@@ -186,13 +187,11 @@ export const Navbar = () => {
                     <h3 className="text-2xl font-serif text-white">Share Loko Harvest</h3>
                   </div>
 
-                  {/* QR Code */}
-                  <div className="relative mx-auto w-48 h-48 bg-white p-4 rounded-3xl shadow-inner group">
-                    <div className="absolute inset-0 bg-primary-yellow/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-3xl" />
-                    <img 
-                      src={`https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${encodeURIComponent("https://lokoharvest.my.canva.site/loko-harvest")}`} 
-                      alt="Loko Harvest QR Code" 
-                      className="w-full h-full object-contain"
+                  {/* New Unique QR Code */}
+                  <div className="flex justify-center py-4">
+                    <PremiumQRCode 
+                      value={shareUrl} 
+                      size={200}
                     />
                   </div>
 
