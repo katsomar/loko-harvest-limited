@@ -141,7 +141,7 @@ export const Hero = () => {
             href="/about"
             className="px-10 py-4 border border-white/30 text-white font-sans font-bold tracking-widest uppercase hover:bg-white hover:text-brand-dark transition-all duration-300 rounded-sm w-full sm:w-auto"
           >
-            Our Story
+            Our Process
           </Link>
         </motion.div>
       </div>
