@@ -18,7 +18,25 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load fonts.
+
+## 🛠️ Billing & Branding Tools
+
+This project includes custom-built tools for administrative tasks, located in the `/admin` directory.
+
+### 📄 Invoice Generator
+- **Local Access**: [http://localhost:3000/admin/invoice](http://localhost:3000/admin/invoice)
+- **Description**: Create professional Vercel-branded invoices for hosting and paywall expenses.
+- **Features**: Editable items, custom tax amounts, and a special "Renewal Note" section for future billing information.
+
+### 🧾 Receipt Generator
+- **Local Access**: [http://localhost:3000/admin/receipt](http://localhost:3000/admin/receipt)
+- **Description**: Issue official payment confirmations after a customer has completed their payment.
+- **Features**: Includes a "PAID" watermark, transaction reference tracking, and a teal-themed professional layout.
+
+### 🎨 Branding Assets
+- **Location**: `branding/` folder
+- **Assets**: High-quality vector QR codes (PDF/SVG) and high-resolution PNGs for physical and digital branding.
 
 ## Learn More
 
