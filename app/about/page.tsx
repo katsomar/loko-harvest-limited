@@ -2,7 +2,7 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, useSpring, AnimatePresence } from "framer-motion";
-import { Shield, Users, Sprout, Heart, Leaf, ChevronRight, ChevronLeft, Egg, Zap, Truck, Package, Factory, Scissors, Droplets, LeafyGreen, Play } from "lucide-react";
+import { Shield, Users, Sprout, Heart, Leaf, ChevronRight, ChevronLeft, Egg, Zap, Truck, Package, Factory, Scissors, Droplets, LeafyGreen, Play, Maximize, Volume2, Settings, X } from "lucide-react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
@@ -79,19 +79,26 @@ export default function AboutBiographyPage() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [windowWidth, setWindowWidth] = useState(0);
   const [currentVideo, setCurrentVideo] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   const videos = [
     { 
       title: "Harvesting Nature's Best", 
       image: "/about/video_harvest.png",
-      desc: "Watch how we carefully select the finest pastures for our birds."
+      desc: "Watch how we carefully select the finest pastures for our birds.",
+      youtubeId: "v4pE5U5u2_c" // Placeholder ID, user can replace
     },
     { 
       title: "The Loko Feeding Ritual", 
       image: "/about/video_feeding.png",
-      desc: "A glimpse into our natural feeding process that creates golden yolks."
+      desc: "A glimpse into our natural feeding process that creates golden yolks.",
+      youtubeId: "dQw4w9WgXcQ" // Placeholder ID, user can replace
     }
   ];
+
+  useEffect(() => {
+    setIsPlaying(false); // Reset playback when switching videos
+  }, [currentVideo]);
 
   useEffect(() => {
     setWindowWidth(window.innerWidth);
@@ -280,51 +287,82 @@ export default function AboutBiographyPage() {
                     transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                     className="relative aspect-video"
                   >
-                    <Image 
-                      src={videos[currentVideo].image}
-                      alt={videos[currentVideo].title}
-                      fill
-                      className="object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/20 to-transparent opacity-80" />
-                    
-                    {/* Play Button */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <motion.div 
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center hover:bg-primary-yellow transition-colors duration-500 shadow-3xl cursor-pointer"
-                      >
-                        <Play className="text-white hover:text-brand-dark fill-current ml-2" size={windowWidth < 768 ? 32 : 48} />
-                      </motion.div>
-                    </div>
+                    {!isPlaying ? (
+                      <>
+                        <Image 
+                          src={videos[currentVideo].image}
+                          alt={videos[currentVideo].title}
+                          fill
+                          className="object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/20 to-transparent opacity-80" />
+                        
+                        {/* Play Button */}
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <motion.div 
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.95 }}
+                            onClick={() => setIsPlaying(true)}
+                            className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center hover:bg-primary-yellow transition-colors duration-500 shadow-3xl cursor-pointer group"
+                          >
+                            <Play className="text-white group-hover:text-brand-dark fill-current ml-2" size={windowWidth < 768 ? 32 : 48} />
+                          </motion.div>
+                        </div>
 
-                    {/* Info Overlay */}
-                    <div className="absolute bottom-6 left-6 right-6 md:bottom-12 md:left-12 md:right-12">
-                       <motion.span 
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          className="text-primary-yellow font-sans text-[10px] md:text-xs font-bold uppercase tracking-[10px] block mb-2 md:mb-4"
-                       >
-                          Experience
-                       </motion.span>
-                       <motion.h3 
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.1 }}
-                          className="text-2xl md:text-6xl font-serif text-white mb-2 md:mb-4 leading-tight"
-                       >
-                          {videos[currentVideo].title}
-                       </motion.h3>
-                       <motion.p 
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.2 }}
-                          className="text-white/60 font-sans text-sm md:text-lg max-w-2xl line-clamp-2 md:line-clamp-none"
-                       >
-                          {videos[currentVideo].desc}
-                       </motion.p>
-                    </div>
+                        {/* Visual Indicators for Controls */}
+                        <div className="absolute top-6 right-6 flex gap-4 opacity-40">
+                           <Maximize size={20} className="text-white" />
+                           <Volume2 size={20} className="text-white" />
+                           <Settings size={20} className="text-white" />
+                        </div>
+
+                        {/* Info Overlay */}
+                        <div className="absolute bottom-6 left-6 right-6 md:bottom-12 md:left-12 md:right-12 pointer-events-none">
+                           <motion.span 
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              className="text-primary-yellow font-sans text-[10px] md:text-xs font-bold uppercase tracking-[10px] block mb-2 md:mb-4"
+                           >
+                              Experience
+                           </motion.span>
+                           <motion.h3 
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ delay: 0.1 }}
+                              className="text-2xl md:text-6xl font-serif text-white mb-2 md:mb-4 leading-tight"
+                           >
+                              {videos[currentVideo].title}
+                           </motion.h3>
+                           <motion.p 
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ delay: 0.2 }}
+                              className="text-white/60 font-sans text-sm md:text-lg max-w-2xl line-clamp-2 md:line-clamp-none"
+                           >
+                              {videos[currentVideo].desc}
+                           </motion.p>
+                        </div>
+                      </>
+                    ) : (
+                      <div className="absolute inset-0 bg-black">
+                        <iframe
+                          width="100%"
+                          height="100%"
+                          src={`https://www.youtube.com/embed/${videos[currentVideo].youtubeId}?autoplay=1&controls=1&rel=0&modestbranding=1&iv_load_policy=3&cc_load_policy=1`}
+                          title="YouTube video player"
+                          frameBorder="0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          allowFullScreen
+                          className="w-full h-full"
+                        ></iframe>
+                        <button 
+                          onClick={() => setIsPlaying(false)}
+                          className="absolute top-4 right-4 z-[60] bg-white/10 hover:bg-white/20 backdrop-blur-md text-white p-3 rounded-full transition-all"
+                        >
+                          <X size={24} />
+                        </button>
+                      </div>
+                    )}
                   </motion.div>
                 </AnimatePresence>
 
