@@ -374,17 +374,17 @@ export default function OrdersPage() {
                            <h4 className="text-primary-yellow font-serif text-lg">Merchant Payment</h4>
                            <p className="text-white/40 text-[10px] uppercase tracking-widest mb-4">Please pay via Merchant Code below and share screenshot later:</p>
                            <div className="space-y-3">
-                              <button onClick={() => { navigator.clipboard.writeText("583456"); setCustomerInfo(prev => ({ ...prev, paymentMode: "Airtel Merchant" })) }} className={cn("w-full p-4 rounded-xl flex items-center justify-between border transition-all", customerInfo.paymentMode === "Airtel Merchant" ? "border-primary-yellow bg-primary-yellow/10" : "border-white/10 hover:bg-white/5")}>
+                              <button onClick={() => { navigator.clipboard.writeText("6850699"); setCustomerInfo(prev => ({ ...prev, paymentMode: "Airtel Merchant" })) }} className={cn("w-full p-4 rounded-xl flex items-center justify-between border transition-all", customerInfo.paymentMode === "Airtel Merchant" ? "border-primary-yellow bg-primary-yellow/10" : "border-white/10 hover:bg-white/5")}>
                                  <div className="text-left">
-                                    <p className="text-[8px] uppercase tracking-widest text-white/40">Airtel Merchant Code</p>
-                                    <p className="font-bold">583 456</p>
+                                    <p className="text-[8px] uppercase tracking-widest text-white/40">Airtel Merchant Code(Anette Mehangye)</p>
+                                    <p className="font-bold">6850699</p>
                                  </div>
                                  <span className="text-[9px] uppercase font-bold text-primary-yellow">Copy Code</span>
                               </button>
-                              <button onClick={() => { navigator.clipboard.writeText("123987"); setCustomerInfo(prev => ({ ...prev, paymentMode: "MTN Merchant" })) }} className={cn("w-full p-4 rounded-xl flex items-center justify-between border transition-all", customerInfo.paymentMode === "MTN Merchant" ? "border-primary-yellow bg-primary-yellow/10" : "border-white/10 hover:bg-white/5")}>
+                              <button onClick={() => { navigator.clipboard.writeText("186508"); setCustomerInfo(prev => ({ ...prev, paymentMode: "MTN Merchant" })) }} className={cn("w-full p-4 rounded-xl flex items-center justify-between border transition-all", customerInfo.paymentMode === "MTN Merchant" ? "border-primary-yellow bg-primary-yellow/10" : "border-white/10 hover:bg-white/5")}>
                                  <div className="text-left">
-                                    <p className="text-[8px] uppercase tracking-widest text-white/40">MTN Merchant Code</p>
-                                    <p className="font-bold">123 987</p>
+                                    <p className="text-[8px] uppercase tracking-widest text-white/40">MTN Merchant Code(Anette)</p>
+                                    <p className="font-bold">186508</p>
                                  </div>
                                  <span className="text-[9px] uppercase font-bold text-primary-yellow">Copy Code</span>
                               </button>
