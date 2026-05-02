@@ -79,26 +79,21 @@ export default function AboutBiographyPage() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [windowWidth, setWindowWidth] = useState(0);
   const [currentVideo, setCurrentVideo] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
 
   const videos = [
     { 
       title: "Harvesting Nature's Best", 
-      image: "/about/video_harvest.png",
+      image: "/about/first.png",
       desc: "Watch how we carefully select the finest pastures for our birds.",
-      youtubeId: "v4pE5U5u2_c" // Placeholder ID, user can replace
+      videoUrl: "https://4ydypgl757.ucarecd.net/6a2f3c40-ad6b-411d-9265-8e4f5f6f1fe9/lokotokwiba.mp4" // Placeholder Uploadcare link
     },
     { 
       title: "The Loko Feeding Ritual", 
-      image: "/about/video_feeding.png",
+      image: "/about/second.png",
       desc: "A glimpse into our natural feeding process that creates golden yolks.",
-      youtubeId: "dQw4w9WgXcQ" // Placeholder ID, user can replace
+      videoUrl: "https://4ydypgl757.ucarecd.net/caa1c461-0bac-4a43-b2e8-549dada5938f/LOKOFARMVIDEOV2.mp4" // Placeholder Uploadcare link
     }
   ];
-
-  useEffect(() => {
-    setIsPlaying(false); // Reset playback when switching videos
-  }, [currentVideo]);
 
   useEffect(() => {
     setWindowWidth(window.innerWidth);
@@ -277,7 +272,7 @@ export default function AboutBiographyPage() {
               />
 
               {/* Video Card Carousel */}
-              <div className="relative z-20 overflow-hidden rounded-[50px] shadow-[0_50px_100px_rgba(0,0,0,0.15)] bg-brand-dark border border-white/5">
+              <div className="relative z-20 overflow-hidden rounded-[30px] md:rounded-[50px] shadow-[0_50px_100px_rgba(0,0,0,0.15)] bg-brand-dark border border-white/5">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={currentVideo}
@@ -285,84 +280,20 @@ export default function AboutBiographyPage() {
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                    className="relative aspect-video"
+                    className="relative aspect-[4/5] md:aspect-video"
                   >
-                    {!isPlaying ? (
-                      <>
-                        <Image 
-                          src={videos[currentVideo].image}
-                          alt={videos[currentVideo].title}
-                          fill
-                          className="object-cover"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/20 to-transparent opacity-80" />
-                        
-                        {/* Play Button */}
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <motion.div 
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.95 }}
-                            onClick={() => setIsPlaying(true)}
-                            className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center hover:bg-primary-yellow transition-colors duration-500 shadow-3xl cursor-pointer group"
-                          >
-                            <Play className="text-white group-hover:text-brand-dark fill-current ml-2" size={windowWidth < 768 ? 32 : 48} />
-                          </motion.div>
-                        </div>
-
-                        {/* Visual Indicators for Controls */}
-                        <div className="absolute top-6 right-6 flex gap-4 opacity-40">
-                           <Maximize size={20} className="text-white" />
-                           <Volume2 size={20} className="text-white" />
-                           <Settings size={20} className="text-white" />
-                        </div>
-
-                        {/* Info Overlay */}
-                        <div className="absolute bottom-6 left-6 right-6 md:bottom-12 md:left-12 md:right-12 pointer-events-none">
-                           <motion.span 
-                              initial={{ opacity: 0, y: 10 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              className="text-primary-yellow font-sans text-[10px] md:text-xs font-bold uppercase tracking-[10px] block mb-2 md:mb-4"
-                           >
-                              Experience
-                           </motion.span>
-                           <motion.h3 
-                              initial={{ opacity: 0, y: 10 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{ delay: 0.1 }}
-                              className="text-2xl md:text-6xl font-serif text-white mb-2 md:mb-4 leading-tight"
-                           >
-                              {videos[currentVideo].title}
-                           </motion.h3>
-                           <motion.p 
-                              initial={{ opacity: 0, y: 10 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{ delay: 0.2 }}
-                              className="text-white/60 font-sans text-sm md:text-lg max-w-2xl line-clamp-2 md:line-clamp-none"
-                           >
-                              {videos[currentVideo].desc}
-                           </motion.p>
-                        </div>
-                      </>
-                    ) : (
-                      <div className="absolute inset-0 bg-black">
-                        <iframe
-                          width="100%"
-                          height="100%"
-                          src={`https://www.youtube.com/embed/${videos[currentVideo].youtubeId}?autoplay=1&controls=1&rel=0&modestbranding=1&iv_load_policy=3&cc_load_policy=1`}
-                          title="YouTube video player"
-                          frameBorder="0"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                          allowFullScreen
-                          className="w-full h-full"
-                        ></iframe>
-                        <button 
-                          onClick={() => setIsPlaying(false)}
-                          className="absolute top-4 right-4 z-[60] bg-white/10 hover:bg-white/20 backdrop-blur-md text-white p-3 rounded-full transition-all"
-                        >
-                          <X size={24} />
-                        </button>
-                      </div>
-                    )}
+                    <div className="absolute inset-0 bg-black">
+                      <video
+                        key={videos[currentVideo].videoUrl}
+                        src={videos[currentVideo].videoUrl}
+                        poster={videos[currentVideo].image}
+                        controls
+                        playsInline
+                        className="w-full h-full object-cover"
+                      >
+                        Your browser does not support the video tag.
+                      </video>
+                    </div>
                   </motion.div>
                 </AnimatePresence>
 

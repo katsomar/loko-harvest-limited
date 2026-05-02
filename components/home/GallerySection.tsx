@@ -16,6 +16,7 @@ const items = [
   { id: 4, category: "Events", title: "Community Day", image: "/gallery/events.JPG", height: "h-[400px]" },
   { id: 5, category: "Farm", title: "Healthy Flock", image: "/gallery/flock.JPG", height: "h-[500px]" },
   { id: 6, category: "Products", title: "Fresh Products", image: "/orders/chicken.JPG", height: "h-[320px]" },
+  { id: 7, category: "Events", title: "Harvest Festival", image: "/gallery/events2.JPG", height: "h-[380px]" },
 ];
 
 export const GallerySection = () => {

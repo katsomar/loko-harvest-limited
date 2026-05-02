@@ -15,6 +15,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "unpkg.com",
       },
+      {
+        protocol: "https",
+        hostname: "ucarecdn.com",
+      },
     ],
   },
 };
