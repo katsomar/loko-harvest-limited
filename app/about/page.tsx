@@ -1,11 +1,12 @@
 "use client";
 
 import React, { useRef, useState, useEffect } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { Shield, Users, Sprout, Heart, Leaf, ChevronRight, Egg, Zap, Truck, Package, Factory, Scissors, Droplets, LeafyGreen } from "lucide-react";
+import { motion, useScroll, useTransform, useSpring, AnimatePresence } from "framer-motion";
+import { Shield, Users, Sprout, Heart, Leaf, ChevronRight, ChevronLeft, Egg, Zap, Truck, Package, Factory, Scissors, Droplets, LeafyGreen, Play } from "lucide-react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { LeafyCorner } from "@/components/ui/LeafyCorner";
 
 const processSteps = [
   {
@@ -77,6 +78,20 @@ const processSteps = [
 export default function AboutBiographyPage() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [windowWidth, setWindowWidth] = useState(0);
+  const [currentVideo, setCurrentVideo] = useState(0);
+
+  const videos = [
+    { 
+      title: "Harvesting Nature's Best", 
+      image: "/about/video_harvest.png",
+      desc: "Watch how we carefully select the finest pastures for our birds."
+    },
+    { 
+      title: "The Loko Feeding Ritual", 
+      image: "/about/video_feeding.png",
+      desc: "A glimpse into our natural feeding process that creates golden yolks."
+    }
+  ];
 
   useEffect(() => {
     setWindowWidth(window.innerWidth);
@@ -235,6 +250,115 @@ export default function AboutBiographyPage() {
               The Journey
             </motion.span>
             <h2 className="text-5xl md:text-9xl font-serif text-brand-dark leading-none">Forged in Nature</h2>
+          </div>
+
+          {/* Centered Carousel Video */}
+          <div className="max-w-5xl mx-auto mb-60 relative z-30 px-6">
+            <div className="relative">
+              {/* Creeping Plant - Top Left */}
+              <LeafyCorner 
+                position="top-left" 
+                className="-top-20 -left-20 md:-top-32 md:-left-32 z-10" 
+                delay={0.2}
+              />
+
+              {/* Creeping Plant - Bottom Right */}
+              <LeafyCorner 
+                position="bottom-right" 
+                className="-bottom-20 -right-20 md:-bottom-32 md:-right-32 z-10" 
+                delay={0.5}
+              />
+
+              {/* Video Card Carousel */}
+              <div className="relative z-20 overflow-hidden rounded-[50px] shadow-[0_50px_100px_rgba(0,0,0,0.15)] bg-brand-dark border border-white/5">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentVideo}
+                    initial={{ opacity: 0, scale: 1.05 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                    className="relative aspect-video"
+                  >
+                    <Image 
+                      src={videos[currentVideo].image}
+                      alt={videos[currentVideo].title}
+                      fill
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/20 to-transparent opacity-80" />
+                    
+                    {/* Play Button */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <motion.div 
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center hover:bg-primary-yellow transition-colors duration-500 shadow-3xl cursor-pointer"
+                      >
+                        <Play className="text-white hover:text-brand-dark fill-current ml-2" size={windowWidth < 768 ? 32 : 48} />
+                      </motion.div>
+                    </div>
+
+                    {/* Info Overlay */}
+                    <div className="absolute bottom-6 left-6 right-6 md:bottom-12 md:left-12 md:right-12">
+                       <motion.span 
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="text-primary-yellow font-sans text-[10px] md:text-xs font-bold uppercase tracking-[10px] block mb-2 md:mb-4"
+                       >
+                          Experience
+                       </motion.span>
+                       <motion.h3 
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.1 }}
+                          className="text-2xl md:text-6xl font-serif text-white mb-2 md:mb-4 leading-tight"
+                       >
+                          {videos[currentVideo].title}
+                       </motion.h3>
+                       <motion.p 
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.2 }}
+                          className="text-white/60 font-sans text-sm md:text-lg max-w-2xl line-clamp-2 md:line-clamp-none"
+                       >
+                          {videos[currentVideo].desc}
+                       </motion.p>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+
+                {/* Navigation Buttons */}
+                <div className="absolute top-1/2 -translate-y-1/2 left-4 right-4 flex justify-between pointer-events-none z-50">
+                   <button 
+                      onClick={() => setCurrentVideo(prev => (prev === 0 ? videos.length - 1 : prev - 1))}
+                      className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/5 backdrop-blur-md border border-white/10 flex items-center justify-center text-white pointer-events-auto hover:bg-primary-yellow hover:text-brand-dark transition-all"
+                   >
+                      <ChevronLeft size={windowWidth < 768 ? 24 : 32} />
+                   </button>
+                   <button 
+                      onClick={() => setCurrentVideo(prev => (prev === videos.length - 1 ? 0 : prev + 1))}
+                      className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/5 backdrop-blur-md border border-white/10 flex items-center justify-center text-white pointer-events-auto hover:bg-primary-yellow hover:text-brand-dark transition-all"
+                   >
+                      <ChevronRight size={windowWidth < 768 ? 24 : 32} />
+                   </button>
+                </div>
+
+                {/* Pagination Dots */}
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 md:gap-3">
+                   {videos.map((_, i) => (
+                      <button 
+                         key={i}
+                         onClick={() => setCurrentVideo(i)}
+                         className={cn(
+                            "h-1 transition-all duration-500",
+                            currentVideo === i ? "w-8 md:w-12 bg-primary-yellow" : "w-4 md:w-6 bg-white/20"
+                         )}
+                      />
+                   ))}
+                </div>
+              </div>
+            </div>
           </div>
 
           <div className="relative">
