@@ -22,7 +22,7 @@ const processSteps = [
     description: "We make sure everything is clean. We wash and disinfect the pastures to remove any dirt or germs. This keeps the food safe and fresh for our birds.",
     color: "bg-primary-yellow",
     textColor: "text-brand-dark",
-    image: "/process/dis.JPG"
+    image: "/about/disinfecting.png"
   },
   {
     icon: Scissors,
@@ -30,7 +30,7 @@ const processSteps = [
     description: "We use special machines to chop the pastures into small pieces. This makes it very easy for our chickens to eat and get all the good nutrients from the pastures.",
     color: "bg-brand-dark",
     textColor: "text-white",
-    image: "/process/crush.JPG"
+    image: "/about/crushing.png"
   },
   {
     icon: Zap,
@@ -46,7 +46,7 @@ const processSteps = [
     description: "Now we mix the chopped pastures together with the chicken feed. This special mix is what gives our eggs their beautiful and natural yellow yolks.",
     color: "bg-primary-yellow",
     textColor: "text-brand-dark",
-    image: "/process/mix.JPG"
+    image: "/about/mixing.png"
   },
   {
     icon: Package,
@@ -54,7 +54,7 @@ const processSteps = [
     description: "We press the mixture into small pellets. This makes the food easy to carry and ensures the chickens get a bit of everything in every bite.",
     color: "bg-brand-dark",
     textColor: "text-white",
-    image: "/process/pellet.JPG"
+    image: "/about/pelleting.png"
   },
   {
     icon: Truck,
@@ -62,7 +62,7 @@ const processSteps = [
     description: "We put the fresh food into bags and quickly transport them to the chicken houses. We want the food to be as fresh as possible for our birds.",
     color: "bg-dark-green",
     textColor: "text-white",
-    image: "/process/pack.JPG"
+    image: "/about/packing.png"
   },
   {
     icon: Egg,
